@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionSingleton.cs" />
+    <Compile Include="ControlTag.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

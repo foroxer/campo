@@ -19,29 +19,44 @@ namespace View
 
         public frmUsuarios()
         {
-            InitializeComponent();  
+            InitializeComponent();
         }
-
-
-        void LlenarTreeView(TreeNode padre, Component c)
+        private void frmUsuarios_Load(object sender, EventArgs e)
         {
-            TreeNode hijo = new TreeNode(c.Nombre);
-            hijo.Tag = c;
+            userService = new UserService();
+            permissionsService = new PermissionsService();
+            this.cboUsuarios.DataSource = userService.GetAll();
+
+            this.cboFamilias.DataSource = permissionsService.GetAllFamilies();
+            this.cboPatentes.DataSource = permissionsService.GetAllPatentes();
+
+            eliminarFamiliaBtn.Enabled = false;
+            agregarFamiliaBtn.Enabled = false;
+            eliminarPatenteBtn.Enabled = false;
+            agregarPatenteBtn.Enabled = false;
+
+            guardarPermisosBtn.Enabled = false;
+            resetPasswordBtn.Enabled = false;
+            validateButtons();
+        }
+        private void LlenarTreeView(TreeNode padre, Component componente)
+        {
+            TreeNode hijo = new TreeNode(componente.Nombre);
+            hijo.Tag = componente;
             padre.Nodes.Add(hijo);
 
-            foreach (var item in c.Childs)
+            foreach (var item in componente.Childs)
             {
                 LlenarTreeView(hijo, item);
             }
 
         }
-
-        void MostrarPermisos(User u)
+        private void MostrarPermisos(User userToShow)
         {
             this.treeView1.Nodes.Clear();
-            TreeNode root = new TreeNode(u.Name);
+            TreeNode root = new TreeNode(userToShow.Name);
 
-            foreach (var item in u.Permissions)
+            foreach (var item in userToShow.Permissions)
             {
                 LlenarTreeView(root, item);
             }   
@@ -49,32 +64,8 @@ namespace View
             this.treeView1.Nodes.Add(root);
             this.treeView1.ExpandAll();
         }
-
-        private void CmdConfigurar_Click(object sender, EventArgs e)
-        {
-
-            guardarPermisosBtn.Enabled = true;
-            resetPasswordBtn.Enabled = true;
-
-
-            /*user = new User();
-            user.Id = ((User)this.cboUsuarios.SelectedItem).Id;
-            user.Name = ((User)this.cboUsuarios.SelectedItem).Name;
-            user.Password = ((User)this.cboUsuarios.SelectedItem).Password;*/
-
-            user = ((User)this.cboUsuarios.SelectedItem);
-            permissionsService.FillUserComponents(user);
-
-            MostrarPermisos(user);
-
-            this.cboFamilias.DataSource = permissionsService.GetAllFamilies();
-            this.cboPatentes.DataSource = permissionsService.GetAllPatentes();
-        }
-
         private void AgregarPatente_Click(object sender, EventArgs e)
         {
-            if (user != null)
-            {
                 var patente = (Patent)cboPatentes.SelectedItem;
                 if (patente != null)
                 {
@@ -88,44 +79,26 @@ namespace View
                         
                     }
                 }
-            }
-            else
-                MessageBox.Show("Seleccione un usuario");
         }
-
         private void AgregarFamilia_Click(object sender, EventArgs e)
         {
-            if (user != null)
+            Family family = (Family)cboFamilias.SelectedItem;
+            if (family != null)
             {
-                Family family = (Family)cboFamilias.SelectedItem;
-                if (family != null)
-                {
                    
-                    if (user.Permissions.Where(permission => (permissionsService.Contains(permission, family))).ToList().Count() > 0)
-                        MessageBox.Show("El usuario ya tiene la familia indicada");
-                    else
-                    {
-                        permissionsService.FillFamilyComponents(family);
-                        user.Permissions.Add(family);
-                        MostrarPermisos(user);
-                    }
+                if (user.Permissions.Where(permission => (permissionsService.Contains(permission, family))).ToList().Count() > 0)
+                    MessageBox.Show("El usuario ya tiene la familia indicada");
+                else
+                {
+                    permissionsService.FillFamilyComponents(family);
+                    user.Permissions.Add(family);
+                    MostrarPermisos(user);
                 }
             }
-            else
-            {
-                MessageBox.Show("Seleccione un usuario");
-            }
-                
+            validateButtons();
         }
-
         private void CmdGuardarFamilia_Click(object sender, EventArgs e)
         {
-            if (user == null)
-            {
-                MessageBox.Show("Seleccione un usuario");
-                return;
-            }
-
             try
             {
                 userService.SavePermissions(user);
@@ -133,52 +106,59 @@ namespace View
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Error al guardar el usuario");
             }
         }
-
-        private void frmUsuarios_Load(object sender, EventArgs e)
-        {
-            userService = new UserService();
-            permissionsService = new PermissionsService();
-            this.cboUsuarios.DataSource = userService.GetAll();
-
-            eliminarFamiliaBtn.Enabled = false;
-            agregarFamiliaBtn.Enabled = false;
-            eliminarPatenteBtn.Enabled = false;
-            agregarPatenteBtn.Enabled = false;
-
-            guardarPermisosBtn.Enabled = false;
-            resetPasswordBtn.Enabled = false;
-        }
-
         private void cboPatentes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (user != null)
+            validateButtons();
+        }
+        private void cboFamilias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            validateButtons();
+        }
+        private void eliminarPatenteBtn_Click(object sender, EventArgs e)
+        {
+            Patent patent = (Patent)cboPatentes.SelectedItem;
+            if (patent != null)
             {
-                Patent patente = (Patent)cboPatentes.SelectedItem;
-                if (patente != null)
+                user.Permissions.Remove(user.Permissions.Where(permission => (permissionsService.Contains(permission, patent))).First());
+                MostrarPermisos(user);
+            }
+            validateButtons();
+        }
+        private void eliminarFamiliaBtn_Click(object sender, EventArgs e)
+        {
+            Family family = (Family)cboFamilias.SelectedItem;
+            if (family != null)
+            { 
+                user.Permissions.Remove(user.Permissions.Where(component => family.Id == component.Id).First());
+                MostrarPermisos(user);
+            }
+            validateButtons();
+        }
+        private void resetPasswordBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show($"Esta seguro que desea resetear la pasword del usuario {user.Name}","", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                   
-                    if (user.Permissions.Where(permission => (permissionsService.Contains(permission, patente))).ToList().Count() > 0)
-                    {
-                        eliminarPatenteBtn.Enabled = true;
-                        agregarPatenteBtn.Enabled = false;
-                    }
-                    else
-                    {
-                        eliminarPatenteBtn.Enabled = false;
-                        agregarPatenteBtn.Enabled = true;
-                    }
+                    userService.ResetPassword(user);
+                    MessageBox.Show("Password Actualizada");
                 }
             }
+            catch
+            {
+                MessageBox.Show($"Ocurrio un error reseteando la pasword del usuario {user.Name}");
+            }
         }
-
-        private void cboFamilias_SelectedIndexChanged(object sender, EventArgs e)
+        private void validateButtons()
         {
             if (user != null)
             {
+                guardarPermisosBtn.Enabled = true;
+                resetPasswordBtn.Enabled = true;
+                #region validate familia
                 Family family = (Family)cboFamilias.SelectedItem;
                 if (family != null)
                 {
@@ -194,43 +174,33 @@ namespace View
                         agregarFamiliaBtn.Enabled = true;
                     }
                 }
-            }
-        }
-
-        private void eliminarPatenteBtn_Click(object sender, EventArgs e)
-        {
-            if (user != null)
-            {
-                Patent patent = (Patent)cboPatentes.SelectedItem;
-                if (patent != null)
+                #endregion
+                #region validar patentes
+                Patent patente = (Patent)cboPatentes.SelectedItem;
+                if (patente != null)
                 {
-                    if (user.Permissions.Where(permission => (permissionsService.Contains(permission, patent))).ToList().Count() > 0)
+                    tooltip.SetToolTip(cboPatentes, patente.Description);
+                    if (user.Permissions.Where(permission => (permissionsService.Contains(permission, patente))).ToList().Count() > 0)
                     {
-                        user.Permissions.Remove(patent);
-                        MostrarPermisos(user);
+                        eliminarPatenteBtn.Enabled = true;
+                        agregarPatenteBtn.Enabled = false;
+                    }
+                    else
+                    {
+                        eliminarPatenteBtn.Enabled = false;
+                        agregarPatenteBtn.Enabled = true;
                     }
                 }
-            }
-            else
-                MessageBox.Show("Seleccione un usuario");
-        }
-
-        private void eliminarFamiliaBtn_Click(object sender, EventArgs e)
-        {
-            if (user != null)
-            {
-                Family family = (Family)cboFamilias.SelectedItem;
-                if (family != null)
-                { 
-                    user.Permissions.Remove(user.Permissions.Where(component => family.Id == component.Id).FirstOrDefault());
-                    MostrarPermisos(user);
-                }
+                #endregion
             }
         }
+        private void cboUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        { 
+            user = ((User)this.cboUsuarios.SelectedItem);
+            permissionsService.FillUserComponents(user);
 
-        private void resetPasswordBtn_Click(object sender, EventArgs e)
-        {
-            userService.ResetPassword(user);
+            MostrarPermisos(user);
+
         }
     }
 }

@@ -26,6 +26,7 @@ namespace View
             {
                 sessionService.Login(textBox1.Text, textBox2.Text);
                 new frmMain(this).Show();
+                clearForm();
                 this.Hide();
             }
             catch (Exception ex)
@@ -33,14 +34,10 @@ namespace View
                 MessageBox.Show(ex.Message);
 
             }
-            finally
-            {
-                clearForm();
-            }
         }
 
 
-        private  void clearForm()
+        private void clearForm()
         {
             textBox1.Clear();
             textBox2.Clear();
@@ -49,7 +46,12 @@ namespace View
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            textBox1.Focus();
+            clearForm();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

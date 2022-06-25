@@ -22,6 +22,19 @@ namespace View
         UserService userService;
         LanguageService languageService;
 
+        public frmMain(Form parent)
+        {
+            InitializeComponent();
+
+            loginForm = parent;
+            sesionService = new SessionService();
+            languageService = new LanguageService();
+            userService = new UserService();
+            Session.GetInstance.addObserber(this);
+            loadLanguages();
+
+            ValidarPermisos();
+        }
         private void languageChange_click(object sender, EventArgs e)
         {
             Language language =(Language)((ToolStripMenuItem)sender).Tag;
@@ -30,119 +43,44 @@ namespace View
             this.lblUsuario.Text = language.Name;
 
         }
-
-
-        void ValidarPermisos()
+        private void ValidarPermisos()
         {
             if (Session.GetInstance.IsLoggedIn())
             {
-                this.mnuEjemplo.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PuedeHacerF);
-                this.mnuA.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Default);
-                this.mnuB.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Patentes);
-                this.mnuC.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Usuarios);
-                this.mnuD.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.PuedeHacerD);
-                this.mnuE.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.PuedeHacerE);
-                this.mnuG.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.PuedeHacerG);
-
-            }
-            else
-            {
-                this.mnuEjemplo.Enabled = false;
-                this.mnuA.Enabled = false;
-                this.mnuB.Enabled = false;
-                this.mnuC.Enabled = false;
-                this.mnuD.Enabled = false;
-                this.mnuE.Enabled = false;
-                this.mnuG.Enabled = false;
-
+                mnuPatentesFamilias.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesFamilias);
+                mnuUsuarioPatentes.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesUsuarios);
+                mnuConfig.Visible = Session.GetInstance.IsInRole(PermissionsEnum.MenuConfig);
             }
         }
-
-
-        public frmMain(Form parent)
+        private void loadLanguages()
         {
-            InitializeComponent();
-            
-            loginForm = parent;
-            sesionService = new SessionService();
-            languageService = new LanguageService();
-            userService = new UserService();
-            Session.GetInstance.addObserber(this);
-
             List<Language> languages = languageService.GetLanguagesForCombo();
             foreach (Language item in languages)
             {
                 ToolStripMenuItem t = new ToolStripMenuItem(item.Name);
                 t.Tag = item;
-
                 t.Click += languageChange_click;
                 mnuSelectIdioma.DropDownItems.Add(t);
             }
-            ValidarPermisos();
         }
-
-      
-
-        private void SeguridadToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuPatentesFamilias_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmPatentesFamilias));
         }
-
-        private void UsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuUsuarioPatentes_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmUsuarios));
         }
-
-        private void FormNuevoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-
-            if (Session.GetInstance.IsInRole(PermissionsEnum.PuedeHacerG))
-            {
-                createForm(typeof(frmNuevo));
-            }
-            else
-            {
-                MessageBox.Show("no tiene permisos");
-            }
-        
-        }
-
-        private void VentasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                VentasServiece ventasServiece = new VentasServiece();
-                ventasServiece.Facturar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                
-            }
-
-        }
-
         private void frmMain_Load(object sender, EventArgs e)
         {
             updateLanguage(Session.GetInstance.language);
         }
-
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-
-        }
-
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Session.GetInstance.removeObserber(this);
+            Session.GetInstance.removeObserber(this); 
             loginForm.Show();
             sesionService.Logout();
         }
-
-
         private void createForm(Type formType)
         {
             foreach (Form f in (this.MdiChildren.ToList()))
@@ -153,13 +91,11 @@ namespace View
                     return;
                 }
             }
-           
 
             Form frm = (Form) Activator.CreateInstance(formType);
             frm.MdiParent = this;
             frm.Show();
         }
-
         public void updateLanguage(Language language )
         {
            foreach(Control control in Controls)
@@ -173,9 +109,7 @@ namespace View
                 }
            }
         }
-
-
-        public void updateToolStrip(Language language, ToolStripItemCollection parent)
+        private void updateToolStrip(Language language, ToolStripItemCollection parent)
         {
             foreach (ToolStripMenuItem control in parent)
             {

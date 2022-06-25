@@ -16,12 +16,10 @@ namespace Models
         public User usuario;
         private Language _language;
         public List<ILanguageObserber> languageObserbers { get; set; }
-        
         private Session()
         {
             languageObserbers = new List<ILanguageObserber>();
         }
-
         public Language language
         {
             get { return _language; }
@@ -30,10 +28,6 @@ namespace Models
                 notifyObserbers(_language);
             }
         }
-
-       
-
-
         public static Session GetInstance
         {
             get
@@ -42,13 +36,10 @@ namespace Models
                 return _sesion;
             }
         }
-
-
         public bool IsLoggedIn()
         {
             return usuario != null;
         }
-
         bool isInRole(Component c, PermissionsEnum permiso, bool existe)
         {
 
@@ -66,7 +57,6 @@ namespace Models
 
             return existe;
         }
-
         public bool IsInRole(PermissionsEnum permiso)
         {
             bool existe = false;
@@ -79,36 +69,28 @@ namespace Models
                     existe = isInRole(item, permiso, existe);
                     if (existe) return true;
                 }
-
             }
-
             return existe;
         }
-
         public void Logout()
         {
             _sesion.usuario = null;
             _sesion.language = null;
         }
-
-
         public void Login(User user)
         {
             _sesion.usuario = user;
             _sesion.language = user.language;
             
         }
-
         public void addObserber(ILanguageObserber languageObserber)
         {
             languageObserbers.Add(languageObserber);
         }
-
         public void removeObserber(ILanguageObserber languageObserber)
         {
             languageObserbers.Remove(languageObserber);
         }
-
         public void notifyObserbers(Language languaje)
         {
             foreach(ILanguageObserber obserber in languageObserbers)

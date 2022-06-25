@@ -10,10 +10,10 @@ namespace Models
     {
         //para cada uno debe existir un registro en BD
         Default,
-        Patentes,
+        PatentesFamilias,
         PatentesUsuarios,
         Usuarios,
-        PuedeHacerD,
+        MenuConfig,
         PuedeHacerE,
         PuedeHacerF,
         PuedeHacerG,
