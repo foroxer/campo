@@ -1,12 +1,7 @@
-﻿using Models;
-using DataAccess;
-using Utiles;
+﻿using Business.exceptions;
+using Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Business.exceptions;
+using Utiles;
 
 namespace Business
 {
@@ -23,15 +18,15 @@ namespace Business
 
         }
 
-        public void Login(String name , String Password)
+        public void Login(String name, String Password)
         {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(Password)) 
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(Password))
             {
                 throw new LoginException();
             }
             User usuario = userService.Get(name);
 
-            if (Crypto.HashSha256(Password) != usuario?.Password )
+            if (Crypto.HashSha256(Password) != usuario?.Password)
             {
                 throw new LoginException();
             }

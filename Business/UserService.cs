@@ -1,16 +1,14 @@
-﻿using Models;
-using DataAccess;
+﻿using DataAccess;
+using Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Utiles;
 
 namespace Business
 {
-      
-    public class UserService 
+
+    public class UserService
     {
         UserRepository userRepository;
 

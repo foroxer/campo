@@ -1,11 +1,6 @@
-﻿using Models;
-using DataAccess;
-using System;
+﻿using DataAccess;
+using Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business
 {
@@ -25,7 +20,7 @@ namespace Business
                 exist = true;
             }
             else
-            { 
+            {
                 foreach (Component item in component.Childs)
                 {
                     if (Contains(item, includes)) return true;
