@@ -63,6 +63,7 @@
             // 
             this.mnuUsuarioPatentes.Name = "mnuUsuarioPatentes";
             this.mnuUsuarioPatentes.Size = new System.Drawing.Size(180, 22);
+            this.mnuUsuarioPatentes.Tag = "usuarios";
             this.mnuUsuarioPatentes.Text = "Usuarios";
             this.mnuUsuarioPatentes.Click += new System.EventHandler(this.mnuUsuarioPatentes_Click);
             // 
@@ -84,6 +85,7 @@
             this.mnuSelectIdioma.Name = "mnuSelectIdioma";
             this.mnuSelectIdioma.Size = new System.Drawing.Size(116, 20);
             this.mnuSelectIdioma.Text = "Seleccionar Idoma";
+            this.mnuSelectIdioma.ToolTipText = "seleccionarIdioma";
             // 
             // lblUsuario
             // 
