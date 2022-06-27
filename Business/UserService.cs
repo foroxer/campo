@@ -11,10 +11,12 @@ namespace Business
     public class UserService
     {
         UserRepository userRepository;
+        PermissionsRepository permissionsRepository;
 
         public UserService()
         {
             userRepository = new UserRepository();
+            permissionsRepository = new PermissionsRepository();
         }
 
         public List<User> GetAll()
@@ -22,19 +24,14 @@ namespace Business
             return userRepository.GetAll();
         }
 
-        public void Save(User user)
+        public User Get(String nic)
         {
-            userRepository.Save(user);
+            return userRepository.Get(nic);
         }
 
-        public User Get(String name)
+        public void SavePermissions(User user)
         {
-            return userRepository.Get(name);
-        }
-
-        public void SavePermissions(User u)
-        {
-            userRepository.SavePermissions(u);
+            userRepository.SavePermissions(user);
         }
 
         public void ResetPassword(User user)
@@ -49,7 +46,7 @@ namespace Business
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Hola, ");
                 sb.Append(user.Name);
-                sb.AppendLine("su contraseña fue actualizada: ");
+                sb.AppendLine("Su contraseña fue actualizada: ");
                 sb.AppendLine(nonHashedPassword);
 
                 MailService.SendMail(sb.ToString(), user.Mail);
@@ -59,13 +56,45 @@ namespace Business
                 try
                 {
                     user.Password = oldPassword;
-                    userRepository.SavePermissions(user);
+                    userRepository.UpdatePassword(user);
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
+        }
+
+        public void CreateUser(User user)
+        {
+            try
+            {
+                user.Permissions.Add(permissionsRepository.GetPatent(PermissionsEnum.Default));
+
+                string nonHashedPassword = Crypto.RandomString(10);
+                user.Password = Crypto.HashSha256(nonHashedPassword);
+                userRepository.Create(user);
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Hola, ");
+                sb.Append(user.Name);
+                sb.AppendLine("Su cuenta fue creada. ");
+                sb.AppendLine("Su password es: ");
+                sb.AppendLine(nonHashedPassword);
+
+                MailService.SendMail(sb.ToString(), user.Mail);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+                
+        }
+
+        public void updateUser(User user)
+        {
+            userRepository.updateUser(user);
         }
     }
 }

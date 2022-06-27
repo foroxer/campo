@@ -10,14 +10,14 @@ namespace Business
 
         UserService userService = new UserService();
         LanguageService languageService = new LanguageService();
+
         public void Login(User user)
         {
             Session session = Session.GetInstance;
             session.Login(user);
-            session.language = languageService.GetLanguage(user.language.Key);
+            session.language = languageService.GetLanguage(user.Language.Key);
 
         }
-
         public void Login(String name, String Password)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(Password))
@@ -32,7 +32,6 @@ namespace Business
             }
             Session.GetInstance.Login(usuario);
         }
-
         public void Logout()
         {
             Session.GetInstance.Logout();
