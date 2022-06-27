@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboPermisos = new System.Windows.Forms.ComboBox();
             this.grpPatentes = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.TxtDescription = new System.Windows.Forms.TextBox();
             this.eliminarPatenteBtn = new System.Windows.Forms.Button();
             this.cmdAgregarPatente = new System.Windows.Forms.Button();
             this.cboPatentes = new System.Windows.Forms.ComboBox();
@@ -53,14 +55,12 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cmdGuardarFamilia = new System.Windows.Forms.Button();
             this.treeConfigurarFamilia = new System.Windows.Forms.TreeView();
-            this.TxtDescription = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.grpPatentes.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -99,6 +99,25 @@
             this.grpPatentes.TabIndex = 4;
             this.grpPatentes.TabStop = false;
             this.grpPatentes.Text = "Patentes";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.TxtDescription);
+            this.groupBox5.Location = new System.Drawing.Point(8, 101);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(237, 137);
+            this.groupBox5.TabIndex = 10;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Descripcion";
+            // 
+            // TxtDescription
+            // 
+            this.TxtDescription.Location = new System.Drawing.Point(7, 19);
+            this.TxtDescription.Multiline = true;
+            this.TxtDescription.Name = "TxtDescription";
+            this.TxtDescription.ReadOnly = true;
+            this.TxtDescription.Size = new System.Drawing.Size(223, 109);
+            this.TxtDescription.TabIndex = 10;
             // 
             // eliminarPatenteBtn
             // 
@@ -188,7 +207,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Nombre";
+            this.label3.Text = "Name";
             // 
             // groupBox2
             // 
@@ -293,7 +312,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Nombre";
+            this.label5.Text = "Name";
             // 
             // cboFamilias
             // 
@@ -348,25 +367,6 @@
             this.treeConfigurarFamilia.Size = new System.Drawing.Size(262, 192);
             this.treeConfigurarFamilia.TabIndex = 0;
             // 
-            // TxtDescription
-            // 
-            this.TxtDescription.Location = new System.Drawing.Point(7, 19);
-            this.TxtDescription.Multiline = true;
-            this.TxtDescription.Name = "TxtDescription";
-            this.TxtDescription.ReadOnly = true;
-            this.TxtDescription.Size = new System.Drawing.Size(223, 109);
-            this.TxtDescription.TabIndex = 10;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.TxtDescription);
-            this.groupBox5.Location = new System.Drawing.Point(8, 101);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(237, 137);
-            this.groupBox5.TabIndex = 10;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Descripcion";
-            // 
             // frmPatentesFamilias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,9 +378,12 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmPatentesFamilias";
             this.Text = "Configurar seguridad";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPatentesFamilias_FormClosed);
             this.Load += new System.EventHandler(this.FrmSeguridad_Load);
             this.grpPatentes.ResumeLayout(false);
             this.grpPatentes.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -388,8 +391,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -1,34 +1,34 @@
-﻿using Models;
-using Business;
+﻿using Business;
+using Models;
+using Models.interfaces;
+using Models.language;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace View
 {
-    public partial class frmUsuarios : Form
+    public partial class frmUsuariosPatentes : Form,ILanguageObserber
     {
         private UserService userService;
         private PermissionsService permissionsService;
         private User user;
 
-        public frmUsuarios()
+        public frmUsuariosPatentes()
         {
             InitializeComponent();
         }
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
+            Session.GetInstance.addObserber(this);
             userService = new UserService();
             permissionsService = new PermissionsService();
-            this.cboUsuarios.DataSource = userService.GetAll();
+            cboUsuarios.DataSource = userService.GetAll();
+            cboUsuarios.DisplayMember = "nic";
 
-            this.cboFamilias.DataSource = permissionsService.GetAllFamilies();
-            this.cboPatentes.DataSource = permissionsService.GetAllPatentes();
+            cboFamilias.DataSource = permissionsService.GetAllFamilies();
+            cboPatentes.DataSource = permissionsService.GetAllPatentes();
 
             eliminarFamiliaBtn.Enabled = false;
             agregarFamiliaBtn.Enabled = false;
@@ -53,39 +53,39 @@ namespace View
         }
         private void MostrarPermisos(User userToShow)
         {
-            this.treeView1.Nodes.Clear();
-            TreeNode root = new TreeNode(userToShow.Name);
+            treeView1.Nodes.Clear();
+            TreeNode root = new TreeNode(userToShow.Nic);
 
             foreach (var item in userToShow.Permissions)
             {
                 LlenarTreeView(root, item);
-            }   
+            }
 
-            this.treeView1.Nodes.Add(root);
-            this.treeView1.ExpandAll();
+            treeView1.Nodes.Add(root);
+            treeView1.ExpandAll();
         }
         private void AgregarPatente_Click(object sender, EventArgs e)
         {
-                var patente = (Patent)cboPatentes.SelectedItem;
-                if (patente != null)
+            var patente = (Patent)cboPatentes.SelectedItem;
+            if (patente != null)
+            {
+                if (user.Permissions.Where(permission => (permissionsService.Contains(permission, patente))).ToList().Count() > 0)
+                    MessageBox.Show("El usuario ya tiene la patente indicada");
+                else
                 {
-                    if (user.Permissions.Where(permission => (permissionsService.Contains(permission, patente))).ToList().Count() > 0)
-                        MessageBox.Show("El usuario ya tiene la patente indicada");
-                    else
-                    {
-                        
+
                     user.Permissions.Add(patente);
                     MostrarPermisos(user);
-                        
-                    }
+
                 }
+            }
         }
         private void AgregarFamilia_Click(object sender, EventArgs e)
         {
             Family family = (Family)cboFamilias.SelectedItem;
             if (family != null)
             {
-                   
+
                 if (user.Permissions.Where(permission => (permissionsService.Contains(permission, family))).ToList().Count() > 0)
                     MessageBox.Show("El usuario ya tiene la familia indicada");
                 else
@@ -131,7 +131,7 @@ namespace View
         {
             Family family = (Family)cboFamilias.SelectedItem;
             if (family != null)
-            { 
+            {
                 user.Permissions.Remove(user.Permissions.Where(component => family.Id == component.Id).First());
                 MostrarPermisos(user);
             }
@@ -141,7 +141,7 @@ namespace View
         {
             try
             {
-                if (MessageBox.Show($"Esta seguro que desea resetear la pasword del usuario {user.Name}","", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show($"Esta seguro que desea resetear la pasword del usuario {user.Nic}", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     userService.ResetPassword(user);
                     MessageBox.Show("Password Actualizada");
@@ -149,7 +149,7 @@ namespace View
             }
             catch
             {
-                MessageBox.Show($"Ocurrio un error reseteando la pasword del usuario {user.Name}");
+                MessageBox.Show($"Ocurrio un error reseteando la pasword del usuario {user.Nic}");
             }
         }
         private void validateButtons()
@@ -195,12 +195,44 @@ namespace View
             }
         }
         private void cboUsuarios_SelectedIndexChanged(object sender, EventArgs e)
-        { 
-            user = ((User)this.cboUsuarios.SelectedItem);
+        {
+            user = ((User)cboUsuarios.SelectedItem);
             permissionsService.FillUserComponents(user);
 
             MostrarPermisos(user);
 
+        }
+        public void updateLanguage(Language language)
+        {
+            foreach (Control control in Controls)
+            {
+                control.Text = language.Translations.Find(
+                        (translation) => translation.Key.Equals(control.Tag)
+                    )?.Translate ?? control.Text;
+                if (control.Controls.Count != 0)
+                {
+                    updateLanguageRecursiveControls(language, control.Controls);
+                }
+            }
+        }
+        private void updateLanguageRecursiveControls(Language language, Control.ControlCollection parent)
+        {
+            foreach (Control control in parent)
+            {
+                control.Text = language.Translations.Find(
+                        (translation) => translation.Key.Equals(control.Tag)
+                    )?.Translate ?? control.Text;
+
+                if (control.Controls.Count != 0)
+                {
+                    updateLanguageRecursiveControls(language, control.Controls);
+                }
+            }
+        }
+
+        private void frmUsuarios_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Session.GetInstance.removeObserber(this);
         }
     }
 }

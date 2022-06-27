@@ -36,6 +36,7 @@
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -44,7 +45,8 @@
             // 
             this.mnuConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuPatentesFamilias,
-            this.mnuUsuarioPatentes});
+            this.mnuUsuarioPatentes,
+            this.usuariosToolStripMenuItem});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
             this.mnuConfig.Size = new System.Drawing.Size(95, 20);
@@ -54,7 +56,7 @@
             // mnuPatentesFamilias
             // 
             this.mnuPatentesFamilias.Name = "mnuPatentesFamilias";
-            this.mnuPatentesFamilias.Size = new System.Drawing.Size(180, 22);
+            this.mnuPatentesFamilias.Size = new System.Drawing.Size(189, 22);
             this.mnuPatentesFamilias.Tag = "patentesyfamilias";
             this.mnuPatentesFamilias.Text = "Patentes y Familias";
             this.mnuPatentesFamilias.Click += new System.EventHandler(this.mnuPatentesFamilias_Click);
@@ -62,9 +64,9 @@
             // mnuUsuarioPatentes
             // 
             this.mnuUsuarioPatentes.Name = "mnuUsuarioPatentes";
-            this.mnuUsuarioPatentes.Size = new System.Drawing.Size(180, 22);
+            this.mnuUsuarioPatentes.Size = new System.Drawing.Size(189, 22);
             this.mnuUsuarioPatentes.Tag = "usuarios";
-            this.mnuUsuarioPatentes.Text = "Usuarios";
+            this.mnuUsuarioPatentes.Text = "Permisos de Usuarios ";
             this.mnuUsuarioPatentes.Click += new System.EventHandler(this.mnuUsuarioPatentes_Click);
             // 
             // menuStrip
@@ -103,6 +105,14 @@
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.usuariosToolStripMenuItem.Tag = "usuarios";
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,6 +147,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuSelectIdioma;
         private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
         private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
     }
 }
 

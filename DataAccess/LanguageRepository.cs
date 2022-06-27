@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utiles;
 
 namespace DataAccess
@@ -77,7 +74,7 @@ namespace DataAccess
                 reader.Close();
                 connection.Close();
 
-                language.Translations = this.GetTranslations(language);
+                language.Translations = GetTranslations(language);
 
                 return language;
             }
@@ -86,10 +83,11 @@ namespace DataAccess
                 connection.Close();
                 throw;
             }
-            
 
-            
-        }public Language GetLanguage(int id)
+
+
+        }
+        public Language GetLanguage(int id)
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
 
@@ -116,7 +114,7 @@ namespace DataAccess
                 reader.Close();
                 connection.Close();
 
-                language.Translations = this.GetTranslations(language);
+                language.Translations = GetTranslations(language);
 
                 return language;
             }
@@ -124,10 +122,10 @@ namespace DataAccess
             {
                 connection.Close();
                 throw;
-            }  
+            }
         }
 
-        private List<Translation> GetTranslations (Language language)
+        private List<Translation> GetTranslations(Language language)
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
 

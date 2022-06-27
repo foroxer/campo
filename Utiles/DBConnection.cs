@@ -8,7 +8,7 @@ namespace Utiles
     {
 
         string connectionString = Properties.Resources.ConnectionString;
-        public bool Insert(string query) 
+        public bool Insert(string query)
         {
             var objeto = new object();
             var objeto1 = new object();

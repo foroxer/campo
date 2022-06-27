@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Utiles
 {
@@ -13,7 +11,7 @@ namespace Utiles
         private static string publickey = "12345678";
         private static string secretkey = "87654321";
 
-        public static String HashSha256(string toHash)
+        public static string HashSha256(string toHash)
         {
             StringBuilder Sb = new StringBuilder();
 
@@ -28,12 +26,11 @@ namespace Utiles
 
             return Sb.ToString();
         }
-
         public static string Encript(string toEncript)
         {
             try
             {
-                string ToReturn ;
+                string ToReturn;
                 byte[] secretkeyByte = { };
                 secretkeyByte = System.Text.Encoding.UTF8.GetBytes(secretkey);
                 byte[] publickeybyte = { };
@@ -56,7 +53,6 @@ namespace Utiles
                 throw new Exception(ex.Message, ex.InnerException);
             }
         }
-
         public static string Decript(string toDecript)
         {
             try
@@ -86,11 +82,10 @@ namespace Utiles
                 throw new Exception(e.Message, e.InnerException);
             }
         }
-
         public static string RandomString(int length)
         {
             Random random = new Random();
-            
+
             string chars = $@"#$%*abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }

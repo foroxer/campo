@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading;
+﻿using Business;
+using System;
 using System.Windows.Forms;
-using Business;
 
 namespace View
 {
@@ -14,12 +13,10 @@ namespace View
             InitializeComponent();
             sessionService = new SessionService();
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -27,7 +24,7 @@ namespace View
                 sessionService.Login(textBox1.Text, textBox2.Text);
                 new frmMain(this).Show();
                 clearForm();
-                this.Hide();
+                Hide();
             }
             catch (Exception ex)
             {
@@ -35,20 +32,16 @@ namespace View
 
             }
         }
-
-
         private void clearForm()
         {
             textBox1.Clear();
             textBox2.Clear();
             textBox1.Focus();
         }
-
         private void frmLogin_Load(object sender, EventArgs e)
         {
             clearForm();
         }
-
         private void button2_Click_1(object sender, EventArgs e)
         {
             Application.Exit();

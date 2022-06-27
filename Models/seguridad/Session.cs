@@ -1,16 +1,12 @@
 ﻿using Models.interfaces;
 using Models.language;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Models
 {
     public class Session : ILanguajeObserbable
-        
+
     {
         static Session _sesion;
         public User usuario;
@@ -23,7 +19,8 @@ namespace Models
         public Language language
         {
             get { return _language; }
-            set {
+            set
+            {
                 _language = value;
                 notifyObserbers(_language);
             }
@@ -80,8 +77,8 @@ namespace Models
         public void Login(User user)
         {
             _sesion.usuario = user;
-            _sesion.language = user.language;
-            
+            _sesion.language = user.Language;
+
         }
         public void addObserber(ILanguageObserber languageObserber)
         {
@@ -93,7 +90,7 @@ namespace Models
         }
         public void notifyObserbers(Language languaje)
         {
-            foreach(ILanguageObserber obserber in languageObserbers)
+            foreach (ILanguageObserber obserber in languageObserbers)
             {
                 obserber.updateLanguage(language);
             }

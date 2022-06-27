@@ -2,63 +2,121 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utiles;
 
 namespace DataAccess
 {
     public class UserRepository
     {
-
         PermissionsRepository permisosRepository;
         LanguageRepository languageRepository;
 
         public UserRepository()
         {
-           permisosRepository = new PermissionsRepository();
+            permisosRepository = new PermissionsRepository();
             languageRepository = new LanguageRepository();
         }
-
-        public void Save(User user)
+        public void Create(User user)
         {
-            SqlConnection connection = ConnectionSingleton.getConnection();
-            connection.Open();
-            string query = $@"INSERT INTO usuarios
-                            ([nombre]
-                            ,[password]
-                            ,[key_idioma]
-                            ,[mail])
-                             VALUES
-                            (@nombre
-                            ,@password
-                            ,'ES'
-                            ,@mail)";
+            try
+            {
+                SqlConnection connection = ConnectionSingleton.getConnection();
+                connection.Open();
+                SqlTransaction transaction = connection.BeginTransaction();
+                SqlCommand cmd;
+                try
+                {
+                    cmd = new SqlCommand();
+                    cmd.CommandText = $@"INSERT INTO [dbo].[usuarios]
+                                    ([Nic]
+                                    ,[password]
+                                    ,[mail]
+                                    ,[key_idioma])
+                                    VALUES
+                                    (@Nic
+                                    ,@password
+                                    ,@mail
+                                    ,'ES'
+                                    )";
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = query;
-            cmd.Connection = connection;
-            cmd.Parameters.Add(new SqlParameter("nombre", user.Name));
-            cmd.Parameters.Add(new SqlParameter("password", user.Password));
-            cmd.Parameters.Add(new SqlParameter("mail", user.Mail));
 
-            cmd.ExecuteNonQuery();
-            connection.Close();
+                    cmd.Connection = connection;
+                    cmd.Transaction = transaction;
+                    cmd.Parameters.Add(new SqlParameter("Nic", user.Nic));
+                    cmd.Parameters.Add(new SqlParameter("password", user.Password));
+                    cmd.Parameters.Add(new SqlParameter("mail", user.Mail));
+
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand();
+                    cmd.Connection = connection;
+                    cmd.Transaction = transaction;
+                    cmd.CommandText = $@"select * from usuarios where Nic = @Nic ;";
+                    cmd.Parameters.Add(new SqlParameter("Nic", user.Nic));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    reader.Read();
+                    user.Id = int.Parse(reader.GetValue(reader.GetOrdinal("id_usuario")).ToString());
+                    reader.Close();
+
+                    cmd = new SqlCommand();
+                    cmd.CommandText = $@"INSERT INTO [dbo].[usuario_data]
+                                   ([id_usuario]
+                                    ,[nombre]
+                                    ,[apellido]
+                                    ,[telefono]
+                                    ,[direccion]
+                                    ,[dni])
+                                    VALUES
+                                    (@id
+                                    ,@nombre
+                                    ,@apellido
+                                    ,@telefono  
+                                    ,@direccion
+                                    ,@dni
+                                    )";
+
+
+                    cmd.Connection = connection;
+                    cmd.Transaction = transaction;
+                    cmd.Parameters.Add(new SqlParameter("id", user.Id));
+                    cmd.Parameters.Add(new SqlParameter("nombre", user.Name));
+                    cmd.Parameters.Add(new SqlParameter("apellido", user.LastName));
+                    cmd.Parameters.Add(new SqlParameter("telefono", user.Phone));
+                    cmd.Parameters.Add(new SqlParameter("direccion", user.Adress));
+                    cmd.Parameters.Add(new SqlParameter("dni", user.Dni));
+
+                    cmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+
+                    connection.Close();
+ 
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    connection.Close();
+                    throw;
+                }
+                SavePermissions(user);
+
+            }
+            catch
+            {
+                throw;
+            }
         }
-
-        public User Get(String nombre)
+        public User Get(String Nic)
         {
-            User user  = null;
+            User user = null;
             try
             {
                 SqlConnection connection = ConnectionSingleton.getConnection();
                 connection.Open();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-
-                cmd.CommandText = $@"select * from usuarios where nombre = @nombre ;";
-                cmd.Parameters.Add(new SqlParameter("nombre", nombre));
+                cmd.CommandText = $@"select * from usuarios u inner join usuario_data ud on u.id_usuario = ud.id_usuario  where Nic = @Nic ;";
+                cmd.Parameters.Add(new SqlParameter("Nic", Nic));
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -68,12 +126,16 @@ namespace DataAccess
                     user = new User
                     {
                         Id = int.Parse(reader.GetValue(reader.GetOrdinal("id_usuario")).ToString()),
-                        Name = reader.GetValue(reader.GetOrdinal("nombre")).ToString(),
+                        Nic = reader.GetValue(reader.GetOrdinal("Nic")).ToString(),
                         Password = reader.GetValue(reader.GetOrdinal("password")).ToString(),
-                        Mail = reader.GetValue(reader.GetOrdinal("mail")).ToString()
+                        Mail = reader.GetValue(reader.GetOrdinal("mail")).ToString(),
+                        LastName = reader.GetValue(reader.GetOrdinal("apellido")).ToString(),
+                        Name = reader.GetValue(reader.GetOrdinal("nombre")).ToString(),
+                        Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
+                        Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
+                        Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString()
                     };
                     idLanguaje = reader.GetValue(reader.GetOrdinal("key_idioma")).ToString();
-                        
                 }
 
                 reader.Close();
@@ -82,7 +144,7 @@ namespace DataAccess
                 if (user != null)
                 {
                     permisosRepository.FillUserComponents(user);
-                    user.language = languageRepository.GetLanguage(idLanguaje);
+                    user.Language = languageRepository.GetLanguage(idLanguaje);
                 }
 
                 return user;
@@ -92,7 +154,6 @@ namespace DataAccess
                 throw;
             }
         }
-
         public List<User> GetAll()
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
@@ -100,7 +161,7 @@ namespace DataAccess
             var cmd = new SqlCommand();
             cmd.Connection = connection;
 
-            var sql = $@"select * from usuarios;";
+            var sql = $@"select * from usuarios u inner join usuario_data ud on ud.id_usuario = u.id_usuario;";
 
             cmd.CommandText = sql;
 
@@ -110,11 +171,18 @@ namespace DataAccess
 
             while (reader.Read())
             {
-                User user = new User();
-                user.Id = reader.GetInt32(reader.GetOrdinal("id_usuario"));
-                user.Name = reader.GetString(reader.GetOrdinal("nombre"));
-                user.Password = reader.GetString(reader.GetOrdinal("password"));
-                user.Mail = reader.GetString(reader.GetOrdinal("mail"));
+                User user = new User()
+                {
+                    Id = int.Parse(reader.GetValue(reader.GetOrdinal("id_usuario")).ToString()),
+                    Nic = reader.GetValue(reader.GetOrdinal("Nic")).ToString(),
+                    Password = reader.GetValue(reader.GetOrdinal("password")).ToString(),
+                    Mail = reader.GetValue(reader.GetOrdinal("mail")).ToString(),
+                    LastName = reader.GetValue(reader.GetOrdinal("apellido")).ToString(),
+                    Name = reader.GetValue(reader.GetOrdinal("nombre")).ToString(),
+                    Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
+                    Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
+                    Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString()
+                };
                 lista.Add(user);
             }
 
@@ -124,12 +192,11 @@ namespace DataAccess
             //vinculo los usuarios con las patentes y familias que tiene configuradas.
             foreach (var user in lista)
             {
-               permisosRepository.FillUserComponents(user);
+                permisosRepository.FillUserComponents(user);
             }
 
             return lista;
         }
-
         public void SavePermissions(User user)
         {
             try
@@ -163,22 +230,97 @@ namespace DataAccess
                 throw;
             }
         }
-
         public void UpdatePassword(User user)
         {
+            
             SqlConnection connection = ConnectionSingleton.getConnection();
-            connection.Open();
-            string query = $@"update usuarios set password = @password where id_usuario =@id";
+            try
+            {
+                connection.Open();
+                string query = $@"update usuarios set password = @password where id_usuario =@id";
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = query;
-            cmd.Connection = connection;
-            cmd.Parameters.Add(new SqlParameter("id", user.Id));
-            cmd.Parameters.Add(new SqlParameter("password", user.Password));
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = query;
+                cmd.Connection = connection;
+                cmd.Parameters.Add(new SqlParameter("id", user.Id));
+                cmd.Parameters.Add(new SqlParameter("password", user.Password));
 
-            cmd.ExecuteNonQuery();
-            connection.Close();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
         }
+        public void updateUser(User user)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+
+            SqlTransaction transaction;
+            try
+            {
+                connection.Open();
+                transaction = connection.BeginTransaction();
+                try
+                {
+                    SqlCommand cmd;
+
+                    string query = $@"UPDATE [dbo].[usuarios]
+                   SET [mail] = @mail
+                        ,[nic] = @nic
+                      where id_usuario =@id
+                    ";
+
+                    cmd = new SqlCommand();
+                    cmd.Transaction = transaction;
+                    cmd.CommandText = query;
+                    cmd.Connection = connection;
+                    cmd.Parameters.Add(new SqlParameter("id", user.Id));
+                    cmd.Parameters.Add(new SqlParameter("mail", user.Mail));
+                    cmd.Parameters.Add(new SqlParameter("nic", user.Nic));
+
+                    cmd.ExecuteNonQuery();
+
+                    query = $@"UPDATE [dbo].[usuario_data]
+                               SET 
+                                  [nombre] = @nombre
+                                  ,[apellido] = @apellido
+                                  ,[telefono] = @telefono
+                                  ,[direccion] = @direccion
+                                  ,[dni] = @dni
+                                  where id_usuario =@id
+                                ";
+
+                    cmd = new SqlCommand();
+                    cmd.Transaction = transaction;
+                    cmd.CommandText = query;
+                    cmd.Connection = connection;
+                    cmd.Parameters.Add(new SqlParameter("id", user.Id));
+                    cmd.Parameters.Add(new SqlParameter("nombre", user.Name));
+                    cmd.Parameters.Add(new SqlParameter("telefono", user.Phone));
+                    cmd.Parameters.Add(new SqlParameter("apellido", user.LastName));
+                    cmd.Parameters.Add(new SqlParameter("direccion", user.Adress));
+                    cmd.Parameters.Add(new SqlParameter("dni", user.Dni));
+
+                    cmd.ExecuteNonQuery();
+                    transaction.Commit();
+
+                    connection.Close();
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+
     }
-   
 }

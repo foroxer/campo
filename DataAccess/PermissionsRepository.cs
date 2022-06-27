@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utiles;
 
 namespace DataAccess
@@ -90,7 +88,7 @@ namespace DataAccess
         }
         private Boolean IsValidFamily(Family family)
         {
-            foreach(Component child in family.Childs)
+            foreach (Component child in family.Childs)
             {
                 if (child.GetType() == typeof(Family))
                 {
@@ -106,7 +104,7 @@ namespace DataAccess
             }
             return true;
         }
-        private Boolean ValidateFamilyRecursion(Family family,Family original)
+        private Boolean ValidateFamilyRecursion(Family family, Family original)
         {
             foreach (Component child in family.Childs)
             {
@@ -278,13 +276,13 @@ namespace DataAccess
                     var l = GetComponent(id, c.Childs);
                     if (l != null && l.Id == id)
                     {
-                        return l; 
+                        return l;
                     }
                     else
                     {
                         if (l != null)
-                        { 
-                            return GetComponent(id, l.Childs); 
+                        {
+                            return GetComponent(id, l.Childs);
                         }
                     }
                 }
@@ -352,6 +350,41 @@ namespace DataAccess
             foreach (var item in GetAll("=" + familia.Id))
             {
                 familia.AddChild(item);
+            }
+        }
+        public Patent GetPatent(PermissionsEnum permissionsEnum)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            SqlCommand cmd = new SqlCommand();
+            Patent permission = null;
+            try
+            {
+                connection.Open();
+                cmd.Connection = connection;
+                cmd.CommandText = $@"select * from permiso p where p.permiso = @permiso;";
+                cmd.Parameters.Add(new SqlParameter("permiso", permissionsEnum.ToString()));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    permission = new Patent
+                    {
+                        Id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString()),
+                        Description = reader.GetValue(reader.GetOrdinal("descripcion")).ToString(),
+                        Nombre = reader.GetValue(reader.GetOrdinal("nombre")).ToString(),
+                        Permiso = permissionsEnum
+                    };
+                }
+
+                reader.Close();
+                connection.Close();
+                return permission;
+            }
+            catch (Exception)
+            {
+                connection.Close();
+                throw;
             }
         }
     }

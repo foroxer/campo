@@ -1,20 +1,15 @@
-﻿using Models;
-using Business;
+﻿using Business;
+using Models;
 using Models.interfaces;
+using Models.language;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Models.language;
 
 namespace View
 {
-    public partial class frmMain : Form,ILanguageObserber
+    public partial class frmMain : Form, ILanguageObserber
     {
         Form loginForm;
 
@@ -35,12 +30,16 @@ namespace View
 
             ValidarPermisos();
         }
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            updateLanguage(Session.GetInstance.language);
+        }
         private void languageChange_click(object sender, EventArgs e)
         {
-            Language language =(Language)((ToolStripMenuItem)sender).Tag;
+            Language language = (Language)((ToolStripMenuItem)sender).Tag;
             Session.GetInstance.language = languageService.GetLanguage(language.Key);
 
-            this.lblUsuario.Text = language.Name;
+            lblUsuario.Text = language.Name;
 
         }
         private void ValidarPermisos()
@@ -69,21 +68,17 @@ namespace View
         }
         private void mnuUsuarioPatentes_Click(object sender, EventArgs e)
         {
-            createForm(typeof(frmUsuarios));
-        }
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            updateLanguage(Session.GetInstance.language);
+            createForm(typeof(frmUsuariosPatentes));
         }
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Session.GetInstance.removeObserber(this); 
+            Session.GetInstance.removeObserber(this);
             loginForm.Show();
             sesionService.Logout();
         }
         private void createForm(Type formType)
         {
-            foreach (Form f in (this.MdiChildren.ToList()))
+            foreach (Form f in (MdiChildren.ToList()))
             {
                 if (f.GetType().Equals(formType))
                 {
@@ -92,22 +87,22 @@ namespace View
                 }
             }
 
-            Form frm = (Form) Activator.CreateInstance(formType);
+            Form frm = (Form)Activator.CreateInstance(formType);
             frm.MdiParent = this;
             frm.Show();
         }
-        public void updateLanguage(Language language )
+        public void updateLanguage(Language language)
         {
-           foreach(Control control in Controls)
-           {
+            foreach (Control control in Controls)
+            {
                 control.Text = language.Translations.Find(
                         (translation) => translation.Key.Equals(control.Tag)
                     )?.Translate ?? control.Text;
-                if (control.GetType().Equals(typeof(MenuStrip)) && ((MenuStrip)control).Items.Count != 0 )
+                if (control.GetType().Equals(typeof(MenuStrip)) && ((MenuStrip)control).Items.Count != 0)
                 {
                     updateToolStrip(language, ((MenuStrip)control).Items);
                 }
-           }
+            }
         }
         private void updateToolStrip(Language language, ToolStripItemCollection parent)
         {
@@ -123,5 +118,9 @@ namespace View
                 }
             }
         }
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmAMUsuarios));
+        }
     }
-} 
+}

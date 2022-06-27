@@ -1,15 +1,10 @@
-﻿using Models;
-using Business;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Business;
+using Models;
 using Models.interfaces;
 using Models.language;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace View
 {
@@ -22,15 +17,15 @@ namespace View
             InitializeComponent();
             Session.GetInstance.addObserber(this);
             permissionsService = new PermissionsService();
-            this.cboPermisos.DataSource = permissionsService.GetAllPermission();
+            cboPermisos.DataSource = permissionsService.GetAllPermission();
 
-        }   
+        }
         private void LlenarPatentesFamilias()
         {
-          
-            this.cboPatentes.DataSource = permissionsService.GetAllPatentes();
-            this.cboPatentes.DisplayMember = "nombre";
-            this.cboFamilias.DataSource = permissionsService.GetAllFamilies();
+
+            cboPatentes.DataSource = permissionsService.GetAllPatentes();
+            cboPatentes.DisplayMember = "nombre";
+            cboFamilias.DataSource = permissionsService.GetAllFamilies();
             cboFamilias2.DataSource = permissionsService.GetAllFamilies().FindAll(familia => familia.Id != ((Family)cboFamilias.SelectedItem).Id);
         }
         private void FrmSeguridad_Load(object sender, EventArgs e)
@@ -42,11 +37,11 @@ namespace View
         {
             Patent p = new Patent()
             {
-                Nombre = this.txtNombrePatente.Text,
-                Permiso = (PermissionsEnum)this.cboPermisos.SelectedItem
+                Nombre = txtNombrePatente.Text,
+                Permiso = (PermissionsEnum)cboPermisos.SelectedItem
             };
 
-            permissionsService.SaveComponent(p,false);
+            permissionsService.SaveComponent(p, false);
             LlenarPatentesFamilias();
 
             MessageBox.Show("Patent guardada correctamente");
@@ -55,14 +50,14 @@ namespace View
         {
             Family p = new Family()
             {
-                Nombre = this.txtNombreFamilia.Text
+                Nombre = txtNombreFamilia.Text
 
             };
-            permissionsService.SaveComponent(p,true);
+            permissionsService.SaveComponent(p, true);
             LlenarPatentesFamilias();
             MessageBox.Show("Family guardada correctamente");
-        }    
-        void MostrarFamilia(bool init)
+        }
+        private void MostrarFamilia(bool init)
         {
             if (seleccion == null) return;
 
@@ -71,21 +66,21 @@ namespace View
             if (init)
             {
                 flia = permissionsService.GetAll("=" + seleccion.Id);
-             
 
-                foreach(Component i in flia)
-                  seleccion.AddChild(i);
+
+                foreach (Component i in flia)
+                    seleccion.AddChild(i);
             }
             else
             {
                 flia = seleccion.Childs;
             }
 
-            this.treeConfigurarFamilia.Nodes.Clear();
+            treeConfigurarFamilia.Nodes.Clear();
 
             TreeNode root = new TreeNode(seleccion.Nombre);
             root.Tag = seleccion;
-            this.treeConfigurarFamilia.Nodes.Add(root);
+            treeConfigurarFamilia.Nodes.Add(root);
 
             foreach (Component item in flia)
             {
@@ -94,12 +89,12 @@ namespace View
 
             treeConfigurarFamilia.ExpandAll();
         }
-        void MostrarEnTreeView(TreeNode tn, Models.Component component)
+        private void MostrarEnTreeView(TreeNode tn, Models.Component component)
         {
             TreeNode node = new TreeNode(component.Nombre);
             tn.Tag = component;
             tn.Nodes.Add(node);
-            if (component.Childs!=null)
+            if (component.Childs != null)
                 foreach (Component item in component.Childs)
                 {
                     MostrarEnTreeView(node, item);
@@ -110,27 +105,27 @@ namespace View
         {
             if (seleccion != null)
             {
-                var patente =(Patent) cboPatentes.SelectedItem;
+                var patente = (Patent)cboPatentes.SelectedItem;
                 if (patente != null)
                 {
-                    var esta = permissionsService.Contains(seleccion,patente);
+                    var esta = permissionsService.Contains(seleccion, patente);
                     if (esta)
                         MessageBox.Show("ya exsite la patente indicada");
                     else
                     {
-                            seleccion.AddChild(patente);
-                            MostrarFamilia(false);
+                        seleccion.AddChild(patente);
+                        MostrarFamilia(false);
                     }
                 }
             }
         }
         private void CmdSeleccionar_Click(object sender, EventArgs e)
         {
-            var tmp = (Family)this.cboFamilias.SelectedItem;
+            var tmp = (Family)cboFamilias.SelectedItem;
             seleccion = new Family();
             seleccion.Id = tmp.Id;
             seleccion.Nombre = tmp.Nombre;
-           
+
             MostrarFamilia(true);
         }
         private void CmdAgregarFamilia_Click(object sender, EventArgs e)
@@ -166,7 +161,7 @@ namespace View
         private void cboFamilias_SelectedIndexChanged(object sender, EventArgs e)
         {
             cboFamilias2.DataSource = permissionsService.GetAllFamilies().FindAll(familia => familia.Id != ((Family)cboFamilias.SelectedItem).Id);
-            Family tmp = (Family)this.cboFamilias.SelectedItem;
+            Family tmp = (Family)cboFamilias.SelectedItem;
             seleccion = new Family();
             seleccion.Id = tmp.Id;
             seleccion.Nombre = tmp.Nombre;
@@ -205,9 +200,9 @@ namespace View
         }
         private void cboPatentes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.cboPatentes.SelectedItem != null)
+            if (cboPatentes.SelectedItem != null)
             {
-                Patent patent = (Patent)this.cboPatentes.SelectedItem;
+                Patent patent = (Patent)cboPatentes.SelectedItem;
                 TxtDescription.Text = patent.Description;
             }
         }
@@ -224,7 +219,7 @@ namespace View
                 }
             }
         }
-        public void updateLanguageRecursiveControls(Language language, Control.ControlCollection parent)
+        private void updateLanguageRecursiveControls(Language language, Control.ControlCollection parent)
         {
             foreach (Control control in parent)
             {
@@ -237,6 +232,10 @@ namespace View
                     updateLanguageRecursiveControls(language, control.Controls);
                 }
             }
+        }
+        private void frmPatentesFamilias_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Session.GetInstance.removeObserber(this);
         }
     }
 }
