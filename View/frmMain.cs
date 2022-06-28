@@ -122,5 +122,10 @@ namespace View
         {
             createForm(typeof(frmAMUsuarios));
         }
+
+        private void rutinasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmExercisesTest));
+        }
     }
 }

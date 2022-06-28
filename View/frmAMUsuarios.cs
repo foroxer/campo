@@ -60,7 +60,6 @@ namespace View
                 }
             }
         }
-
         private void createBtn_Click(object sender, EventArgs e)
         {
             User user = new User
@@ -85,10 +84,8 @@ namespace View
             {
                 MessageBox.Show("ocurrio un error al intentar crear el usuario");
             }
-            //actualizo la lista de usuarios con el usuario recien creado 
-            cboUsuarios.DataSource = userService.GetAll();
+            Close();
         }
-
         private void cleanCreationControls()
         {
             LNameCreation.Text = string.Empty;
@@ -100,7 +97,6 @@ namespace View
             DNICreation.Text = string.Empty;
             NICCreation.Focus();
         }
-
         private void cboUsuarios_SelectionChangeCommitted(object sender, EventArgs e)
         {
             User user = (User)cboUsuarios.SelectedItem;
@@ -112,7 +108,6 @@ namespace View
             PhoneUpdate.Text = user.Phone;
             DNIUpdate.Text = user.Dni;
         }
-
         private void updateBtn_Click(object sender, EventArgs e)
         {
             User user = (User)cboUsuarios.SelectedItem;
@@ -126,7 +121,7 @@ namespace View
 
             try
             {
-                userService.updateUser(user);
+                userService.UpdateUser(user);
                
                 MessageBox.Show("El usuario se actualizo con exito");
             }
@@ -134,8 +129,7 @@ namespace View
             {
                 MessageBox.Show($"ocurrio un error al intentar actualizar el usuario {user.Nic}");
             }
-            //actualizo la lista de usuarios con el usuario recien actualizado 
-            cboUsuarios.DataSource = userService.GetAll();
+            Close();
         }
     }
 }

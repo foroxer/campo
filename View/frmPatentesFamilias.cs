@@ -206,6 +206,10 @@ namespace View
                 TxtDescription.Text = patent.Description;
             }
         }
+        private void frmPatentesFamilias_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Session.GetInstance.removeObserber(this);
+        }
         public void updateLanguage(Language language)
         {
             foreach (Control control in Controls)
@@ -232,10 +236,6 @@ namespace View
                     updateLanguageRecursiveControls(language, control.Controls);
                 }
             }
-        }
-        private void frmPatentesFamilias_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Session.GetInstance.removeObserber(this);
         }
     }
 }

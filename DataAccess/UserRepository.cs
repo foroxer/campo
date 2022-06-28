@@ -75,7 +75,6 @@ namespace DataAccess
                                     ,@dni
                                     )";
 
-
                     cmd.Connection = connection;
                     cmd.Transaction = transaction;
                     cmd.Parameters.Add(new SqlParameter("id", user.Id));
@@ -161,7 +160,7 @@ namespace DataAccess
             var cmd = new SqlCommand();
             cmd.Connection = connection;
 
-            var sql = $@"select * from usuarios u inner join usuario_data ud on ud.id_usuario = u.id_usuario;";
+            var sql = $@"select * from usuarios u left join usuario_data ud on ud.id_usuario = u.id_usuario;";
 
             cmd.CommandText = sql;
 

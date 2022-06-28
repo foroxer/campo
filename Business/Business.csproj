@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExerciseService.cs" />
     <Compile Include="LanguageService.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="exceptions\LoginException.cs" />

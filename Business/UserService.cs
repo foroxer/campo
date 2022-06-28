@@ -18,22 +18,18 @@ namespace Business
             userRepository = new UserRepository();
             permissionsRepository = new PermissionsRepository();
         }
-
         public List<User> GetAll()
         {
             return userRepository.GetAll();
         }
-
         public User Get(String nic)
         {
             return userRepository.Get(nic);
         }
-
         public void SavePermissions(User user)
         {
             userRepository.SavePermissions(user);
         }
-
         public void ResetPassword(User user)
         {
             string oldPassword = user.Password;
@@ -64,7 +60,6 @@ namespace Business
                 }
             }
         }
-
         public void CreateUser(User user)
         {
             try
@@ -91,8 +86,7 @@ namespace Business
 
                 
         }
-
-        public void updateUser(User user)
+        public void UpdateUser(User user)
         {
             userRepository.updateUser(user);
         }

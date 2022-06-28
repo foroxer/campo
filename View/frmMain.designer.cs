@@ -32,11 +32,12 @@
             this.mnuConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPatentesFamilias = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUsuarioPatentes = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rutinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +47,8 @@
             this.mnuConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuPatentesFamilias,
             this.mnuUsuarioPatentes,
-            this.usuariosToolStripMenuItem});
+            this.usuariosToolStripMenuItem,
+            this.rutinasToolStripMenuItem});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
             this.mnuConfig.Size = new System.Drawing.Size(95, 20);
@@ -65,9 +67,17 @@
             // 
             this.mnuUsuarioPatentes.Name = "mnuUsuarioPatentes";
             this.mnuUsuarioPatentes.Size = new System.Drawing.Size(189, 22);
-            this.mnuUsuarioPatentes.Tag = "usuarios";
+            this.mnuUsuarioPatentes.Tag = "";
             this.mnuUsuarioPatentes.Text = "Permisos de Usuarios ";
             this.mnuUsuarioPatentes.Click += new System.EventHandler(this.mnuUsuarioPatentes_Click);
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.usuariosToolStripMenuItem.Tag = "usuarios";
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // menuStrip
             // 
@@ -105,13 +115,12 @@
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
-            // usuariosToolStripMenuItem
+            // rutinasToolStripMenuItem
             // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.usuariosToolStripMenuItem.Tag = "usuarios";
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
-            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            this.rutinasToolStripMenuItem.Name = "rutinasToolStripMenuItem";
+            this.rutinasToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.rutinasToolStripMenuItem.Text = "Rutinas";
+            this.rutinasToolStripMenuItem.Click += new System.EventHandler(this.rutinasToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -148,6 +157,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rutinasToolStripMenuItem;
     }
 }
 

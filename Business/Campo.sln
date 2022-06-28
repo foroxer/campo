@@ -9,8 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "..\View\View.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{BF3646F9-7703-4222-BAF3-F1A6AAA33F7D}"
 	ProjectSection(SolutionItems) = preProject
-		01_dbcreation.sql = 01_dbcreation.sql
-		..\..\..\..\test\singleScript.sql = ..\..\..\..\test\singleScript.sql
+		script.sql = script.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utiles", "..\Utiles\Utiles.csproj", "{211EAB57-6205-473B-B60D-3C8F9889261C}"
