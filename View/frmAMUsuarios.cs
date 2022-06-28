@@ -28,6 +28,8 @@ namespace View
         {
             cboUsuarios.DataSource = userService.GetAll();
             cboUsuarios.DisplayMember = "nic";
+            updateLanguage(Session.GetInstance.language);
+
         }
         private void frmAMUsuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -130,6 +132,31 @@ namespace View
                 MessageBox.Show($"ocurrio un error al intentar actualizar el usuario {user.Nic}");
             }
             Close();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

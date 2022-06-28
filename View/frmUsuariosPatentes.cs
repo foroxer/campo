@@ -22,6 +22,7 @@ namespace View
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
             Session.GetInstance.addObserber(this);
+            updateLanguage(Session.GetInstance.language);
             userService = new UserService();
             permissionsService = new PermissionsService();
             cboUsuarios.DataSource = userService.GetAll();
@@ -153,7 +154,8 @@ namespace View
             }
         }
         private void validateButtons()
-        {
+        {//corregir como se muestran los botones a la hora de que
+         //el permiso no sea propio del usuario  sino de una familia 
             if (user != null)
             {
                 guardarPermisosBtn.Enabled = true;

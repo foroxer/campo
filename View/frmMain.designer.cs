@@ -33,11 +33,11 @@
             this.mnuPatentesFamilias = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUsuarioPatentes = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rutinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.rutinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +79,13 @@
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
+            // rutinasToolStripMenuItem
+            // 
+            this.rutinasToolStripMenuItem.Name = "rutinasToolStripMenuItem";
+            this.rutinasToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.rutinasToolStripMenuItem.Text = "Rutinas";
+            this.rutinasToolStripMenuItem.Click += new System.EventHandler(this.rutinasToolStripMenuItem_Click);
+            // 
             // menuStrip
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -96,6 +103,7 @@
             // 
             this.mnuSelectIdioma.Name = "mnuSelectIdioma";
             this.mnuSelectIdioma.Size = new System.Drawing.Size(116, 20);
+            this.mnuSelectIdioma.Tag = "selectLanguage";
             this.mnuSelectIdioma.Text = "Seleccionar Idoma";
             this.mnuSelectIdioma.ToolTipText = "seleccionarIdioma";
             // 
@@ -114,13 +122,6 @@
             this.statusStrip.Size = new System.Drawing.Size(632, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
-            // 
-            // rutinasToolStripMenuItem
-            // 
-            this.rutinasToolStripMenuItem.Name = "rutinasToolStripMenuItem";
-            this.rutinasToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.rutinasToolStripMenuItem.Text = "Rutinas";
-            this.rutinasToolStripMenuItem.Click += new System.EventHandler(this.rutinasToolStripMenuItem_Click);
             // 
             // frmMain
             // 

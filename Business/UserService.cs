@@ -90,5 +90,13 @@ namespace Business
         {
             userRepository.updateUser(user);
         }
+        public void addTries(User user)
+        {
+            userRepository.addTries(user);
+        }
+        public void resetTries(User user)
+        {
+            userRepository.resetTries(user);
+        }
     }
 }

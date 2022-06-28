@@ -14,7 +14,6 @@ namespace View
         Form loginForm;
 
         SessionService sesionService;
-        UserService userService;
         LanguageService languageService;
 
         public frmMain(Form parent)
@@ -24,7 +23,6 @@ namespace View
             loginForm = parent;
             sesionService = new SessionService();
             languageService = new LanguageService();
-            userService = new UserService();
             Session.GetInstance.addObserber(this);
             loadLanguages();
 
@@ -122,7 +120,6 @@ namespace View
         {
             createForm(typeof(frmAMUsuarios));
         }
-
         private void rutinasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmExercisesTest));

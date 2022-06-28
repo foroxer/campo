@@ -132,7 +132,8 @@ namespace DataAccess
                         Name = reader.GetValue(reader.GetOrdinal("nombre")).ToString(),
                         Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
                         Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
-                        Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString()
+                        Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
+                        Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString())
                     };
                     idLanguaje = reader.GetValue(reader.GetOrdinal("key_idioma")).ToString();
                 }
@@ -320,6 +321,53 @@ namespace DataAccess
                 throw;
             }
         }
+        public void addTries(User user)
+        {
 
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                string query = $@"update usuarios set intentos = @intentos where id_usuario =@id";
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = query;
+                cmd.Connection = connection;
+                cmd.Parameters.Add(new SqlParameter("id", user.Id));
+                cmd.Parameters.Add(new SqlParameter("intentos", user.Tries + 1));
+
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public void resetTries(User user)
+        {
+
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                string query = $@"update usuarios set intentos = 0 where id_usuario =@id";
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = query;
+                cmd.Connection = connection;
+                cmd.Parameters.Add(new SqlParameter("id", user.Id));
+
+
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
     }
 }

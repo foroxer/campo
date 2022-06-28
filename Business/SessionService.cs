@@ -10,6 +10,7 @@ namespace Business
 
         UserService userService = new UserService();
         LanguageService languageService = new LanguageService();
+        private readonly int REINTENTOS_MAXIMOS_LOGIN = 3;
 
         public void Login(User user)
         {
@@ -18,23 +19,30 @@ namespace Business
             session.language = languageService.GetLanguage(user.Language.Key);
 
         }
-        public void Login(String name, String Password)
+        public void Login(String name, String password)
         {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(Password))
+            if (name.IsNullOrEmpty() || password.IsNullOrEmpty())
             {
                 throw new LoginException();
             }
-            User usuario = userService.Get(name);
+            User user = userService.Get(name);
+            if (user.Tries > REINTENTOS_MAXIMOS_LOGIN)
+            {
+                throw new LoginException("Se exedio la cantidad maxima de intentos por favor hable con un administrador");
+            }
+            if (Crypto.HashSha256(password) != user?.Password)
+            {
+                userService.addTries(user);
+                throw new LoginException();
 
-            if (Crypto.HashSha256(Password) != usuario?.Password)
-            {
-                throw new LoginException();
             }
-            Session.GetInstance.Login(usuario);
+            userService.resetTries(user);
+            Session.GetInstance.Login(user);
         }
         public void Logout()
         {
             Session.GetInstance.Logout();
         }
+
     }
 }

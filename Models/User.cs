@@ -23,6 +23,7 @@ namespace Models
         public String Phone { get; set; }
         public String Adress { get; set; }
         public String Dni { get; set; }
+        public int Tries { get; set; }
         public List<Component> Permissions
         {
             get

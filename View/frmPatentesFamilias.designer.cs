@@ -95,20 +95,22 @@
             this.grpPatentes.Margin = new System.Windows.Forms.Padding(2);
             this.grpPatentes.Name = "grpPatentes";
             this.grpPatentes.Padding = new System.Windows.Forms.Padding(2);
-            this.grpPatentes.Size = new System.Drawing.Size(256, 249);
+            this.grpPatentes.Size = new System.Drawing.Size(256, 255);
             this.grpPatentes.TabIndex = 4;
             this.grpPatentes.TabStop = false;
+            this.grpPatentes.Tag = "patentes";
             this.grpPatentes.Text = "Patentes";
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.TxtDescription);
-            this.groupBox5.Location = new System.Drawing.Point(8, 101);
+            this.groupBox5.Location = new System.Drawing.Point(8, 99);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(237, 137);
+            this.groupBox5.Size = new System.Drawing.Size(237, 152);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Descripcion";
+            this.groupBox5.Tag = "descripcion";
+            this.groupBox5.Text = "Descripción";
             // 
             // TxtDescription
             // 
@@ -116,7 +118,7 @@
             this.TxtDescription.Multiline = true;
             this.TxtDescription.Name = "TxtDescription";
             this.TxtDescription.ReadOnly = true;
-            this.TxtDescription.Size = new System.Drawing.Size(223, 109);
+            this.TxtDescription.Size = new System.Drawing.Size(223, 124);
             this.TxtDescription.TabIndex = 10;
             // 
             // eliminarPatenteBtn
@@ -124,8 +126,9 @@
             this.eliminarPatenteBtn.Location = new System.Drawing.Point(110, 64);
             this.eliminarPatenteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.eliminarPatenteBtn.Name = "eliminarPatenteBtn";
-            this.eliminarPatenteBtn.Size = new System.Drawing.Size(95, 21);
+            this.eliminarPatenteBtn.Size = new System.Drawing.Size(98, 21);
             this.eliminarPatenteBtn.TabIndex = 9;
+            this.eliminarPatenteBtn.Tag = "eliminar";
             this.eliminarPatenteBtn.Text = "Eliminar >>";
             this.eliminarPatenteBtn.UseVisualStyleBackColor = true;
             this.eliminarPatenteBtn.Click += new System.EventHandler(this.eliminarPatenteBtn_Click);
@@ -135,7 +138,7 @@
             this.cmdAgregarPatente.Location = new System.Drawing.Point(11, 64);
             this.cmdAgregarPatente.Margin = new System.Windows.Forms.Padding(2);
             this.cmdAgregarPatente.Name = "cmdAgregarPatente";
-            this.cmdAgregarPatente.Size = new System.Drawing.Size(95, 21);
+            this.cmdAgregarPatente.Size = new System.Drawing.Size(98, 21);
             this.cmdAgregarPatente.TabIndex = 8;
             this.cmdAgregarPatente.Tag = "agregar";
             this.cmdAgregarPatente.Text = "Agregar >> ";
@@ -161,6 +164,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 5;
+            this.label2.Tag = "todasLasPatentes";
             this.label2.Text = "Todas las patentes";
             // 
             // groupBox1
@@ -205,7 +209,7 @@
             this.label3.Location = new System.Drawing.Point(14, 67);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Name";
             // 
@@ -222,18 +226,20 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(258, 249);
+            this.groupBox2.Size = new System.Drawing.Size(258, 255);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Tag = "familias";
             this.groupBox2.Text = "Familias";
             // 
             // eliminarFamiliaBtn
             // 
-            this.eliminarFamiliaBtn.Location = new System.Drawing.Point(116, 111);
+            this.eliminarFamiliaBtn.Location = new System.Drawing.Point(115, 117);
             this.eliminarFamiliaBtn.Margin = new System.Windows.Forms.Padding(2);
             this.eliminarFamiliaBtn.Name = "eliminarFamiliaBtn";
             this.eliminarFamiliaBtn.Size = new System.Drawing.Size(98, 21);
             this.eliminarFamiliaBtn.TabIndex = 13;
+            this.eliminarFamiliaBtn.Tag = "eliminar";
             this.eliminarFamiliaBtn.Text = "Eliminar >>";
             this.eliminarFamiliaBtn.UseVisualStyleBackColor = true;
             this.eliminarFamiliaBtn.Click += new System.EventHandler(this.eliminarFamiliaBtn_Click);
@@ -242,7 +248,7 @@
             // 
             this.cboFamilias2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFamilias2.FormattingEnabled = true;
-            this.cboFamilias2.Location = new System.Drawing.Point(15, 86);
+            this.cboFamilias2.Location = new System.Drawing.Point(14, 91);
             this.cboFamilias2.Margin = new System.Windows.Forms.Padding(2);
             this.cboFamilias2.Name = "cboFamilias2";
             this.cboFamilias2.Size = new System.Drawing.Size(234, 21);
@@ -250,11 +256,12 @@
             // 
             // cmdSeleccionar
             // 
-            this.cmdSeleccionar.Location = new System.Drawing.Point(14, 63);
+            this.cmdSeleccionar.Location = new System.Drawing.Point(14, 65);
             this.cmdSeleccionar.Margin = new System.Windows.Forms.Padding(2);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
-            this.cmdSeleccionar.Size = new System.Drawing.Size(98, 19);
+            this.cmdSeleccionar.Size = new System.Drawing.Size(98, 21);
             this.cmdSeleccionar.TabIndex = 11;
+            this.cmdSeleccionar.Tag = "configurar";
             this.cmdSeleccionar.Text = "Configurar";
             this.cmdSeleccionar.UseVisualStyleBackColor = true;
             this.cmdSeleccionar.Visible = false;
@@ -262,11 +269,12 @@
             // 
             // cmdAgregarFamilia
             // 
-            this.cmdAgregarFamilia.Location = new System.Drawing.Point(14, 111);
+            this.cmdAgregarFamilia.Location = new System.Drawing.Point(13, 117);
             this.cmdAgregarFamilia.Margin = new System.Windows.Forms.Padding(2);
             this.cmdAgregarFamilia.Name = "cmdAgregarFamilia";
             this.cmdAgregarFamilia.Size = new System.Drawing.Size(98, 21);
             this.cmdAgregarFamilia.TabIndex = 10;
+            this.cmdAgregarFamilia.Tag = "agregar";
             this.cmdAgregarFamilia.Text = "Agregar >> ";
             this.cmdAgregarFamilia.UseVisualStyleBackColor = true;
             this.cmdAgregarFamilia.Click += new System.EventHandler(this.CmdAgregarFamilia_Click);
@@ -276,23 +284,25 @@
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.txtNombreFamilia);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(14, 144);
+            this.groupBox3.Location = new System.Drawing.Point(13, 149);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(232, 93);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Nueva";
+            this.groupBox3.Tag = "nuevaFamilia";
+            this.groupBox3.Text = "Nueva Familia";
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(11, 61);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 19);
+            this.button1.Size = new System.Drawing.Size(98, 21);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Guardar";
+            this.button1.Tag = "crear";
+            this.button1.Text = "Crear";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -312,7 +322,8 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Name";
+            this.label5.Tag = "nombre";
+            this.label5.Text = "Nombre";
             // 
             // cboFamilias
             // 
@@ -333,6 +344,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 13);
             this.label4.TabIndex = 7;
+            this.label4.Tag = "todasLasFamilias";
             this.label4.Text = "Todas las familias";
             // 
             // groupBox4
@@ -343,19 +355,21 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(290, 249);
+            this.groupBox4.Size = new System.Drawing.Size(290, 255);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
+            this.groupBox4.Tag = "configurarFamilia";
             this.groupBox4.Text = "Configurar Familia";
             // 
             // cmdGuardarFamilia
             // 
-            this.cmdGuardarFamilia.Location = new System.Drawing.Point(11, 219);
+            this.cmdGuardarFamilia.Location = new System.Drawing.Point(11, 224);
             this.cmdGuardarFamilia.Margin = new System.Windows.Forms.Padding(2);
             this.cmdGuardarFamilia.Name = "cmdGuardarFamilia";
-            this.cmdGuardarFamilia.Size = new System.Drawing.Size(110, 19);
+            this.cmdGuardarFamilia.Size = new System.Drawing.Size(98, 21);
             this.cmdGuardarFamilia.TabIndex = 1;
-            this.cmdGuardarFamilia.Text = "Guardar familia";
+            this.cmdGuardarFamilia.Tag = "guardar";
+            this.cmdGuardarFamilia.Text = "Guardar";
             this.cmdGuardarFamilia.UseVisualStyleBackColor = true;
             this.cmdGuardarFamilia.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -371,7 +385,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(848, 271);
+            this.ClientSize = new System.Drawing.Size(848, 284);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grpPatentes);
