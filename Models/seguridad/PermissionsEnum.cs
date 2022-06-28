@@ -8,7 +8,7 @@
         PatentesUsuarios,
         Usuarios,
         MenuConfig,
-        PuedeHacerE,
+        VerRutina,
         PuedeHacerF,
         PuedeHacerG,
     }

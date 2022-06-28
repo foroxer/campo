@@ -154,8 +154,9 @@ namespace View
             }
         }
         private void validateButtons()
-        {//corregir como se muestran los botones a la hora de que
-         //el permiso no sea propio del usuario  sino de una familia 
+        {
+            //corregir como se muestran los botones a la hora de que
+            //el permiso no sea propio del usuario sino de una familia 
             if (user != null)
             {
                 guardarPermisosBtn.Enabled = true;
@@ -231,7 +232,6 @@ namespace View
                 }
             }
         }
-
         private void frmUsuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
             Session.GetInstance.removeObserber(this);

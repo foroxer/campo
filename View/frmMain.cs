@@ -47,6 +47,12 @@ namespace View
                 mnuPatentesFamilias.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesFamilias);
                 mnuUsuarioPatentes.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesUsuarios);
                 mnuConfig.Visible = Session.GetInstance.IsInRole(PermissionsEnum.MenuConfig);
+
+
+                if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
+                {
+                    createForm(typeof(frmExercisesTest));
+                }
             }
         }
         private void loadLanguages()

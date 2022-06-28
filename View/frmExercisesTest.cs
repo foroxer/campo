@@ -38,6 +38,10 @@ namespace View
             comboBox3.DisplayMember = "description";
             comboBox4.DisplayMember = "description";
             comboBox5.DisplayMember = "description";
+
+            this.ControlBox = false;
+            this.Dock = DockStyle.Fill;
+
         }
         public void updateLanguage(Language language)
         {

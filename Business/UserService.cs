@@ -64,7 +64,7 @@ namespace Business
         {
             try
             {
-                user.Permissions.Add(permissionsRepository.GetPatent(PermissionsEnum.Default));
+                user.Permissions.Add(permissionsRepository.GetPatent(PermissionsEnum.VerRutina));
 
                 string nonHashedPassword = Crypto.RandomString(10);
                 user.Password = Crypto.HashSha256(nonHashedPassword);
