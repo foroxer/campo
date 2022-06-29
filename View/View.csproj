@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAMUsuarios.cs">
+    <Compile Include="frmUsuariosA.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAMUsuarios.Designer.cs">
-      <DependentUpon>frmAMUsuarios.cs</DependentUpon>
+    <Compile Include="frmUsuariosA.Designer.cs">
+      <DependentUpon>frmUsuariosA.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -63,6 +63,12 @@
     </Compile>
     <Compile Include="frmMain.designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuariosM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuariosM.Designer.cs">
+      <DependentUpon>frmUsuariosM.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPatentesFamilias.cs">
       <SubType>Form</SubType>
@@ -84,8 +90,8 @@
     <Compile Include="frmExercisesTest.Designer.cs">
       <DependentUpon>frmExercisesTest.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmAMUsuarios.resx">
-      <DependentUpon>frmAMUsuarios.cs</DependentUpon>
+    <EmbeddedResource Include="frmUsuariosA.resx">
+      <DependentUpon>frmUsuariosA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -93,6 +99,9 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuariosM.resx">
+      <DependentUpon>frmUsuariosM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPatentesFamilias.resx">
       <DependentUpon>frmPatentesFamilias.cs</DependentUpon>

@@ -24,6 +24,7 @@ namespace Models
         public String Adress { get; set; }
         public String Dni { get; set; }
         public int Tries { get; set; }
+        public bool blocked { get; set; }
         public List<Component> Permissions
         {
             get

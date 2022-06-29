@@ -33,11 +33,13 @@
             this.mnuPatentesFamilias = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUsuarioPatentes = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rutinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificacionUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -47,8 +49,7 @@
             this.mnuConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuPatentesFamilias,
             this.mnuUsuarioPatentes,
-            this.usuariosToolStripMenuItem,
-            this.rutinasToolStripMenuItem});
+            this.usuariosToolStripMenuItem});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
             this.mnuConfig.Size = new System.Drawing.Size(95, 20);
@@ -73,25 +74,37 @@
             // 
             // usuariosToolStripMenuItem
             // 
+            this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.altaUsuario,
+            this.modificacionUsuario});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
             this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.usuariosToolStripMenuItem.Tag = "usuarios";
             this.usuariosToolStripMenuItem.Text = "Usuarios";
-            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
-            // rutinasToolStripMenuItem
+            // altaUsuario
             // 
-            this.rutinasToolStripMenuItem.Name = "rutinasToolStripMenuItem";
-            this.rutinasToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.rutinasToolStripMenuItem.Text = "Rutinas";
-            this.rutinasToolStripMenuItem.Click += new System.EventHandler(this.rutinasToolStripMenuItem_Click);
+            this.altaUsuario.Name = "altaUsuario";
+            this.altaUsuario.Size = new System.Drawing.Size(180, 22);
+            this.altaUsuario.Tag = "alta";
+            this.altaUsuario.Text = "Alta";
+            this.altaUsuario.Click += new System.EventHandler(this.altaUsuario_Click);
+            // 
+            // modificacionUsuario
+            // 
+            this.modificacionUsuario.Name = "modificacionUsuario";
+            this.modificacionUsuario.Size = new System.Drawing.Size(180, 22);
+            this.modificacionUsuario.Tag = "modificacion";
+            this.modificacionUsuario.Text = "Modificacion";
+            this.modificacionUsuario.Click += new System.EventHandler(this.modificacionUsuario_Click);
             // 
             // menuStrip
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuConfig,
-            this.mnuSelectIdioma});
+            this.mnuSelectIdioma,
+            this.rutinas});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -122,6 +135,13 @@
             this.statusStrip.Size = new System.Drawing.Size(632, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
+            // 
+            // rutinas
+            // 
+            this.rutinas.Name = "rutinas";
+            this.rutinas.Size = new System.Drawing.Size(58, 20);
+            this.rutinas.Text = "Rutinas";
+            this.rutinas.Click += new System.EventHandler(this.rutinas_Click);
             // 
             // frmMain
             // 
@@ -158,7 +178,9 @@
         private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rutinasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaUsuario;
+        private System.Windows.Forms.ToolStripMenuItem modificacionUsuario;
+        private System.Windows.Forms.ToolStripMenuItem rutinas;
     }
 }
 

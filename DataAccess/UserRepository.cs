@@ -31,13 +31,15 @@ namespace DataAccess
                                     ([Nic]
                                     ,[password]
                                     ,[mail]
-                                    ,[key_idioma])
+                                    ,[key_idioma]
+                                    ,[bloqueado])
                                     VALUES
                                     (@Nic
                                     ,@password
                                     ,@mail
                                     ,'ES'
-                                    )";
+                                    ,0
+                                     )";
 
 
                     cmd.Connection = connection;
@@ -133,6 +135,7 @@ namespace DataAccess
                         Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
                         Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
                         Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
+                        blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado")),
                         Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString())
                     };
                     idLanguaje = reader.GetValue(reader.GetOrdinal("key_idioma")).ToString();
@@ -181,7 +184,8 @@ namespace DataAccess
                     Name = reader.GetValue(reader.GetOrdinal("nombre")).ToString(),
                     Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
                     Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
-                    Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString()
+                    Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
+                    blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado"))
                 };
                 lista.Add(user);
             }
@@ -353,6 +357,54 @@ namespace DataAccess
             {
                 connection.Open();
                 string query = $@"update usuarios set intentos = 0 where id_usuario =@id";
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = query;
+                cmd.Connection = connection;
+                cmd.Parameters.Add(new SqlParameter("id", user.Id));
+
+
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public void blockUser(User user)
+        {
+
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                string query = $@"update usuarios set bloqueado = 1 where id_usuario =@id";
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = query;
+                cmd.Connection = connection;
+                cmd.Parameters.Add(new SqlParameter("id", user.Id));
+
+
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public void unblockUser(User user)
+        {
+
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                string query = $@"update usuarios set bloqueado = 0 where id_usuario =@id";
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = query;

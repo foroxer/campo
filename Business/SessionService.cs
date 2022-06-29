@@ -30,6 +30,10 @@ namespace Business
             {
                 throw new LoginException("Se exedio la cantidad maxima de intentos por favor hable con un administrador");
             }
+            if (user.blocked)
+            {
+                throw new LoginException("Por favor hable con un administrador");
+            }
             if (Crypto.HashSha256(password) != user?.Password)
             {
                 userService.addTries(user);

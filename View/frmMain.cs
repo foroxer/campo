@@ -47,10 +47,11 @@ namespace View
                 mnuPatentesFamilias.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesFamilias);
                 mnuUsuarioPatentes.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesUsuarios);
                 mnuConfig.Visible = Session.GetInstance.IsInRole(PermissionsEnum.MenuConfig);
-
-
+                rutinas.Visible = Session.GetInstance.IsInRole(PermissionsEnum.VerRutina);
+                
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {
+                    rutinas.Visible = true;
                     createForm(typeof(frmExercisesTest));
                 }
             }
@@ -122,11 +123,18 @@ namespace View
                 }
             }
         }
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+       
+        private void altaUsuario_Click(object sender, EventArgs e)
         {
-            createForm(typeof(frmAMUsuarios));
+            createForm(typeof(frmUsuariosA));
         }
-        private void rutinasToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void modificacionUsuario_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmUsuariosM));
+        }
+
+        private void rutinas_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmExercisesTest));
         }

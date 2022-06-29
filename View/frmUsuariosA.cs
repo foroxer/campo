@@ -14,11 +14,11 @@ using Business;
 
 namespace View
 {
-    public partial class frmAMUsuarios : Form,ILanguageObserber
+    public partial class frmUsuariosA : Form,ILanguageObserber
     {
         UserService userService;
 
-        public frmAMUsuarios()
+        public frmUsuariosA()
         {
             InitializeComponent();
             userService = new UserService();
@@ -26,10 +26,7 @@ namespace View
         }
         private void frmAMUsuarios_Load(object sender, EventArgs e)
         {
-            cboUsuarios.DataSource = userService.GetAll();
-            cboUsuarios.DisplayMember = "nic";
             updateLanguage(Session.GetInstance.language);
-
         }
         private void frmAMUsuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -98,65 +95,6 @@ namespace View
             PhoneCreation.Text = string.Empty;
             DNICreation.Text = string.Empty;
             NICCreation.Focus();
-        }
-        private void cboUsuarios_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            User user = (User)cboUsuarios.SelectedItem;
-            LNameUpdate.Text = user.LastName;
-            NameUpdate.Text = user.Name;
-            AdressUpdate.Text = user.Adress;
-            MailUpdate.Text = user.Mail;
-            NICUpdate.Text = user.Nic;
-            PhoneUpdate.Text = user.Phone;
-            DNIUpdate.Text = user.Dni;
-        }
-        private void updateBtn_Click(object sender, EventArgs e)
-        {
-            User user = (User)cboUsuarios.SelectedItem;
-            user.LastName = LNameUpdate.Text;
-            user.Name = NameUpdate.Text;
-            user.Adress = AdressUpdate.Text;
-            user.Mail = MailUpdate.Text;
-            user.Nic = NICUpdate.Text;
-            user.Phone = PhoneUpdate.Text;
-            user.Dni = DNIUpdate.Text;
-
-            try
-            {
-                userService.UpdateUser(user);
-               
-                MessageBox.Show("El usuario se actualizo con exito");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show($"ocurrio un error al intentar actualizar el usuario {user.Nic}");
-            }
-            Close();
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

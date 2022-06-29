@@ -98,5 +98,13 @@ namespace Business
         {
             userRepository.resetTries(user);
         }
+        public void blockUser(User user)
+        {
+            userRepository.blockUser(user);
+        }
+        public void unblockUser(User user)
+        {
+            userRepository.unblockUser(user);
+        }
     }
 }
