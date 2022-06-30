@@ -78,23 +78,28 @@ namespace View
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Session.GetInstance.removeObserber(this);
+            foreach (ILanguageObserber form in MdiChildren)
+            {
+                Session.GetInstance.removeObserber(form);
+            }
             loginForm.Show();
             sesionService.Logout();
         }
-        private void createForm(Type formType)
+        public Form createForm(Type formType)
         {
             foreach (Form f in (MdiChildren.ToList()))
             {
                 if (f.GetType().Equals(formType))
                 {
                     f.Focus();
-                    return;
+                    return f;
                 }
             }
 
             Form frm = (Form)Activator.CreateInstance(formType);
             frm.MdiParent = this;
             frm.Show();
+            return frm;
         }
         public void updateLanguage(Language language)
         {

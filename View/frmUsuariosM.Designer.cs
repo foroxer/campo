@@ -128,7 +128,7 @@
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label13.Size = new System.Drawing.Size(66, 18);
             this.label13.TabIndex = 13;
-            this.label13.Tag = "usuario";
+            this.label13.Tag = "user";
             this.label13.Text = "Usuario";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 

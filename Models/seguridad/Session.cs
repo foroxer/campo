@@ -8,8 +8,8 @@ namespace Models
     public class Session : ILanguajeObserbable
 
     {
-        static Session _sesion;
-        public User usuario;
+        static Session _session;
+        public User user;
         private Language _language;
         public List<ILanguageObserber> languageObserbers { get; set; }
         private Session()
@@ -29,18 +29,16 @@ namespace Models
         {
             get
             {
-                if (_sesion == null) _sesion = new Session();
-                return _sesion;
+                if (_session == null) _session = new Session();
+                return _session;
             }
         }
         public bool IsLoggedIn()
         {
-            return usuario != null;
+            return user != null;
         }
         bool isInRole(Component c, PermissionsEnum permiso, bool existe)
         {
-
-
             if (c.Permiso.Equals(permiso))
                 existe = true;
             else
@@ -57,7 +55,7 @@ namespace Models
         public bool IsInRole(PermissionsEnum permiso)
         {
             bool existe = false;
-            foreach (var item in usuario.Permissions)
+            foreach (var item in user.Permissions)
             {
                 if (item.Permiso.Equals(permiso))
                     return true;
@@ -71,13 +69,13 @@ namespace Models
         }
         public void Logout()
         {
-            _sesion.usuario = null;
-            _sesion.language = null;
+            _session.user = null;
+            _session.language = null;
         }
         public void Login(User user)
         {
-            _sesion.usuario = user;
-            _sesion.language = user.Language;
+            _session.user = user;
+            _session.language = user.Language;
 
         }
         public void addObserber(ILanguageObserber languageObserber)

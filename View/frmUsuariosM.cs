@@ -17,7 +17,8 @@ namespace View
     public partial class frmUsuariosM : Form,ILanguageObserber
     {
 
-        UserService userService;
+        private UserService userService;
+        private User selected;
         public frmUsuariosM()
         {
             InitializeComponent();
@@ -33,24 +34,23 @@ namespace View
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            User user = (User)cboUsuarios.SelectedItem;
-            user.LastName = LNameUpdate.Text;
-            user.Name = NameUpdate.Text;
-            user.Adress = AdressUpdate.Text;
-            user.Mail = MailUpdate.Text;
-            user.Nic = NICUpdate.Text;
-            user.Phone = PhoneUpdate.Text;
-            user.Dni = DNIUpdate.Text;
+            selected.LastName = LNameUpdate.Text;
+            selected.Name = NameUpdate.Text;
+            selected.Adress = AdressUpdate.Text;
+            selected.Mail = MailUpdate.Text;
+            selected.Nic = NICUpdate.Text;
+            selected.Phone = PhoneUpdate.Text;
+            selected.Dni = DNIUpdate.Text;
 
             try
             {
-                userService.UpdateUser(user);
+                userService.UpdateUser(selected);
 
-                MessageBox.Show("El usuario se actualizo con exito");
+                MessageBox.Show("El user se actualizo con exito");
             }
             catch (Exception)
             {
-                MessageBox.Show($"ocurrio un error al intentar actualizar el usuario {user.Nic}");
+                MessageBox.Show($"ocurrio un error al intentar actualizar el user {selected.Nic}");
             }
             Close();
         }
@@ -98,38 +98,52 @@ namespace View
         }
         private void bloquearBtn_Click(object sender, EventArgs e)
         {
-            User user = (User)cboUsuarios.SelectedItem;
-            int index = cboUsuarios.SelectedIndex;
+            //int index = cboUsuarios.SelectedIndex;
             try
             {
-                userService.blockUser(user);
+                userService.blockUser(selected);
                 cboUsuarios.DataSource = userService.GetAll();
             }
             catch
             {
-                MessageBox.Show($"Ocurrio un error al intentar bloquear el usuario {user.Nic}");
+                MessageBox.Show($"Ocurrio un error al intentar bloquear el user {selected.Nic}");
             }
-            cboUsuarios.SelectedIndex = index;
+            //cboUsuarios.SelectedIndex = index;
+            Close();
 
         }
         private void desbloquearBtn_Click(object sender, EventArgs e)
         {
-            User user = (User)cboUsuarios.SelectedItem;
-            int index = cboUsuarios.SelectedIndex;
+            //int index = cboUsuarios.SelectedIndex;
             try
             {
-                userService.unblockUser(user);
+                userService.unblockUser(selected);
                 cboUsuarios.DataSource = userService.GetAll();
             }
             catch
             {
-                MessageBox.Show($"Ocurrio un error al intentar bloquear el usuario {user.Nic}");
+                MessageBox.Show($"Ocurrio un error al intentar bloquear el user {selected.Nic}");
             }
-            cboUsuarios.SelectedIndex = index;
+            //cboUsuarios.SelectedIndex = index;
+            Close();
         }
         private void cboUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            User user = (User)cboUsuarios.SelectedItem;
+            selected = (User)cboUsuarios.SelectedItem;
+            loadFields(selected);
+        }
+        public void setUser(User user)
+        {
+            if (user != null)
+            {
+                cboUsuarios.Text = "";
+                cboUsuarios.Enabled = false;
+                selected = user;
+                loadFields(user);
+            }
+        }
+        private void loadFields(User user)
+        {
             LNameUpdate.Text = user.LastName;
             NameUpdate.Text = user.Name;
             AdressUpdate.Text = user.Adress;
