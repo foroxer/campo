@@ -37,9 +37,10 @@
             this.modificacionUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
+            this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +77,8 @@
             // 
             this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altaUsuario,
-            this.modificacionUsuario});
+            this.modificacionUsuario,
+            this.listaToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
             this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.usuariosToolStripMenuItem.Tag = "usuarios";
@@ -120,6 +122,13 @@
             this.mnuSelectIdioma.Text = "Seleccionar Idoma";
             this.mnuSelectIdioma.ToolTipText = "seleccionarIdioma";
             // 
+            // rutinas
+            // 
+            this.rutinas.Name = "rutinas";
+            this.rutinas.Size = new System.Drawing.Size(58, 20);
+            this.rutinas.Text = "Rutinas";
+            this.rutinas.Click += new System.EventHandler(this.rutinas_Click);
+            // 
             // lblUsuario
             // 
             this.lblUsuario.Name = "lblUsuario";
@@ -136,12 +145,12 @@
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
-            // rutinas
+            // listaToolStripMenuItem
             // 
-            this.rutinas.Name = "rutinas";
-            this.rutinas.Size = new System.Drawing.Size(58, 20);
-            this.rutinas.Text = "Rutinas";
-            this.rutinas.Click += new System.EventHandler(this.rutinas_Click);
+            this.listaToolStripMenuItem.Name = "listaToolStripMenuItem";
+            this.listaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaToolStripMenuItem.Text = "Lista";
+            this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -181,6 +190,7 @@
         private System.Windows.Forms.ToolStripMenuItem altaUsuario;
         private System.Windows.Forms.ToolStripMenuItem modificacionUsuario;
         private System.Windows.Forms.ToolStripMenuItem rutinas;
+        private System.Windows.Forms.ToolStripMenuItem listaToolStripMenuItem;
     }
 }
 

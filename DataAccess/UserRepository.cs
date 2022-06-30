@@ -135,7 +135,7 @@ namespace DataAccess
                         Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
                         Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
                         Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
-                        blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado")),
+                        Blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado")),
                         Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString())
                     };
                     idLanguaje = reader.GetValue(reader.GetOrdinal("key_idioma")).ToString();
@@ -185,7 +185,7 @@ namespace DataAccess
                     Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
                     Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
                     Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
-                    blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado"))
+                    Blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado"))
                 };
                 lista.Add(user);
             }

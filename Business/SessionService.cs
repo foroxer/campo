@@ -30,7 +30,7 @@ namespace Business
             {
                 throw new LoginException("Se exedio la cantidad maxima de intentos por favor hable con un administrador");
             }
-            if (user.blocked)
+            if (user.Blocked)
             {
                 throw new LoginException("Por favor hable con un administrador");
             }

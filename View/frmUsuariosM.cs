@@ -138,9 +138,9 @@ namespace View
             PhoneUpdate.Text = user.Phone;
             DNIUpdate.Text = user.Dni;
 
-            desbloquearBtn.Visible = user.blocked;
-            bloquearBtn.Visible = !user.blocked;
-            blockedLabel.Visible = user.blocked;
+            desbloquearBtn.Visible = user.Blocked;
+            bloquearBtn.Visible = !user.Blocked;
+            blockedLabel.Visible = user.Blocked;
             updateBtn.Focus();
         }
     }

@@ -138,5 +138,10 @@ namespace View
         {
             createForm(typeof(frmExercisesTest));
         }
+
+        private void listaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmUsuariosL));
+        }
     }
 }
