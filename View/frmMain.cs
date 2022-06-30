@@ -87,12 +87,12 @@ namespace View
         }
         public Form createForm(Type formType)
         {
-            foreach (Form f in (MdiChildren.ToList()))
+            foreach (Form form in (MdiChildren.ToList()))
             {
-                if (f.GetType().Equals(formType))
+                if (form.GetType().Equals(formType))
                 {
-                    f.Focus();
-                    return f;
+                    form.Focus();
+                    return form;
                 }
             }
 

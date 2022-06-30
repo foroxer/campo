@@ -49,7 +49,7 @@ namespace View
             dataGridView1.Columns["password"].Visible = false;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void search_TextChanged(object sender, EventArgs e)
         {
             List<User> lista = userService.GetAll();
 
