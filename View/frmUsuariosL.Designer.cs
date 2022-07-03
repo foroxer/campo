@@ -96,7 +96,6 @@
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 2;
             this.textBox3.TextChanged += new System.EventHandler(this.search_TextChanged);
-
             // 
             // textBox2
             // 
@@ -105,7 +104,6 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 1;
             this.textBox2.TextChanged += new System.EventHandler(this.search_TextChanged);
-
             // 
             // textBox1
             // 
@@ -143,7 +141,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(538, 19);
+            this.button1.Location = new System.Drawing.Point(594, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -154,6 +152,7 @@
             // 
             // frmUsuariosL
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 450);

@@ -87,19 +87,20 @@ namespace View
         }
         public Form createForm(Type formType)
         {
-            foreach (Form form in (MdiChildren.ToList()))
+            foreach (Form mdiChild in (MdiChildren.ToList()))
             {
-                if (form.GetType().Equals(formType))
+                if (mdiChild.GetType().Equals(formType))
                 {
-                    form.Focus();
-                    return form;
+                    mdiChild.Focus();
+                    return mdiChild;
                 }
             }
 
-            Form frm = (Form)Activator.CreateInstance(formType);
-            frm.MdiParent = this;
-            frm.Show();
-            return frm;
+            Form form = (Form)Activator.CreateInstance(formType);
+            Session.GetInstance.addObserber((ILanguageObserber)form);
+            form.MdiParent = this;
+            form.Show();
+            return form;
         }
         public void updateLanguage(Language language)
         {
@@ -147,6 +148,11 @@ namespace View
         private void listaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmUsuariosL));
+        }
+
+        private void resetPasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmResetPassword));
         }
     }
 }

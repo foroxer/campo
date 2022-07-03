@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.blockedLabel = new System.Windows.Forms.Label();
+            this.desbloquearBtn = new System.Windows.Forms.Button();
+            this.bloquearBtn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.NICUpdate = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -46,9 +49,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.bloquearBtn = new System.Windows.Forms.Button();
-            this.desbloquearBtn = new System.Windows.Forms.Button();
-            this.blockedLabel = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +81,39 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Tag = "modificar";
             this.groupBox2.Text = "Modificar";
+            // 
+            // blockedLabel
+            // 
+            this.blockedLabel.AutoSize = true;
+            this.blockedLabel.Location = new System.Drawing.Point(90, 20);
+            this.blockedLabel.Name = "blockedLabel";
+            this.blockedLabel.Size = new System.Drawing.Size(97, 13);
+            this.blockedLabel.TabIndex = 19;
+            this.blockedLabel.Tag = "userBlocked";
+            this.blockedLabel.Text = "Usuario Bloqueado";
+            this.blockedLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // desbloquearBtn
+            // 
+            this.desbloquearBtn.Location = new System.Drawing.Point(90, 366);
+            this.desbloquearBtn.Name = "desbloquearBtn";
+            this.desbloquearBtn.Size = new System.Drawing.Size(75, 23);
+            this.desbloquearBtn.TabIndex = 9;
+            this.desbloquearBtn.Tag = "desbloquear";
+            this.desbloquearBtn.Text = "desbloquear";
+            this.desbloquearBtn.UseVisualStyleBackColor = true;
+            this.desbloquearBtn.Click += new System.EventHandler(this.desbloquearBtn_Click);
+            // 
+            // bloquearBtn
+            // 
+            this.bloquearBtn.Location = new System.Drawing.Point(90, 366);
+            this.bloquearBtn.Name = "bloquearBtn";
+            this.bloquearBtn.Size = new System.Drawing.Size(75, 23);
+            this.bloquearBtn.TabIndex = 10;
+            this.bloquearBtn.Tag = "bloquear";
+            this.bloquearBtn.Text = "bloquear";
+            this.bloquearBtn.UseVisualStyleBackColor = true;
+            this.bloquearBtn.Click += new System.EventHandler(this.bloquearBtn_Click);
             // 
             // label6
             // 
@@ -241,41 +274,9 @@
             this.label12.Text = "Name";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // bloquearBtn
-            // 
-            this.bloquearBtn.Location = new System.Drawing.Point(90, 366);
-            this.bloquearBtn.Name = "bloquearBtn";
-            this.bloquearBtn.Size = new System.Drawing.Size(75, 23);
-            this.bloquearBtn.TabIndex = 10;
-            this.bloquearBtn.Tag = "bloquear";
-            this.bloquearBtn.Text = "bloquear";
-            this.bloquearBtn.UseVisualStyleBackColor = true;
-            this.bloquearBtn.Click += new System.EventHandler(this.bloquearBtn_Click);
-            // 
-            // desbloquearBtn
-            // 
-            this.desbloquearBtn.Location = new System.Drawing.Point(90, 366);
-            this.desbloquearBtn.Name = "desbloquearBtn";
-            this.desbloquearBtn.Size = new System.Drawing.Size(75, 23);
-            this.desbloquearBtn.TabIndex = 9;
-            this.desbloquearBtn.Tag = "desbloquear";
-            this.desbloquearBtn.Text = "desbloquear";
-            this.desbloquearBtn.UseVisualStyleBackColor = true;
-            this.desbloquearBtn.Click += new System.EventHandler(this.desbloquearBtn_Click);
-            // 
-            // blockedLabel
-            // 
-            this.blockedLabel.AutoSize = true;
-            this.blockedLabel.Location = new System.Drawing.Point(90, 20);
-            this.blockedLabel.Name = "blockedLabel";
-            this.blockedLabel.Size = new System.Drawing.Size(97, 13);
-            this.blockedLabel.TabIndex = 19;
-            this.blockedLabel.Tag = "userBlocked";
-            this.blockedLabel.Text = "Usuario Bloqueado";
-            this.blockedLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // frmUsuariosM
             // 
+            this.AcceptButton = this.updateBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 435);

@@ -88,39 +88,42 @@ namespace DataAccess
         }
         private Boolean IsValidFamily(Family family)
         {
+            bool toReturn = true;
             foreach (Component child in family.Childs)
             {
                 if (child.GetType() == typeof(Family))
                 {
                     if (family.Nombre.Equals(child.Nombre))
                     {
-                        return false;
+                        toReturn = false;
                     }
                     else
                     {
-                        return ValidateFamilyRecursion((Family)child, family);
+                        if (!ValidateFamilyRecursion((Family)child, family)) toReturn = false;
                     }
                 }
             }
-            return true;
+            return toReturn;
         }
         private Boolean ValidateFamilyRecursion(Family family, Family original)
         {
+            bool toReturn = true;
+
             foreach (Component child in family.Childs)
             {
                 if (child.GetType() == typeof(Family))
                 {
                     if (original.Nombre.Equals(child.Nombre))
                     {
-                        return false;
+                        toReturn = false;
                     }
                     else
                     {
-                        return ValidateFamilyRecursion((Family)child, original);
+                        if (!ValidateFamilyRecursion((Family)child, family)) toReturn = false;
                     }
                 }
             }
-            return true;
+            return toReturn;
         }
         public List<Patent> GetAllPatents()
         {

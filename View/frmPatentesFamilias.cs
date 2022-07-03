@@ -15,7 +15,6 @@ namespace View
         public frmPatentesFamilias()
         {
             InitializeComponent();
-            Session.GetInstance.addObserber(this);
             permissionsService = new PermissionsService();
             cboPermisos.DataSource = permissionsService.GetAllPermission();
 
@@ -208,34 +207,10 @@ namespace View
         }
         private void frmPatentesFamilias_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Session.GetInstance.removeObserber(this);
         }
         public void updateLanguage(Language language)
         {
-            foreach (Control control in Controls)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-                if (control.Controls.Count != 0)
-                {
-                    updateLanguageRecursiveControls(language, control.Controls);
-                }
-            }
-        }
-        private void updateLanguageRecursiveControls(Language language, Control.ControlCollection parent)
-        {
-            foreach (Control control in parent)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-
-                if (control.Controls.Count != 0)
-                {
-                    updateLanguageRecursiveControls(language, control.Controls);
-                }
-            }
+            Translator.translate(this, language);
         }
     }
 }

@@ -32,21 +32,24 @@ namespace DataAccess
                                     ,[password]
                                     ,[mail]
                                     ,[key_idioma]
-                                    ,[bloqueado])
+                                    ,[bloqueado]
+                                    ,[intentos])
                                     VALUES
                                     (@Nic
                                     ,@password
                                     ,@mail
                                     ,'ES'
                                     ,0
+                                    ,0
                                      )";
 
 
                     cmd.Connection = connection;
                     cmd.Transaction = transaction;
-                    cmd.Parameters.Add(new SqlParameter("Nic", user.Nic));
-                    cmd.Parameters.Add(new SqlParameter("password", user.Password));
-                    cmd.Parameters.Add(new SqlParameter("mail", user.Mail));
+                    cmd.Parameters.Add(new SqlParameter("Nic", user.Nic.NullOrEmpty()));
+                    cmd.Parameters.Add(new SqlParameter("password", user.Password.NullOrEmpty()));
+                    cmd.Parameters.Add(new SqlParameter("mail", user.Mail.NullOrEmpty()));
+                    
 
                     cmd.ExecuteNonQuery();
 
@@ -80,11 +83,11 @@ namespace DataAccess
                     cmd.Connection = connection;
                     cmd.Transaction = transaction;
                     cmd.Parameters.Add(new SqlParameter("id", user.Id));
-                    cmd.Parameters.Add(new SqlParameter("nombre", user.Name));
-                    cmd.Parameters.Add(new SqlParameter("apellido", user.LastName));
-                    cmd.Parameters.Add(new SqlParameter("telefono", user.Phone));
-                    cmd.Parameters.Add(new SqlParameter("direccion", user.Adress));
-                    cmd.Parameters.Add(new SqlParameter("dni", user.Dni));
+                    cmd.Parameters.Add(new SqlParameter("nombre", user.Name.NullOrEmpty()));
+                    cmd.Parameters.Add(new SqlParameter("apellido", user.LastName.NullOrEmpty()));
+                    cmd.Parameters.Add(new SqlParameter("telefono", user.Phone.NullOrEmpty()));
+                    cmd.Parameters.Add(new SqlParameter("direccion", user.Adress.NullOrEmpty()));
+                    cmd.Parameters.Add(new SqlParameter("dni", user.Dni.NullOrEmpty()));
 
                     cmd.ExecuteNonQuery();
 

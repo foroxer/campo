@@ -22,42 +22,17 @@ namespace View
         {
             InitializeComponent();
             userService = new UserService();
-            Session.GetInstance.addObserber(this);
-        }
+       }
         private void frmAMUsuarios_Load(object sender, EventArgs e)
         {
             updateLanguage(Session.GetInstance.language);
         }
         private void frmAMUsuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Session.GetInstance.removeObserber(this);
         }
         public void updateLanguage(Language language)
         {
-            foreach (Control control in Controls)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-                if (control.Controls.Count != 0)
-                {
-                    updateLanguageRecursiveControls(language, control.Controls);
-                }
-            }
-        }
-        private void updateLanguageRecursiveControls(Language language, Control.ControlCollection parent)
-        {
-            foreach (Control control in parent)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-
-                if (control.Controls.Count != 0)
-                {
-                    updateLanguageRecursiveControls(language, control.Controls);
-                }
-            }
+            Translator.translate(this, language);
         }
         private void createBtn_Click(object sender, EventArgs e)
         {

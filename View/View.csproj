@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmResetPassword.Designer.cs">
+      <DependentUpon>frmResetPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUsuariosA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,10 @@
     <Compile Include="frmExercisesTest.Designer.cs">
       <DependentUpon>frmExercisesTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Translator.cs" />
+    <EmbeddedResource Include="frmResetPassword.resx">
+      <DependentUpon>frmResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUsuariosA.resx">
       <DependentUpon>frmUsuariosA.cs</DependentUpon>
     </EmbeddedResource>

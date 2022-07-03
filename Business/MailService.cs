@@ -9,7 +9,7 @@ namespace Business
         {
             //a modo ilustrativo, se genera un archivo de texto en el escritorio
             string DesktopPath = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
-            FileStream fs = new FileStream(DesktopPath + @"\" + mail + @".txt", FileMode.Create, FileAccess.Write);
+            FileStream fs = new FileStream(DesktopPath + @"\" + mail + @".txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamWriter sw = new StreamWriter(fs);
             sw.BaseStream.Seek(0, SeekOrigin.End);
             sw.WriteLine(mailText);

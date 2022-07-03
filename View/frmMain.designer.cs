@@ -35,12 +35,14 @@
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.modificacionUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -100,13 +102,22 @@
             this.modificacionUsuario.Text = "Modificacion";
             this.modificacionUsuario.Click += new System.EventHandler(this.modificacionUsuario_Click);
             // 
+            // listaToolStripMenuItem
+            // 
+            this.listaToolStripMenuItem.Name = "listaToolStripMenuItem";
+            this.listaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaToolStripMenuItem.Tag = "lista";
+            this.listaToolStripMenuItem.Text = "Lista";
+            this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaToolStripMenuItem_Click);
+            // 
             // menuStrip
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuConfig,
             this.mnuSelectIdioma,
-            this.rutinas});
+            this.rutinas,
+            this.usuarioToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -129,6 +140,23 @@
             this.rutinas.Text = "Rutinas";
             this.rutinas.Click += new System.EventHandler(this.rutinas_Click);
             // 
+            // usuarioToolStripMenuItem
+            // 
+            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetPasswordToolStripMenuItem});
+            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.usuarioToolStripMenuItem.Tag = "usuario";
+            this.usuarioToolStripMenuItem.Text = "Usuario";
+            // 
+            // resetPasswordToolStripMenuItem
+            // 
+            this.resetPasswordToolStripMenuItem.Name = "resetPasswordToolStripMenuItem";
+            this.resetPasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetPasswordToolStripMenuItem.Tag = "resetPssword";
+            this.resetPasswordToolStripMenuItem.Text = "Reset Password";
+            this.resetPasswordToolStripMenuItem.Click += new System.EventHandler(this.resetPasswordToolStripMenuItem_Click);
+            // 
             // lblUsuario
             // 
             this.lblUsuario.Name = "lblUsuario";
@@ -144,13 +172,6 @@
             this.statusStrip.Size = new System.Drawing.Size(632, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
-            // 
-            // listaToolStripMenuItem
-            // 
-            this.listaToolStripMenuItem.Name = "listaToolStripMenuItem";
-            this.listaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.listaToolStripMenuItem.Text = "Lista";
-            this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -191,6 +212,8 @@
         private System.Windows.Forms.ToolStripMenuItem modificacionUsuario;
         private System.Windows.Forms.ToolStripMenuItem rutinas;
         private System.Windows.Forms.ToolStripMenuItem listaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetPasswordToolStripMenuItem;
     }
 }
 

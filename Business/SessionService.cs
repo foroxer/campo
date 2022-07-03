@@ -36,11 +36,11 @@ namespace Business
             }
             if (Crypto.HashSha256(password) != user?.Password)
             {
-                userService.addTries(user);
+                userService.AddTries(user);
                 throw new LoginException();
 
             }
-            userService.resetTries(user);
+            userService.ResetTries(user);
             Session.GetInstance.Login(user);
         }
         public void Logout()

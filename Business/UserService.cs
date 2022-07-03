@@ -90,21 +90,55 @@ namespace Business
         {
             userRepository.updateUser(user);
         }
-        public void addTries(User user)
+        public void AddTries(User user)
         {
             userRepository.addTries(user);
         }
-        public void resetTries(User user)
+        public void ResetTries(User user)
         {
             userRepository.resetTries(user);
         }
-        public void blockUser(User user)
+        public void BlockUser(User user)
         {
             userRepository.blockUser(user);
         }
-        public void unblockUser(User user)
+        public void UnblockUser(User user)
         {
             userRepository.unblockUser(user);
+        }
+        public void ChangePassword(string pass, string newPass, User user)
+        {
+           if( Crypto.HashSha256(pass) == user?.Password)
+            {
+                string oldPassword = user.Password;
+                try
+                {
+                    string nonHashedPassword = newPass;
+                    user.Password = Crypto.HashSha256(nonHashedPassword);
+                    userRepository.UpdatePassword(user);
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("Hola, ");
+                    sb.Append(user.Name);
+                    sb.AppendLine("Su contraseña fue actualizada: ");
+                    sb.AppendLine(nonHashedPassword);
+
+                    MailService.SendMail(sb.ToString(), user.Mail);
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        user.Password = oldPassword;
+                        userRepository.UpdatePassword(user);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+              
         }
     }
 }

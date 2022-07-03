@@ -210,13 +210,14 @@
             this.label1.Text = "Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // frmAMUsuarios
+            // frmUsuariosA
             // 
+            this.AcceptButton = this.createBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(323, 439);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmAMUsuarios";
+            this.Name = "frmUsuariosA";
             this.Text = "Alta y modificacion usuarios";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAMUsuarios_FormClosed);
             this.Load += new System.EventHandler(this.frmAMUsuarios_Load);

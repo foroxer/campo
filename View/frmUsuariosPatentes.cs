@@ -21,7 +21,6 @@ namespace View
         }
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
-            Session.GetInstance.addObserber(this);
             updateLanguage(Session.GetInstance.language);
             userService = new UserService();
             permissionsService = new PermissionsService();
@@ -207,16 +206,7 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            foreach (Control control in Controls)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-                if (control.Controls.Count != 0)
-                {
-                    updateLanguageRecursiveControls(language, control.Controls);
-                }
-            }
+            Translator.translate(this, language);
         }
         private void updateLanguageRecursiveControls(Language language, Control.ControlCollection parent)
         {
@@ -234,7 +224,6 @@ namespace View
         }
         private void frmUsuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Session.GetInstance.removeObserber(this);
         }
     }
 }

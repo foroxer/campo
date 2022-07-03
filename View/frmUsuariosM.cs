@@ -23,7 +23,6 @@ namespace View
         {
             InitializeComponent();
             userService = new UserService();
-            Session.GetInstance.addObserber(this);
 
             bloquearBtn.Visible = false;
             desbloquearBtn.Visible = false;
@@ -67,41 +66,17 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            foreach (Control control in Controls)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-                if (control.Controls.Count != 0)
-                {
-                    updateLanguageRecursiveControls(language, control.Controls);
-                }
-            }
-        }
-        private void updateLanguageRecursiveControls(Language language, Control.ControlCollection parent)
-        {
-            foreach (Control control in parent)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-
-                if (control.Controls.Count != 0)
-                {
-                    updateLanguageRecursiveControls(language, control.Controls);
-                }
-            }
+            Translator.translate(this, language);
         }
         private void frmMUsuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Session.GetInstance.removeObserber(this);
         }
         private void bloquearBtn_Click(object sender, EventArgs e)
         {
             //int index = cboUsuarios.SelectedIndex;
             try
             {
-                userService.blockUser(selected);
+                userService.BlockUser(selected);
                 cboUsuarios.DataSource = userService.GetAll();
             }
             catch
@@ -117,7 +92,7 @@ namespace View
             //int index = cboUsuarios.SelectedIndex;
             try
             {
-                userService.unblockUser(selected);
+                userService.UnblockUser(selected);
                 cboUsuarios.DataSource = userService.GetAll();
             }
             catch
