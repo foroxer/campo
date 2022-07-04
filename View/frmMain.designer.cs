@@ -43,6 +43,7 @@
             this.resetPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.idiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +53,8 @@
             this.mnuConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuPatentesFamilias,
             this.mnuUsuarioPatentes,
-            this.usuariosToolStripMenuItem});
+            this.usuariosToolStripMenuItem,
+            this.idiomaToolStripMenuItem});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
             this.mnuConfig.Size = new System.Drawing.Size(95, 20);
@@ -173,6 +175,13 @@
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
+            // idiomaToolStripMenuItem
+            // 
+            this.idiomaToolStripMenuItem.Name = "idiomaToolStripMenuItem";
+            this.idiomaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.idiomaToolStripMenuItem.Text = "Idioma";
+            this.idiomaToolStripMenuItem.Click += new System.EventHandler(this.idiomaToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,6 +223,7 @@
         private System.Windows.Forms.ToolStripMenuItem listaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetPasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem idiomaToolStripMenuItem;
     }
 }
 

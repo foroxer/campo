@@ -8,7 +8,7 @@ namespace Business
 {
     public class LanguageService
     {
-        private LanguageRepository languageRepository;
+        public LanguageRepository languageRepository;
         public LanguageService()
         {
             languageRepository = new LanguageRepository();
@@ -23,6 +23,14 @@ namespace Business
             return languageRepository.GetLanguage(key);
         }
 
-
+        public List<Language> GetLanguages()
+        {
+            List<Language> languages = languageRepository.GetAllLanguagesWithTranslations();
+            return languages;
+        }
+        public object test()
+        {
+            return languageRepository.test();
+        }
     }
 }

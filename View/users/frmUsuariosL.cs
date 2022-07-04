@@ -15,7 +15,7 @@ using Utiles;
 
 namespace View
 {
-    public partial class frmUsuariosL : Form,ILanguageObserber
+    public partial class frmUsuariosL : Form, ILanguageObserber
     {
         UserService userService;
         public frmUsuariosL()
@@ -26,9 +26,9 @@ namespace View
         }
 
         private void frmUsuariosL_Load(object sender, EventArgs e)
-        {           
+        {
             updateLanguage(Session.GetInstance.language);
-            
+
             Dock = DockStyle.Fill;
             dataGridView1.Dock = DockStyle.Fill;
 
@@ -36,7 +36,7 @@ namespace View
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridView1.ColumnHeadersHeightSizeMode =  DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ReadOnly = true;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -60,10 +60,11 @@ namespace View
             dataGridView1.DataSource = lista.Where(user =>
 
             user.Name.Contains(textBox1.Text) &&
-            user.LastName.Contains(textBox2.Text) && 
+            user.LastName.Contains(textBox2.Text) &&
             user.Dni.Contains(textBox3.Text)
             ).ToList();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -81,7 +82,7 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            Translator.translate(this, language); 
+            Translator.translate(this, language);
         }
 
         private void frmUsuariosL_FormClosed(object sender, FormClosedEventArgs e)

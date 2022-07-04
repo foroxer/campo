@@ -104,31 +104,9 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            foreach (Control control in Controls)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-                if (control.GetType().Equals(typeof(MenuStrip)) && ((MenuStrip)control).Items.Count != 0)
-                {
-                    updateToolStrip(language, ((MenuStrip)control).Items);
-                }
-            }
+            Translator.translate(this, language);
         }
-        private void updateToolStrip(Language language, ToolStripItemCollection parent)
-        {
-            foreach (ToolStripMenuItem control in parent)
-            {
-                control.Text = language.Translations.Find(
-                        (translation) => translation.Key.Equals(control.Tag)
-                    )?.Translate ?? control.Text;
-
-                if (control.DropDownItems.Count != 0)
-                {
-                    updateToolStrip(language, control.DropDownItems);
-                }
-            }
-        }
+        
        
         private void altaUsuario_Click(object sender, EventArgs e)
         {
@@ -153,6 +131,11 @@ namespace View
         private void resetPasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmResetPassword));
+        }
+
+        private void idiomaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmLanguages));
         }
     }
 }
