@@ -18,11 +18,13 @@ namespace View
     public partial class frmUsuariosL : Form, ILanguageObserber
     {
         UserService userService;
+        private List<User> userList; 
         public frmUsuariosL()
         {
             InitializeComponent();
             userService = new UserService();
-            dataGridView1.DataSource = userService.GetAll();
+            userList = userService.GetAll();
+            dataGridView1.DataSource = userList;
         }
 
         private void frmUsuariosL_Load(object sender, EventArgs e)
@@ -55,9 +57,7 @@ namespace View
 
         private void search_TextChanged(object sender, EventArgs e)
         {
-            List<User> lista = userService.GetAll();
-
-            dataGridView1.DataSource = lista.Where(user =>
+            dataGridView1.DataSource = userList.Where(user =>
 
             user.Name.Contains(textBox1.Text) &&
             user.LastName.Contains(textBox2.Text) &&

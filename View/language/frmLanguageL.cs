@@ -55,7 +55,7 @@ namespace View.language
 
         private void frmLanguageL_Activated(object sender, EventArgs e)
         {
-            configDatagridTranslations();
+            refreshDatagridView();
         }
 
 
@@ -70,7 +70,8 @@ namespace View.language
             }
             textBox1.Visible = true;
             textBox1.Text = dataGridView1.CurrentCell.Value.ToString();
-
+            textBox1.Focus();
+            textBox1.SelectAll();
 
             if (dataGridView1.CurrentCell.Value.ToString().IsNullOrEmpty())
             {
@@ -97,7 +98,7 @@ namespace View.language
             string languageName = dataGridView1.Columns[selected.ColumnIndex].HeaderText;
             string key = dataGridView1.Rows[selected.RowIndex].Cells[0].Value.ToString();
             languageService.createTranslation(key, value, languageName);
-            configDatagridTranslations();
+            refreshDatagridView();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -113,7 +114,13 @@ namespace View.language
             string languageName = dataGridView1.Columns[selected.ColumnIndex].HeaderText;
             string key = dataGridView1.Rows[selected.RowIndex].Cells[0].Value.ToString();
             languageService.updateTranslation(key, value, languageName);
-            configDatagridTranslations();
+            refreshDatagridView();
+        }
+
+        private void refreshDatagridView()
+        {
+            dataGridView1.DataSource = languageService.GetDataSet();
+            dataGridView1.DataMember = "mitabla";
         }
     }
 }
