@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="language\frmLanguajesList.cs">
+    <Compile Include="language\frmLanguageL.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="language\frmLanguajesList.Designer.cs">
-      <DependentUpon>frmLanguajesList.cs</DependentUpon>
+    <Compile Include="language\frmLanguageL.Designer.cs">
+      <DependentUpon>frmLanguageL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="language\frmLanguageA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="language\frmLanguageA.Designer.cs">
+      <DependentUpon>frmLanguageA.cs</DependentUpon>
     </Compile>
     <Compile Include="security\frmResetPassword.cs">
       <SubType>Form</SubType>
@@ -109,6 +115,12 @@
       <DependentUpon>frmExercisesTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Translator.cs" />
+    <EmbeddedResource Include="language\frmLanguageA.resx">
+      <DependentUpon>frmLanguageA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="language\frmLanguageL.resx">
+      <DependentUpon>frmLanguageL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="security\frmResetPassword.resx">
       <DependentUpon>frmResetPassword.cs</DependentUpon>
     </EmbeddedResource>

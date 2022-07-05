@@ -16,7 +16,7 @@ namespace Business
         {
             Session session = Session.GetInstance;
             session.Login(user);
-            session.language = languageService.GetLanguage(user.Language.Key);
+            session.language = languageService.GetLanguage(user.Language.Name);
 
         }
         public void Login(String name, String password)

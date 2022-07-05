@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using View.language;
 
 namespace View
 {
@@ -35,7 +36,7 @@ namespace View
         private void languageChange_click(object sender, EventArgs e)
         {
             Language language = (Language)((ToolStripMenuItem)sender).Tag;
-            Session.GetInstance.language = languageService.GetLanguage(language.Key);
+            Session.GetInstance.language = languageService.GetLanguage(language.Name);
 
             lblUsuario.Text = language.Name;
 
@@ -135,7 +136,7 @@ namespace View
 
         private void idiomaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            createForm(typeof(frmLanguages));
+            createForm(typeof(frmLanguageL));
         }
     }
 }

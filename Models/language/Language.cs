@@ -6,7 +6,6 @@ namespace Models.language
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Key { get; set; }
         public List<Translation> Translations { get; set; }
     }
 }

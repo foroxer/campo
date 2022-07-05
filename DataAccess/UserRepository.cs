@@ -124,7 +124,7 @@ namespace DataAccess
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                string idLanguaje = "";
+                int idLanguaje  = 0;
                 while (reader.Read())
                 {
                     user = new User
@@ -141,7 +141,7 @@ namespace DataAccess
                         Blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado")),
                         Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString())
                     };
-                    idLanguaje = reader.GetValue(reader.GetOrdinal("key_idioma")).ToString();
+                    idLanguaje = int.Parse(reader.GetValue(reader.GetOrdinal("key_idioma")).ToString());
                 }
 
                 reader.Close();

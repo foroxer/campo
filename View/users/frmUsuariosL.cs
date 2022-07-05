@@ -30,7 +30,7 @@ namespace View
             updateLanguage(Session.GetInstance.language);
 
             Dock = DockStyle.Fill;
-            dataGridView1.Dock = DockStyle.Fill;
+            
 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;

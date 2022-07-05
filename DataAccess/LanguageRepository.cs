@@ -33,7 +33,6 @@ namespace DataAccess
                     Language language = new Language();
                     language.ID = reader.GetInt32(reader.GetOrdinal("id"));
                     language.Name = reader.GetString(reader.GetOrdinal("name"));
-                    language.Key = reader.GetString(reader.GetOrdinal("key"));
                     lista.Add(language);
                 }
 
@@ -48,6 +47,65 @@ namespace DataAccess
                 throw;
             }
         }
+
+        public void updateTranslation(string key, string value, Language language)
+        {
+            try
+            {
+                SqlConnection connection = ConnectionSingleton.getConnection();
+                connection.Open();
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.Connection = connection;
+                cmd.CommandText = $@"UPDATE [dbo].[traduccion]
+                                     SET [traduccion] = @value
+                                     WHERE [key] = @key and [id_idioma] = @languageId";
+                cmd.Parameters.Add(new SqlParameter("key", key));
+                cmd.Parameters.Add(new SqlParameter("value", value));
+                cmd.Parameters.Add(new SqlParameter("languageId", language.ID));
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurrio un error al actualizar");
+            }
+        }
+
+        public void createTranslation(string key, string value, Language language)
+        {
+            try
+            {
+                SqlConnection connection = ConnectionSingleton.getConnection();
+                connection.Open();
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.Connection = connection;
+                cmd.CommandText = $@"
+                                    INSERT INTO [dbo].[traduccion]
+                                               ([id_idioma]
+                                               ,[key]
+                                               ,[traduccion])
+                                         VALUES
+                                               (@languageId
+                                               ,@key
+                                               ,@value)"; 
+                cmd.Parameters.Add(new SqlParameter("key", key));
+                cmd.Parameters.Add(new SqlParameter("value", value));
+                cmd.Parameters.Add(new SqlParameter("languageId", language.ID));
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurrio un error al crear");
+            }
+        }
+
         public List<Language> GetAllLanguagesWithTranslations()
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
@@ -70,7 +128,6 @@ namespace DataAccess
                     Language language = new Language();
                     language.ID = reader.GetInt32(reader.GetOrdinal("id"));
                     language.Name = reader.GetString(reader.GetOrdinal("name"));
-                    language.Key = reader.GetString(reader.GetOrdinal("key"));
                     lista.Add(language);
                 }
 
@@ -111,7 +168,6 @@ namespace DataAccess
                 {
                     language.ID = reader.GetInt32(reader.GetOrdinal("id"));
                     language.Name = reader.GetString(reader.GetOrdinal("name"));
-                    language.Key = reader.GetString(reader.GetOrdinal("key"));
                 }
                 reader.Close();
                 connection.Close();
@@ -151,7 +207,6 @@ namespace DataAccess
                 {
                     language.ID = reader.GetInt32(reader.GetOrdinal("id"));
                     language.Name = reader.GetString(reader.GetOrdinal("name"));
-                    language.Key = reader.GetString(reader.GetOrdinal("key"));
                 }
                 reader.Close();
                 connection.Close();
@@ -188,7 +243,6 @@ namespace DataAccess
                 while (reader.Read())
                 {
                     Translation translation = new Translation();
-                    translation.ID = reader.GetInt32(reader.GetOrdinal("id"));
                     translation.Translate = reader.GetString(reader.GetOrdinal("traduccion"));
                     translation.Key = reader.GetString(reader.GetOrdinal("key"));
                     lista.Add(translation);
@@ -207,7 +261,7 @@ namespace DataAccess
             }
 
         }
-        public Language CreateLanguage(Language language)
+        public Language CreateLanguage(string name)
         {
             try
             {
@@ -216,22 +270,21 @@ namespace DataAccess
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = connection;
-                cmd.CommandText = $@"insert into idioma (name,[key]) values (@nombre,@key) "; ;
-                cmd.Parameters.Add(new SqlParameter("name", language.Name));
-                cmd.Parameters.Add(new SqlParameter("key", language.Key));
+                cmd.CommandText = $@"insert into idioma (name) values (@nombre) "; ;
+                cmd.Parameters.Add(new SqlParameter("nombre", name));
 
                 cmd.ExecuteNonQuery();
 
                 connection.Close();
 
-                return GetAllLanguagesWithoutTranslations().First(lang => lang.Name.Equals(language.Name));
+                return GetAllLanguagesWithoutTranslations().First(lang => lang.Name.Equals(name));
             }
             catch (Exception)
             {
                 throw new Exception("Ocurrio un error al crear");
             }
         }
-        public DataSet test()
+        public DataSet GetDataSet()
         {
             List<Language> languages = GetAllLanguagesWithoutTranslations();
             string languagesString = string.Join(",", (languages.Select(language => language.Name).ToArray()));
@@ -244,7 +297,7 @@ namespace DataAccess
                 cmd.Connection = connection;
 
                 var sql = $@"select * from (
-	                            select i.name as nombre , t.[key] as clave,t.traduccion as traduccion
+	                            select i.name as nombre , t.[key] as Clave,t.traduccion as traduccion
 	                            from idioma i 
 	                            inner join traduccion t on i.id = t.id_idioma
                             ) asd

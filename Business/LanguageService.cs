@@ -1,8 +1,8 @@
 ﻿using DataAccess;
 using Models.language;
+using System;
 using System.Collections.Generic;
-
-
+using System.Data;
 
 namespace Business
 {
@@ -18,9 +18,9 @@ namespace Business
             return languageRepository.GetAllLanguagesWithoutTranslations();
         }
 
-        public Language GetLanguage(string key)
+        public Language GetLanguage(string name)
         {
-            return languageRepository.GetLanguage(key);
+            return languageRepository.GetLanguage(name);
         }
 
         public List<Language> GetLanguages()
@@ -28,9 +28,24 @@ namespace Business
             List<Language> languages = languageRepository.GetAllLanguagesWithTranslations();
             return languages;
         }
-        public object test()
+        public DataSet GetDataSet()
         {
-            return languageRepository.test();
+            return languageRepository.GetDataSet();
+        }
+
+        public Language Create(string name)
+        {
+            return languageRepository.CreateLanguage(name);
+        }
+
+        public void updateTranslation(string key, string value, string languajeName)
+        {
+            languageRepository.updateTranslation(key, value, GetLanguage(languajeName));
+        }
+
+        public void createTranslation(string key, string value, string languajeName)
+        {
+            languageRepository.createTranslation(key, value, GetLanguage(languajeName));
         }
     }
 }
