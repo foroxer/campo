@@ -36,6 +36,7 @@
             this.altaUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.modificacionUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configidioma = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +44,6 @@
             this.resetPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.idiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             this.mnuPatentesFamilias,
             this.mnuUsuarioPatentes,
             this.usuariosToolStripMenuItem,
-            this.idiomaToolStripMenuItem});
+            this.configidioma});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
             this.mnuConfig.Size = new System.Drawing.Size(95, 20);
@@ -91,7 +91,7 @@
             // altaUsuario
             // 
             this.altaUsuario.Name = "altaUsuario";
-            this.altaUsuario.Size = new System.Drawing.Size(180, 22);
+            this.altaUsuario.Size = new System.Drawing.Size(144, 22);
             this.altaUsuario.Tag = "alta";
             this.altaUsuario.Text = "Alta";
             this.altaUsuario.Click += new System.EventHandler(this.altaUsuario_Click);
@@ -99,7 +99,7 @@
             // modificacionUsuario
             // 
             this.modificacionUsuario.Name = "modificacionUsuario";
-            this.modificacionUsuario.Size = new System.Drawing.Size(180, 22);
+            this.modificacionUsuario.Size = new System.Drawing.Size(144, 22);
             this.modificacionUsuario.Tag = "modificacion";
             this.modificacionUsuario.Text = "Modificacion";
             this.modificacionUsuario.Click += new System.EventHandler(this.modificacionUsuario_Click);
@@ -107,10 +107,17 @@
             // listaToolStripMenuItem
             // 
             this.listaToolStripMenuItem.Name = "listaToolStripMenuItem";
-            this.listaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.listaToolStripMenuItem.Tag = "lista";
             this.listaToolStripMenuItem.Text = "Lista";
             this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaToolStripMenuItem_Click);
+            // 
+            // configidioma
+            // 
+            this.configidioma.Name = "configidioma";
+            this.configidioma.Size = new System.Drawing.Size(189, 22);
+            this.configidioma.Text = "Idioma";
+            this.configidioma.Click += new System.EventHandler(this.idiomaToolStripMenuItem_Click);
             // 
             // menuStrip
             // 
@@ -154,7 +161,7 @@
             // resetPasswordToolStripMenuItem
             // 
             this.resetPasswordToolStripMenuItem.Name = "resetPasswordToolStripMenuItem";
-            this.resetPasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetPasswordToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.resetPasswordToolStripMenuItem.Tag = "resetPssword";
             this.resetPasswordToolStripMenuItem.Text = "Reset Password";
             this.resetPasswordToolStripMenuItem.Click += new System.EventHandler(this.resetPasswordToolStripMenuItem_Click);
@@ -174,13 +181,6 @@
             this.statusStrip.Size = new System.Drawing.Size(632, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
-            // 
-            // idiomaToolStripMenuItem
-            // 
-            this.idiomaToolStripMenuItem.Name = "idiomaToolStripMenuItem";
-            this.idiomaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.idiomaToolStripMenuItem.Text = "Idioma";
-            this.idiomaToolStripMenuItem.Click += new System.EventHandler(this.idiomaToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -223,7 +223,7 @@
         private System.Windows.Forms.ToolStripMenuItem listaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetPasswordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem idiomaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configidioma;
     }
 }
 

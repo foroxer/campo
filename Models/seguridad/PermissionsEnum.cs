@@ -9,6 +9,7 @@
         Usuarios,
         MenuConfig,
         VerRutina,
+        ConfigIdioma,
         PuedeHacerF,
         PuedeHacerG,
     }

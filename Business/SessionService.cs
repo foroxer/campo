@@ -21,32 +21,39 @@ namespace Business
         }
         public void Login(String name, String password)
         {
-            if (name.IsNullOrEmpty() || password.IsNullOrEmpty())
+            try
             {
-                throw new LoginException();
-            }
-            User user = userService.Get(name);
-            if (user.Tries > REINTENTOS_MAXIMOS_LOGIN)
-            {
-                throw new LoginException("Se exedio la cantidad maxima de intentos por favor hable con un administrador");
-            }
-            if (user.Blocked)
-            {
-                throw new LoginException("Por favor hable con un administrador");
-            }
-            if (Crypto.HashSha256(password) != user?.Password)
-            {
-                userService.AddTries(user);
-                throw new LoginException();
+                if (name.IsNullOrEmpty() || password.IsNullOrEmpty())
+                {
+                    throw new LoginException();
+                }
+                User user = userService.Get(name);
+                if (user.Tries > REINTENTOS_MAXIMOS_LOGIN)
+                {
+                    throw new LoginException("Se exedio la cantidad maxima de intentos por favor hable con un administrador");
+                }
+                if (user.Blocked)
+                {
+                    throw new LoginException("Por favor hable con un administrador");
+                }
+                if (Crypto.HashSha256(password) != user?.Password)
+                {
+                    userService.AddTries(user);
+                    throw new LoginException();
 
+                }
+                userService.ResetTries(user);
+                Session.GetInstance.Login(user);
             }
-            userService.ResetTries(user);
-            Session.GetInstance.Login(user);
+            catch
+            {
+                throw;
+            }
         }
-        public void Logout()
-        {
-            Session.GetInstance.Logout();
-        }
+            public void Logout()
+            {
+                Session.GetInstance.Logout();
+            }
 
+        }
     }
-}

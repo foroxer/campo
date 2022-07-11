@@ -45,11 +45,12 @@ namespace View
         {
             if (Session.GetInstance.IsLoggedIn())
             {
+                configidioma.Visible = Session.GetInstance.IsInRole(PermissionsEnum.ConfigIdioma);
                 mnuPatentesFamilias.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesFamilias);
                 mnuUsuarioPatentes.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesUsuarios);
                 mnuConfig.Visible = Session.GetInstance.IsInRole(PermissionsEnum.MenuConfig);
                 rutinas.Visible = Session.GetInstance.IsInRole(PermissionsEnum.VerRutina);
-                
+
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {
                     rutinas.Visible = true;
@@ -79,9 +80,12 @@ namespace View
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Session.GetInstance.removeObserber(this);
-            foreach (ILanguageObserber form in MdiChildren)
+            foreach (Form form in MdiChildren)
             {
-                Session.GetInstance.removeObserber(form);
+                if (typeof(ILanguageObserber).IsAssignableFrom(form.GetType()))
+                {
+                    Session.GetInstance.removeObserber((ILanguageObserber)form);
+                }
             }
             loginForm.Show();
             sesionService.Logout();
@@ -98,7 +102,10 @@ namespace View
             }
 
             Form form = (Form)Activator.CreateInstance(formType);
-            Session.GetInstance.addObserber((ILanguageObserber)form);
+            if (typeof(ILanguageObserber).IsAssignableFrom(form.GetType()))
+            {
+                Session.GetInstance.addObserber((ILanguageObserber)form);
+            }
             form.MdiParent = this;
             form.Show();
             return form;
@@ -107,8 +114,8 @@ namespace View
         {
             Translator.translate(this, language);
         }
-        
-       
+
+
         private void altaUsuario_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmUsuariosA));
