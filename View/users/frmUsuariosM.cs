@@ -93,11 +93,12 @@ namespace View
             try
             {
                 userService.UnblockUser(selected);
+                userService.ResetTries(selected);
                 cboUsuarios.DataSource = userService.GetAll();
             }
             catch
             {
-                MessageBox.Show($"Ocurrio un error al intentar bloquear el user {selected.Nic}");
+                MessageBox.Show($"Ocurrio un error al intentar desbloquear el user {selected.Nic}");
             }
             //cboUsuarios.SelectedIndex = index;
             Close();
@@ -127,7 +128,7 @@ namespace View
             PhoneUpdate.Text = user.Phone;
             DNIUpdate.Text = user.Dni;
 
-            desbloquearBtn.Visible = user.Blocked;
+            desbloquearBtn.Visible = user.Blocked || user.Tries > SessionService.REINTENTOS_MAXIMOS_LOGIN;
             bloquearBtn.Visible = !user.Blocked;
             blockedLabel.Visible = user.Blocked;
             updateBtn.Focus();

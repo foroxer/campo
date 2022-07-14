@@ -391,7 +391,7 @@
             this.Controls.Add(this.grpPatentes);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmPatentesFamilias";
-            this.Text = "Configurar seguridad";
+            this.Text = "Gestion de Familias";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPatentesFamilias_FormClosed);
             this.Load += new System.EventHandler(this.FrmSeguridad_Load);
             this.grpPatentes.ResumeLayout(false);

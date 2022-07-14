@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Business.ExerciseService">
+    <Position X="6.75" Y="5.5" Width="5.25" />
+    <AssociationLine Name="exerciseRepository" Type="DataAccess.ExerciseRepository" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="12" Y="6.75" />
+        <Point X="12.75" Y="6.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAEAAAAAA=</HashCode>
+      <FileName>ExerciseService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="exerciseRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Business.LanguageService">
+    <Position X="7.5" Y="2.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAACEAAAgAgAIAAACA=</HashCode>
+      <FileName>LanguageService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="languageRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Business.MailService">
+    <Position X="15.25" Y="6.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MailService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.PermissionsService">
+    <Position X="16.75" Y="2.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAQAAAAAAAAAEAAAAAAAgAQAAEAAAAAhAAAAQQAQA=</HashCode>
+      <FileName>PermissionsService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="permissionsRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Business.SessionService">
+    <Position X="12.75" Y="3.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAAACAAAAAAAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>SessionService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="languageService" />
+      <Field Name="userService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Business.UserService">
+    <Position X="2" Y="3.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAgABQAAAAAAAAAwAAAAAAAhEggIAAAAA=</HashCode>
+      <FileName>UserService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="userRepository" />
+      <Field Name="permissionsRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Business.exceptions.LoginException">
+    <Position X="12.75" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>exceptions\LoginException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataAccess.UserRepository" Collapsed="true">
+    <Position X="2" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataAccess.ExerciseRepository" Collapsed="true">
+    <Position X="12.75" Y="6.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataAccess.PermissionsRepository" Collapsed="true">
+    <Position X="9.5" Y="8.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataAccess.LanguageRepository" Collapsed="true">
+    <Position X="3.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

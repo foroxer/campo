@@ -9,8 +9,7 @@ namespace Business
     {
 
         UserService userService = new UserService();
-        LanguageService languageService = new LanguageService();
-        private readonly int REINTENTOS_MAXIMOS_LOGIN = 3;
+        public static readonly int REINTENTOS_MAXIMOS_LOGIN = 3;
 
         public void Login(User user)
         {
@@ -28,6 +27,7 @@ namespace Business
                     throw new LoginException();
                 }
                 User user = userService.Get(name);
+                if (user == null) throw new LoginException("No existe el user");
                 if (user.Tries > REINTENTOS_MAXIMOS_LOGIN)
                 {
                     throw new LoginException("Se exedio la cantidad maxima de intentos por favor hable con un administrador");

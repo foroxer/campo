@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "..\View\View.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{BF3646F9-7703-4222-BAF3-F1A6AAA33F7D}"
 	ProjectSection(SolutionItems) = preProject
+		datos.sql = datos.sql
 		script.sql = script.sql
 	EndProjectSection
 EndProject
