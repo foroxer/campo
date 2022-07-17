@@ -9,7 +9,7 @@ namespace Models.bussines
     public class Exercise
     {
         public int Id { get; set; }
-        public Machine Machine { get; set; }
+        public MachineType MachineType { get; set; }
         public MuscularGroup MuscularGroup { get; set; }
         public string Description { get; set; }
     }

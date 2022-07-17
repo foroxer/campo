@@ -103,18 +103,25 @@ namespace View.language
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentCell.ColumnIndex == 0) return;
-            if (textBox1.Text.RemoveWhitespaces().IsNullOrEmpty())
+            try
             {
-                MessageBox.Show("Introduzca un valor valido");
-                return;
+                if (dataGridView1.CurrentCell.ColumnIndex == 0) return;
+                if (textBox1.Text.RemoveWhitespaces().IsNullOrEmpty())
+                {
+                    MessageBox.Show("Introduzca un valor valido");
+                    return;
+                }
+                DataGridViewCell selected = dataGridView1.CurrentCell;
+                string value = textBox1.GetStringMinLength(1);
+                string languageName = dataGridView1.Columns[selected.ColumnIndex].HeaderText;
+                string key = dataGridView1.Rows[selected.RowIndex].Cells[0].Value.ToString();
+                languageService.updateTranslation(key, value, languageName);
+                refreshDatagridView();
             }
-            DataGridViewCell selected = dataGridView1.CurrentCell;
-            string value = textBox1.Text;
-            string languageName = dataGridView1.Columns[selected.ColumnIndex].HeaderText;
-            string key = dataGridView1.Rows[selected.RowIndex].Cells[0].Value.ToString();
-            languageService.updateTranslation(key, value, languageName);
-            refreshDatagridView();
+            catch
+            {
+                MessageBox.Show("ocurrio un error");
+            }
         }
 
         private void refreshDatagridView()

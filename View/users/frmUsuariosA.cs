@@ -14,7 +14,7 @@ using Business;
 
 namespace View
 {
-    public partial class frmUsuariosA : Form,ILanguageObserber
+    public partial class frmUsuariosA : Form, ILanguageObserber
     {
         UserService userService;
 
@@ -22,7 +22,7 @@ namespace View
         {
             InitializeComponent();
             userService = new UserService();
-       }
+        }
         private void frmAMUsuarios_Load(object sender, EventArgs e)
         {
             updateLanguage(Session.GetInstance.language);
@@ -32,33 +32,34 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            Translator.translate(this, language);
+            Translator.translate(this);
         }
         private void createBtn_Click(object sender, EventArgs e)
         {
-            User user = new User
-            {
-                LastName = LNameCreation.Text,
-                Name = NameCreation.Text,
-                Adress = AdressCreation.Text,
-                Mail = MailCreation.Text,
-                Nic = NICCreation.Text,
-                Phone = PhoneCreation.Text,
-                Dni = DNICreation.Text
-            };
-
             try
             {
+                User user = new User
+                {
+                    Nic = NICCreation.GetStringMinLength(4),
+                    Name = NameCreation.GetStringMinLength(2),
+                    LastName = LNameCreation.GetStringMinLength(2),
+                    Dni = DNICreation.GetInt().ToString(),
+                    Phone = PhoneCreation.GetInt().ToString(),
+                    Mail = MailCreation.GetMail(),
+                    Adress = AdressCreation.GetStringMinLength(4),
+                };
+
+
                 userService.CreateUser(user);
                 cleanCreationControls();
-               
+
                 MessageBox.Show("El usuario se creo con exito");
+                Close();
             }
             catch (Exception)
             {
                 MessageBox.Show("ocurrio un error al intentar crear el usuario");
             }
-            Close();
         }
         private void cleanCreationControls()
         {

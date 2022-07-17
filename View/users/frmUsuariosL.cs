@@ -82,7 +82,7 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            Translator.translate(this, language);
+            Translator.translate(this);
         }
 
         private void frmUsuariosL_FormClosed(object sender, FormClosedEventArgs e)

@@ -25,27 +25,22 @@ namespace View.language
 
         public void updateLanguage(Language language)
         {
-            Translator.translate(this, language);
+            Translator.translate(this);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!textBox1.Text.RemoveWhitespaces().IsNullOrEmpty())
+            try
             {
-                try
-                {
-                    languageService.Create(textBox1.Text);
-                    this.Close();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("ocurrio un error al crear el nuevo idioma");
-                    throw;
-                }
-               
+                languageService.Create(textBox1.GetStringMinLength(5));
+                (this.MdiParent as frmMain).loadLanguages();
+                this.Close();
             }
-            else
-            MessageBox.Show("el nombre no puede estar vacio");
+            catch (Exception)
+            {
+                MessageBox.Show("ocurrio un error al crear el nuevo idioma");
+            }
+
         }
     }
 }

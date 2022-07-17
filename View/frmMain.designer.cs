@@ -37,11 +37,11 @@
             this.modificacionUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configidioma = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.menuStrip.SuspendLayout();
@@ -54,12 +54,14 @@
             this.mnuPatentesFamilias,
             this.mnuUsuarioPatentes,
             this.usuariosToolStripMenuItem,
-            this.configidioma});
+            this.configidioma,
+            this.changePasswordToolStripMenuItem,
+            this.logOutToolStripMenuItem});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
-            this.mnuConfig.Size = new System.Drawing.Size(95, 20);
-            this.mnuConfig.Tag = "configuracion";
-            this.mnuConfig.Text = "Configuración";
+            this.mnuConfig.Size = new System.Drawing.Size(48, 20);
+            this.mnuConfig.Tag = "inicio";
+            this.mnuConfig.Text = "Inicio";
             // 
             // mnuPatentesFamilias
             // 
@@ -116,8 +118,25 @@
             // 
             this.configidioma.Name = "configidioma";
             this.configidioma.Size = new System.Drawing.Size(189, 22);
+            this.configidioma.Tag = "idioma";
             this.configidioma.Text = "Idioma";
             this.configidioma.Click += new System.EventHandler(this.idiomaToolStripMenuItem_Click);
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.changePasswordToolStripMenuItem.Tag = "resetPssword";
+            this.changePasswordToolStripMenuItem.Text = "Cambiar Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.logOutToolStripMenuItem.Tag = "logOut";
+            this.logOutToolStripMenuItem.Text = "Cerrar sesion";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // menuStrip
             // 
@@ -125,8 +144,7 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuConfig,
             this.mnuSelectIdioma,
-            this.rutinas,
-            this.usuarioToolStripMenuItem});
+            this.rutinas});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -148,23 +166,6 @@
             this.rutinas.Size = new System.Drawing.Size(58, 20);
             this.rutinas.Text = "Rutinas";
             this.rutinas.Click += new System.EventHandler(this.rutinas_Click);
-            // 
-            // usuarioToolStripMenuItem
-            // 
-            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.resetPasswordToolStripMenuItem});
-            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.usuarioToolStripMenuItem.Tag = "usuario";
-            this.usuarioToolStripMenuItem.Text = "Usuario";
-            // 
-            // resetPasswordToolStripMenuItem
-            // 
-            this.resetPasswordToolStripMenuItem.Name = "resetPasswordToolStripMenuItem";
-            this.resetPasswordToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.resetPasswordToolStripMenuItem.Tag = "resetPssword";
-            this.resetPasswordToolStripMenuItem.Text = "Reset Password";
-            this.resetPasswordToolStripMenuItem.Click += new System.EventHandler(this.resetPasswordToolStripMenuItem_Click);
             // 
             // lblUsuario
             // 
@@ -196,6 +197,7 @@
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "main";
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
@@ -221,9 +223,9 @@
         private System.Windows.Forms.ToolStripMenuItem modificacionUsuario;
         private System.Windows.Forms.ToolStripMenuItem rutinas;
         private System.Windows.Forms.ToolStripMenuItem listaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetPasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configidioma;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
     }
 }
 

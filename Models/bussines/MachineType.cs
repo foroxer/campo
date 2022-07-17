@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models.bussines
 {
-    public class Machine
+    public class MachineType
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
     }
 }

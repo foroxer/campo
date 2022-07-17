@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="business\frmMachine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="business\frmMachine.Designer.cs">
+      <DependentUpon>frmMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="business\frmMachineTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="business\frmMachineTypes.Designer.cs">
+      <DependentUpon>frmMachineTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="business\frmMuscularGroupTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="business\frmMuscularGroupTypes.Designer.cs">
+      <DependentUpon>frmMuscularGroupTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="language\frmLanguageL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +82,7 @@
     <Compile Include="security\frmResetPassword.Designer.cs">
       <DependentUpon>frmResetPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextBoxExtension.cs" />
     <Compile Include="users\frmUsuariosA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +134,15 @@
       <DependentUpon>frmExercisesTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Translator.cs" />
+    <EmbeddedResource Include="business\frmMachine.resx">
+      <DependentUpon>frmMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="business\frmMachineTypes.resx">
+      <DependentUpon>frmMachineTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="business\frmMuscularGroupTypes.resx">
+      <DependentUpon>frmMuscularGroupTypes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="language\frmLanguageA.resx">
       <DependentUpon>frmLanguageA.cs</DependentUpon>
     </EmbeddedResource>

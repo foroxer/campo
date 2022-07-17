@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace View
 {
-    public partial class frmUsuariosM : Form,ILanguageObserber
+    public partial class frmUsuariosM : Form, ILanguageObserber
     {
 
         private UserService userService;
@@ -33,16 +33,16 @@ namespace View
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            selected.LastName = LNameUpdate.Text;
-            selected.Name = NameUpdate.Text;
-            selected.Adress = AdressUpdate.Text;
-            selected.Mail = MailUpdate.Text;
-            selected.Nic = NICUpdate.Text;
-            selected.Phone = PhoneUpdate.Text;
-            selected.Dni = DNIUpdate.Text;
-
             try
             {
+                selected.Nic = NICUpdate.GetStringMinLength(4);
+                selected.Name = NameUpdate.GetStringMinLength(2);
+                selected.LastName = LNameUpdate.GetStringMinLength(2);
+                selected.Dni = DNIUpdate.GetInt().ToString();
+                selected.Phone = PhoneUpdate.GetInt().ToString();
+                selected.Mail = MailUpdate.GetMail();
+                selected.Adress = AdressUpdate.GetStringMinLength(4);
+
                 userService.UpdateUser(selected);
 
                 MessageBox.Show("El user se actualizo con exito");
@@ -56,7 +56,7 @@ namespace View
 
         private void cboUsuarios_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            
+
         }
         private void frmMUsuarios_Load(object sender, EventArgs e)
         {
@@ -66,7 +66,7 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            Translator.translate(this, language);
+            Translator.translate(this);
         }
         private void frmMUsuarios_FormClosed(object sender, FormClosedEventArgs e)
         {

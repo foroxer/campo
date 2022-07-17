@@ -28,8 +28,13 @@ namespace View
         }
         private void Rutines_Load(object sender, EventArgs e)
         {
-            comboBox1.DataSource = exersiceService.GetAllMachinetypes();
-            comboBox2.DataSource = exersiceService.GetAllMuscularGroups();
+            List<MachineType> machineTypes = exersiceService.GetAllMachineTypes();
+            List<MuscularGroup> muscularGroups = exersiceService.GetAllMuscularGroups();
+
+            comboBox1.DataSource = machineTypes;
+            comboBox2.DataSource = muscularGroups;
+            dataGridView1.DataSource = machineTypes;
+            dataGridView2.DataSource = muscularGroups;
 
             comboBox1.DisplayMember = "name";
             comboBox2.DisplayMember = "name";
@@ -43,12 +48,12 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            Translator.translate(this, language);
+            Translator.translate(this);
         }
       
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox3.DataSource = exersiceService.GetExercisesBy((Machine)comboBox1.SelectedItem);
+            comboBox3.DataSource = exersiceService.GetExercisesBy((MachineType)comboBox1.SelectedItem);
             comboBox3.DisplayMember = "description";
 
         }
@@ -61,13 +66,13 @@ namespace View
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            comboBox5.DataSource = exersiceService.GetExercisesBy((Machine)comboBox1.SelectedItem, (MuscularGroup)comboBox2.SelectedItem);
+            comboBox5.DataSource = exersiceService.GetExercisesBy((MachineType)comboBox1.SelectedItem, (MuscularGroup)comboBox2.SelectedItem);
 
         }
 
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            comboBox5.DataSource = exersiceService.GetExercisesBy((Machine)comboBox1.SelectedItem, (MuscularGroup)comboBox2.SelectedItem);
+            comboBox5.DataSource = exersiceService.GetExercisesBy((MachineType)comboBox1.SelectedItem, (MuscularGroup)comboBox2.SelectedItem);
 
         }
     }

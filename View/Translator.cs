@@ -1,4 +1,5 @@
-﻿using Models.language;
+﻿using Models;
+using Models.language;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,18 @@ namespace View
 {
     public class Translator
     {
+
+        public static void translate(Form form)
+        {
+            translate(form, Session.GetInstance.language);
+        }
+
         public static void translate(Form form, Language language)
         {
-            if (language == null)return;
+            if (language == null) return;
+            form.Text = language.Translations.Find(
+                       (translation) => translation.Key.Equals(form.Tag)
+                   )?.Translate ?? form.Text;
             updateLanguageRecursiveControls(language, form.Controls);
         }
 
@@ -61,7 +71,15 @@ namespace View
                 column.HeaderText = language.Translations.Find(
                         (translation) => translation.Key.Equals(column.Tag)
                     )?.Translate ?? column.HeaderText;
+
+                if (column.GetType().Equals(typeof(DataGridViewButtonColumn)))
+                {
+                    (column as DataGridViewButtonColumn).Text = language.Translations.Find(
+                        (translation) => translation.Key.Equals(column.Tag)
+                    )?.Translate ?? (column as DataGridViewButtonColumn).Text;
+                }
             }
+
             dataGridView.Refresh();
         }
     }

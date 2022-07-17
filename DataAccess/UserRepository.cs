@@ -38,7 +38,7 @@ namespace DataAccess
                                     (@Nic
                                     ,@password
                                     ,@mail
-                                    ,'ES'
+                                    ,1
                                     ,0
                                     ,0
                                      )";

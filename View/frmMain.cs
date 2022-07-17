@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using View.business;
 using View.language;
 
 namespace View
@@ -48,7 +49,6 @@ namespace View
                 configidioma.Visible = Session.GetInstance.IsInRole(PermissionsEnum.ConfigIdioma);
                 mnuPatentesFamilias.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesFamilias);
                 mnuUsuarioPatentes.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesUsuarios);
-                mnuConfig.Visible = Session.GetInstance.IsInRole(PermissionsEnum.MenuConfig);
                 rutinas.Visible = Session.GetInstance.IsInRole(PermissionsEnum.VerRutina);
 
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
@@ -56,10 +56,13 @@ namespace View
                     rutinas.Visible = true;
                     createForm(typeof(frmExercisesTest));
                 }
+                createForm(typeof(frmMachineTypes));
+                createForm(typeof(frmMuscularGroupTypes));
             }
         }
-        private void loadLanguages()
+        public void loadLanguages()
         {
+            mnuSelectIdioma.DropDownItems.Clear();
             List<Language> languages = languageService.GetLanguagesForCombo();
             foreach (Language item in languages)
             {
@@ -112,7 +115,7 @@ namespace View
         }
         public void updateLanguage(Language language)
         {
-            Translator.translate(this, language);
+            Translator.translate(this);
         }
 
 
@@ -136,14 +139,21 @@ namespace View
             createForm(typeof(frmUsuariosL));
         }
 
-        private void resetPasswordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            createForm(typeof(frmResetPassword));
-        }
+        
 
         private void idiomaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmLanguageL));
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmResetPassword));
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

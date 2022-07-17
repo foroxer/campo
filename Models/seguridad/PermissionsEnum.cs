@@ -3,11 +3,10 @@
     public enum PermissionsEnum
     {
         //para cada uno debe existir un registro en BD
-        Default,
+        Default,//este permiso lo tiene por default todo el mundo sin tener que agregarselo 
         PatentesFamilias,
         PatentesUsuarios,
         Usuarios,
-        MenuConfig,
         VerRutina,
         ConfigIdioma
     }

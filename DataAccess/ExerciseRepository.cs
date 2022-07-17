@@ -11,7 +11,7 @@ namespace DataAccess
 {
     public class ExerciseRepository
     {
-        public List<Machine> GetMachineTypes()
+        public List<MachineType> GetMachineTypes()
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
             try
@@ -26,11 +26,11 @@ namespace DataAccess
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                List<Machine> lista = new List<Machine>();
+                List<MachineType> lista = new List<MachineType>();
 
                 while (reader.Read())
                 {
-                    Machine machine = new Machine();
+                    MachineType machine = new MachineType();
                     machine.Id = reader.GetInt32(reader.GetOrdinal("id"));
                     machine.Name = reader.GetString(reader.GetOrdinal("nombre"));
                     lista.Add(machine);
@@ -83,7 +83,7 @@ namespace DataAccess
                 throw;
             }
         }
-        public List<Exercise> GetExercises(MuscularGroup muscularGroup) 
+        public List<Exercise> GetExercises(MuscularGroup muscularGroup)
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
             try
@@ -109,7 +109,7 @@ namespace DataAccess
                     {
                         Id = reader.GetInt32(reader.GetOrdinal("id")),
                         Description = reader.GetString(reader.GetOrdinal("descripcion")),
-                        Machine = new Machine()
+                        MachineType = new MachineType()
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("id_tipo_maquina")),
                             Name = reader.GetString(reader.GetOrdinal("nombre_maquina")),
@@ -119,7 +119,7 @@ namespace DataAccess
                             Id = reader.GetInt32(reader.GetOrdinal("id_tipo_grupo_muscular")),
                             Name = reader.GetString(reader.GetOrdinal("nombre_grupo_muscular")),
                         },
-                    };                      
+                    };
                     lista.Add(exercise);
                 }
 
@@ -134,7 +134,7 @@ namespace DataAccess
                 throw;
             }
         }
-        public List<Exercise> GetExercises(Machine machine)
+        public List<Exercise> GetExercises(MachineType machine)
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
             try
@@ -161,7 +161,7 @@ namespace DataAccess
                     {
                         Id = reader.GetInt32(reader.GetOrdinal("id")),
                         Description = reader.GetString(reader.GetOrdinal("descripcion")),
-                        Machine = new Machine()
+                        MachineType = new MachineType()
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("id_tipo_maquina")),
                             Name = reader.GetString(reader.GetOrdinal("nombre_maquina")),
@@ -186,7 +186,7 @@ namespace DataAccess
                 throw;
             }
         }
-        public List<Exercise> GetExercises(Machine machine ,MuscularGroup muscularGroup)
+        public List<Exercise> GetExercises(MachineType machine, MuscularGroup muscularGroup)
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
             try
@@ -213,7 +213,7 @@ namespace DataAccess
                     {
                         Id = reader.GetInt32(reader.GetOrdinal("id")),
                         Description = reader.GetString(reader.GetOrdinal("descripcion")),
-                        Machine = new Machine()
+                        MachineType = new MachineType()
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("id_tipo_maquina")),
                             Name = reader.GetString(reader.GetOrdinal("nombre_maquina")),
@@ -231,6 +231,107 @@ namespace DataAccess
                 connection.Close();
 
                 return lista;
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public void createMachineType(String name)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                var sql = $@"INSERT INTO [dbo].[tipo_maquina] (nombre) VALUES (@name)";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("name", name));
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public void createMuscularGroup(String name)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                var sql = $@"
+                            INSERT INTO [dbo].[tipo_grupo_muscular]
+                                       ([nombre])
+                                 VALUES
+                                       (@name)
+                            ";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("name", name));
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public void deleteMachineType(MachineType machineType)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                var sql = $@"DELETE FROM [dbo].[tipo_maquina] WHERE id = @id";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("id", machineType.Id));
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public void deleteMuscularGroup(MuscularGroup muscularGroup)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                var sql = $@"DELETE FROM [dbo].[tipo_grupo_muscular] WHERE id = @id";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("id", muscularGroup.Id));
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
             }
             catch
             {
