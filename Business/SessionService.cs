@@ -50,10 +50,10 @@ namespace Business
                 throw;
             }
         }
-            public void Logout()
-            {
-                Session.GetInstance.Logout();
-            }
-
+        public void Logout()
+        {
+            Session.GetInstance.Logout();
         }
+
     }
+}

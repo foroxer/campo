@@ -56,8 +56,6 @@ namespace View
                     rutinas.Visible = true;
                     createForm(typeof(frmExercisesTest));
                 }
-                createForm(typeof(frmMachineTypes));
-                createForm(typeof(frmMuscularGroupTypes));
             }
         }
         public void loadLanguages()
@@ -139,7 +137,7 @@ namespace View
             createForm(typeof(frmUsuariosL));
         }
 
-        
+
 
         private void idiomaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -154,6 +152,21 @@ namespace View
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ejerciciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmEexerciseL));
+        }
+
+        private void aparatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmMachineTypes));
+        }
+
+        private void gruposMuscularesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmMuscularGroupTypes));
         }
     }
 }

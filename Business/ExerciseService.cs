@@ -26,6 +26,9 @@ namespace Business
         {
             return exerciseRepository.GetMuscularGroups();
         }
+        public List<Exercise> GetAllExercises() {
+            return exerciseRepository.GetAllExercises();
+        }
         public List<Exercise> GetExercisesBy(MuscularGroup muscularGroup)
         {
             return exerciseRepository.GetExercises(muscularGroup);
@@ -40,23 +43,27 @@ namespace Business
         }
         #endregion
         #region create
-        public void createMachineType(String name)
+        public void CreateMachineType(String name)
         {
-            exerciseRepository.createMachineType(name);
+            exerciseRepository.CreateMachineType(name);
         }
-        public void createMuscularGroup(String name)
+        public void CreateMuscularGroup(String name)
         {
-            exerciseRepository.createMuscularGroup(name);
+            exerciseRepository.CreateMuscularGroup(name);
         }
         #endregion
         #region delete
-        public void deleteMachineType(MachineType machineType)
+        public void DeleteMachineType(MachineType machineType)
         {
-            exerciseRepository.deleteMachineType(machineType);
+            exerciseRepository.DeleteMachineType(machineType);
         }
-        public void deleteMuscularGroup(MuscularGroup muscularGroup)
+        public void DeleteMuscularGroup(MuscularGroup muscularGroup)
         {
-            exerciseRepository.deleteMuscularGroup(muscularGroup);
+            exerciseRepository.DeleteMuscularGroup(muscularGroup);
+        } 
+        public void DeleteExercise(Exercise exercise)
+        {
+            exerciseRepository.DeleteExercise(exercise);
         } 
         #endregion
     }

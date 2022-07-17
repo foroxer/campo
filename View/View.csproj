@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="business\frmEexerciseL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="business\frmEexerciseL.Designer.cs">
+      <DependentUpon>frmEexerciseL.cs</DependentUpon>
+    </Compile>
     <Compile Include="business\frmMachine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
       <DependentUpon>frmExercisesTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Translator.cs" />
+    <EmbeddedResource Include="business\frmEexerciseL.resx">
+      <DependentUpon>frmEexerciseL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="business\frmMachine.resx">
       <DependentUpon>frmMachine.cs</DependentUpon>
     </EmbeddedResource>

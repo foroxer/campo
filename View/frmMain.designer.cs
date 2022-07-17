@@ -44,6 +44,10 @@
             this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.configurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ejerciciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aparatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gruposMuscularesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +60,8 @@
             this.usuariosToolStripMenuItem,
             this.configidioma,
             this.changePasswordToolStripMenuItem,
-            this.logOutToolStripMenuItem});
+            this.logOutToolStripMenuItem,
+            this.configurarToolStripMenuItem});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
             this.mnuConfig.Size = new System.Drawing.Size(48, 20);
@@ -183,6 +188,41 @@
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
+            // configurarToolStripMenuItem
+            // 
+            this.configurarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ejerciciosToolStripMenuItem,
+            this.aparatosToolStripMenuItem,
+            this.gruposMuscularesToolStripMenuItem});
+            this.configurarToolStripMenuItem.Name = "configurarToolStripMenuItem";
+            this.configurarToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.configurarToolStripMenuItem.Tag = "configurar";
+            this.configurarToolStripMenuItem.Text = "Configurar";
+            // 
+            // ejerciciosToolStripMenuItem
+            // 
+            this.ejerciciosToolStripMenuItem.Name = "ejerciciosToolStripMenuItem";
+            this.ejerciciosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ejerciciosToolStripMenuItem.Tag = "ejercicios";
+            this.ejerciciosToolStripMenuItem.Text = "Ejercicios";
+            this.ejerciciosToolStripMenuItem.Click += new System.EventHandler(this.ejerciciosToolStripMenuItem_Click);
+            // 
+            // aparatosToolStripMenuItem
+            // 
+            this.aparatosToolStripMenuItem.Name = "aparatosToolStripMenuItem";
+            this.aparatosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aparatosToolStripMenuItem.Tag = "aparatos";
+            this.aparatosToolStripMenuItem.Text = "Aparatos";
+            this.aparatosToolStripMenuItem.Click += new System.EventHandler(this.aparatosToolStripMenuItem_Click);
+            // 
+            // gruposMuscularesToolStripMenuItem
+            // 
+            this.gruposMuscularesToolStripMenuItem.Name = "gruposMuscularesToolStripMenuItem";
+            this.gruposMuscularesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gruposMuscularesToolStripMenuItem.Tag = "gruposMusculares";
+            this.gruposMuscularesToolStripMenuItem.Text = "Grupos Musculares";
+            this.gruposMuscularesToolStripMenuItem.Click += new System.EventHandler(this.gruposMuscularesToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +266,10 @@
         private System.Windows.Forms.ToolStripMenuItem configidioma;
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configurarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aparatosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gruposMuscularesToolStripMenuItem;
     }
 }
 

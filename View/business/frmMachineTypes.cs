@@ -61,7 +61,7 @@ namespace View.business
         {
             if (e.ColumnIndex == dataGridView1.Columns["borrar"].Index && DialogResult.OK == MessageBox.Show("Esta seguro que desea continuar", "", MessageBoxButtons.OKCancel))
             {
-                exersiceService.deleteMachineType(dataGridView1.Rows[e.RowIndex].DataBoundItem as MachineType);
+                exersiceService.DeleteMachineType(dataGridView1.Rows[e.RowIndex].DataBoundItem as MachineType);
                 dataGridView1.DataSource = exersiceService.GetAllMachineTypes();
             }
         }
@@ -76,7 +76,7 @@ namespace View.business
 
             try
             {
-                exersiceService.createMachineType(textBox1.GetStringMinLength(3));
+                exersiceService.CreateMachineType(textBox1.GetStringMinLength(3));
                 dataGridView1.DataSource = exersiceService.GetAllMachineTypes();
             }
             catch (Exception ex)

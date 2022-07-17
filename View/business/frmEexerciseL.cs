@@ -15,19 +15,21 @@ using Utiles;
 
 namespace View.business
 {
-    public partial class frmMuscularGroupTypes : Form,ILanguageObserber
+    public partial class frmEexerciseL : Form,ILanguageObserber
     {
         ExerciseService exersiceService;
-        public frmMuscularGroupTypes()
+        public frmEexerciseL()
         {
             InitializeComponent();
             exersiceService = new ExerciseService();
         }
 
-        private void frmMuscularGoupTypes_Load(object sender, EventArgs e)
+        private void frmEexerciseL_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = exersiceService.GetAllMuscularGroups();
-
+            dataGridView1.DataSource = exersiceService.GetAllExercises();
+            comboBox1.DataSource = exersiceService.GetAllMuscularGroups();
+            comboBox2.DataSource = exersiceService.GetAllMachineTypes();
+            
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeRows = false;
@@ -61,8 +63,8 @@ namespace View.business
         {
             if (e.ColumnIndex == dataGridView1.Columns["borrar"].Index && DialogResult.OK == MessageBox.Show("Esta seguro que desea continuar", "", MessageBoxButtons.OKCancel))
             {
-                exersiceService.DeleteMuscularGroup(dataGridView1.Rows[e.RowIndex].DataBoundItem as MuscularGroup);
-                dataGridView1.DataSource = exersiceService.GetAllMuscularGroups();
+                exersiceService.DeleteExercise(dataGridView1.Rows[e.RowIndex].DataBoundItem as Exercise);
+                dataGridView1.DataSource = exersiceService.GetAllExercises();
             }
         }
 
@@ -71,18 +73,9 @@ namespace View.business
             Translator.translate(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-            try
-            {
-                exersiceService.CreateMuscularGroup(textBox1.GetStringMinLength(3));
-                dataGridView1.DataSource = exersiceService.GetAllMuscularGroups();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
     }
 }

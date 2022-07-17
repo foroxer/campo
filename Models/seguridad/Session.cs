@@ -8,14 +8,13 @@ namespace Models
     public class Session : ILanguajeObserbable
 
     {
-        static Session _session;
-        public User user;
-        private Language _language;
-        public List<ILanguageObserber> languageObserbers { get; set; }
         private Session()
         {
             languageObserbers = new List<ILanguageObserber>();
         }
+        static Session _session;
+        private Language _language;
+        public User user;
         public Language language
         {
             get { return _language; }
@@ -25,6 +24,7 @@ namespace Models
                 notifyObserbers(_language);
             }
         }
+        public List<ILanguageObserber> languageObserbers { get; set; }
         public static Session GetInstance
         {
             get
@@ -33,6 +33,8 @@ namespace Models
                 return _session;
             }
         }
+
+        //todos estos metodos debrian estar en sessionService
         public bool IsLoggedIn()
         {
             return user != null;
