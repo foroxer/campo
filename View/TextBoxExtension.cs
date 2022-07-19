@@ -17,13 +17,40 @@ namespace View
             }
             catch
             {
-                int VisibleTime = 3000;  //in milliseconds
-                ToolTip tt = new ToolTip();
-                tt.IsBalloon = true;
-                string text = "El al dato " + textBox.Text + " debe ser numerico ";
-                tt.Show(text, textBox.Parent, textBox.Location.X, textBox.Location.Y - 2 * textBox.Height, VisibleTime);
+                string text = "El dato " + textBox.Text + " debe ser numerico ";
+                configTooltip(textBox, text);
 
-                throw;
+                throw new Exception("Este campo debe ser numerico ");
+            }
+        }
+        
+        public static double GetDouble( this TextBox textBox)
+        {
+            try
+            {
+                return double.Parse(textBox.Text);
+            }
+            catch
+            {
+                string text = "El dato " + textBox.Text + " debe ser numerico ";
+                configTooltip(textBox, text);
+
+                throw new Exception("Este campo debe ser numerico ");
+            }
+        }
+
+        public static float GetFloat(this TextBox textBox)
+        {
+            try
+            {
+                return float.Parse(textBox.Text);
+            }
+            catch
+            {
+                string text = "El dato " + textBox.Text + " debe ser de punto flotante ";
+                configTooltip(textBox, text);
+
+                throw new Exception("Este campo debe ser de punto flotante");
             }
         }
 
@@ -37,16 +64,12 @@ namespace View
                     return textBox.Text;
                 }
 
-                throw new Exception("longitud insuficiente");
+                throw new Exception("Longitud insuficiente");
             }
-            catch
+            catch 
             {
-                int VisibleTime = 3000;  //in milliseconds
-                ToolTip tt = new ToolTip();
                 string text = "El dato " + textBox.Text + " debe ser de una longitud minima  = " + minLength.ToString();
-                //tt.IsBalloon = true;
-                tt.Show(text, textBox.Parent, textBox.Location.X, textBox.Location.Y - textBox.Height , VisibleTime);
-
+                configTooltip(textBox, text);
                 throw;
             }
         }
@@ -59,19 +82,21 @@ namespace View
                 {
                     return textBox.Text;
                 }
-                throw new Exception("longitud insuficiente");
+                throw new Exception("Este campo debe ser un mail");
                 
             }
             catch
             {
-                int VisibleTime = 3000;  //in milliseconds
-                ToolTip tt = new ToolTip();
-                tt.IsBalloon = true;
                 string text = "El dato " + textBox.Text + " debe ser un mail ";
-                tt.Show(text, textBox.Parent, textBox.Location.X, textBox.Location.Y - 2 * textBox.Height, VisibleTime);
-
+                configTooltip(textBox, text);
                 throw;
             }
+        }
+        private static void configTooltip(TextBox textBox, String text, int visibleTime = 3000)
+        {
+            ToolTip tt = new ToolTip();
+            tt.IsBalloon = true;
+            tt.Show(text, textBox, 0, -40, visibleTime);
         }
     }
 }

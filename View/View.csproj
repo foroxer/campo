@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,11 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="business\frmEexerciseL.cs">
+    <Compile Include="business\frmExerciseAML.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="business\frmEexerciseL.Designer.cs">
-      <DependentUpon>frmEexerciseL.cs</DependentUpon>
+    <Compile Include="business\frmExerciseAML.Designer.cs">
+      <DependentUpon>frmExerciseAML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="business\frmExersiceAssign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="business\frmExersiceAssign.Designer.cs">
+      <DependentUpon>frmExersiceAssign.cs</DependentUpon>
     </Compile>
     <Compile Include="business\frmMachine.cs">
       <SubType>Form</SubType>
@@ -133,15 +143,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="business\frmExercisesTest.cs">
+    <Compile Include="business\frmExercisesVisualization.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="business\frmExercisesTest.Designer.cs">
-      <DependentUpon>frmExercisesTest.cs</DependentUpon>
+    <Compile Include="business\frmExercisesVisualization.Designer.cs">
+      <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </Compile>
     <Compile Include="Translator.cs" />
-    <EmbeddedResource Include="business\frmEexerciseL.resx">
-      <DependentUpon>frmEexerciseL.cs</DependentUpon>
+    <EmbeddedResource Include="business\frmExerciseAML.resx">
+      <DependentUpon>frmExerciseAML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="business\frmExersiceAssign.resx">
+      <DependentUpon>frmExersiceAssign.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="business\frmMachine.resx">
       <DependentUpon>frmMachine.cs</DependentUpon>
@@ -184,16 +197,17 @@
       <DependentUpon>frmUsuariosPatentes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="business\frmExercisesTest.resx">
-      <DependentUpon>frmExercisesTest.cs</DependentUpon>
+    <EmbeddedResource Include="business\frmExercisesVisualization.resx">
+      <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="clasesUI.cd" />
     <None Include="Properties\Settings.settings">
@@ -222,6 +236,9 @@
       <Project>{211eab57-6205-473b-b60d-3c8f9889261c}</Project>
       <Name>Utiles</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\icongray_icono_7282.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

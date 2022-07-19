@@ -1,6 +1,8 @@
-﻿using Models.bussines;
+﻿using Models;
+using Models.bussines;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -99,6 +101,7 @@ namespace DataAccess
                 throw;
             }
         }
+
         public List<MuscularGroup> GetMuscularGroups()
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
@@ -135,7 +138,8 @@ namespace DataAccess
                 throw;
             }
         }
-        public List<Exercise> GetExercises(MuscularGroup muscularGroup)
+
+        public List<Exercise> GetExercisesBy(int muscularGroupId)
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
             try
@@ -147,7 +151,7 @@ namespace DataAccess
                 var sql = $@"select gmm.id,gmm.descripcion,gmm.id_tipo_maquina,gmm.id_tipo_grupo_muscular,tgm.nombre as nombre_grupo_muscular,tm.nombre as nombre_maquina 
                             from dbo.grupo_muscular_maquina gmm 
                             inner join dbo.tipo_maquina tm on gmm.id_tipo_maquina = tm.id 
-                            inner join dbo.tipo_grupo_muscular tgm on gmm.id_tipo_grupo_muscular = tgm.id where gmm.id_tipo_grupo_muscular = {muscularGroup.Id};";
+                            inner join dbo.tipo_grupo_muscular tgm on gmm.id_tipo_grupo_muscular = tgm.id where gmm.id_tipo_grupo_muscular = {muscularGroupId};";
 
                 cmd.CommandText = sql;
 
@@ -186,7 +190,12 @@ namespace DataAccess
                 throw;
             }
         }
-        public List<Exercise> GetExercises(MachineType machine)
+
+        public List<Exercise> GetExercisesBy(MuscularGroup muscularGroup)
+        {
+            return GetExercisesBy(muscularGroup.Id);
+        }
+        public List<Exercise> GetExercisesBy(MachineType machine)
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
             try
@@ -238,7 +247,7 @@ namespace DataAccess
                 throw;
             }
         }
-        public List<Exercise> GetExercises(MachineType machine, MuscularGroup muscularGroup)
+        public List<Exercise> GetExercisesBy(MachineType machine, MuscularGroup muscularGroup)
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
             try
@@ -283,6 +292,39 @@ namespace DataAccess
                 connection.Close();
 
                 return lista;
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public void CreateExercise(MachineType machine, MuscularGroup muscularGroup, string description)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                var sql = $@"INSERT INTO [dbo].[grupo_muscular_maquina]
+                                       ([id_tipo_maquina]
+                                       ,[id_tipo_grupo_muscular]
+                                       ,[descripcion])
+                                 VALUES
+                                       (@machine
+                                       ,@muscularGroup
+                                       ,@description) ";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("machine", machine.Id));
+                cmd.Parameters.Add(new SqlParameter("muscularGroup", muscularGroup.Id));
+                cmd.Parameters.Add(new SqlParameter("description", description));
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
             }
             catch
             {
@@ -415,6 +457,103 @@ namespace DataAccess
                 throw;
             }
         }
+
+        public void AssingMuscularGroup(User user, MuscularGroup muscularGroup, int repetitions = 1, double weight = 0.0)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand
+                {
+                    Connection = connection
+                };
+
+                var sql = $@"INSERT INTO [dbo].[ejercicios_usuario]
+                            ([id_usuario]
+                            ,[id_grupo_muscular]
+                            ,[repeticiones]
+                            ,[peso])
+                        VALUES
+                            (@userId
+                            ,@muscularGroupId
+                            ,@repetitions
+                            ,@weight)";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("userId", user.Id));
+                cmd.Parameters.Add(new SqlParameter("muscularGroupId", muscularGroup.Id));
+                cmd.Parameters.Add(new SqlParameter("repetitions", repetitions));
+                cmd.Parameters.Add(new SqlParameter("weight", weight));
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                throw;
+            }
+        }
+        public DataSet GetAssignedMuscularGroupBy(int userId)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                var sql = $@"select id_usuario,id_grupo_muscular,nombre as grupoMuscular, repeticiones,peso from ejercicios_usuario ej left join tipo_grupo_muscular tgm on ej.id_grupo_muscular = tgm.id where id_usuario = @userId";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("userId", userId));
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+
+                DataSet dataSet = new DataSet();
+
+                adapter.Fill(dataSet, "mitabla");
+
+                connection.Close();
+
+                return dataSet;
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }        
+        public void UnassingMuscularGroup(int userId, int muscularGroupId)
+        {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+            try
+            {
+                connection.Open();
+                var cmd = new SqlCommand
+                {
+                    Connection = connection
+                };
+
+                var sql = $@"DELETE FROM [dbo].[ejercicios_usuario]   WHERE id_usuario = @userId and id_grupo_muscular = @muscularGroupId";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("userId", userId));
+                cmd.Parameters.Add(new SqlParameter("muscularGroupId", muscularGroupId));
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                throw;
+            }
+        }
+
     }
 }
 

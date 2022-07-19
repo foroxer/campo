@@ -39,15 +39,16 @@
             this.configidioma = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ejerciciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aparatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gruposMuscularesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.configurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ejerciciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aparatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gruposMuscularesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asignarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -59,9 +60,10 @@
             this.mnuUsuarioPatentes,
             this.usuariosToolStripMenuItem,
             this.configidioma,
+            this.asignarToolStripMenuItem,
+            this.configurarToolStripMenuItem,
             this.changePasswordToolStripMenuItem,
-            this.logOutToolStripMenuItem,
-            this.configurarToolStripMenuItem});
+            this.logOutToolStripMenuItem});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
             this.mnuConfig.Size = new System.Drawing.Size(48, 20);
@@ -98,7 +100,7 @@
             // altaUsuario
             // 
             this.altaUsuario.Name = "altaUsuario";
-            this.altaUsuario.Size = new System.Drawing.Size(144, 22);
+            this.altaUsuario.Size = new System.Drawing.Size(180, 22);
             this.altaUsuario.Tag = "alta";
             this.altaUsuario.Text = "Alta";
             this.altaUsuario.Click += new System.EventHandler(this.altaUsuario_Click);
@@ -106,7 +108,7 @@
             // modificacionUsuario
             // 
             this.modificacionUsuario.Name = "modificacionUsuario";
-            this.modificacionUsuario.Size = new System.Drawing.Size(144, 22);
+            this.modificacionUsuario.Size = new System.Drawing.Size(180, 22);
             this.modificacionUsuario.Tag = "modificacion";
             this.modificacionUsuario.Text = "Modificacion";
             this.modificacionUsuario.Click += new System.EventHandler(this.modificacionUsuario_Click);
@@ -114,7 +116,7 @@
             // listaToolStripMenuItem
             // 
             this.listaToolStripMenuItem.Name = "listaToolStripMenuItem";
-            this.listaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.listaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listaToolStripMenuItem.Tag = "lista";
             this.listaToolStripMenuItem.Text = "Lista";
             this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaToolStripMenuItem_Click);
@@ -142,6 +144,41 @@
             this.logOutToolStripMenuItem.Tag = "logOut";
             this.logOutToolStripMenuItem.Text = "Cerrar sesion";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            // 
+            // configurarToolStripMenuItem
+            // 
+            this.configurarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ejerciciosToolStripMenuItem,
+            this.aparatosToolStripMenuItem,
+            this.gruposMuscularesToolStripMenuItem});
+            this.configurarToolStripMenuItem.Name = "configurarToolStripMenuItem";
+            this.configurarToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.configurarToolStripMenuItem.Tag = "configurar";
+            this.configurarToolStripMenuItem.Text = "Configurar";
+            // 
+            // ejerciciosToolStripMenuItem
+            // 
+            this.ejerciciosToolStripMenuItem.Name = "ejerciciosToolStripMenuItem";
+            this.ejerciciosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ejerciciosToolStripMenuItem.Tag = "ejercicios";
+            this.ejerciciosToolStripMenuItem.Text = "Ejercicios";
+            this.ejerciciosToolStripMenuItem.Click += new System.EventHandler(this.ejerciciosToolStripMenuItem_Click);
+            // 
+            // aparatosToolStripMenuItem
+            // 
+            this.aparatosToolStripMenuItem.Name = "aparatosToolStripMenuItem";
+            this.aparatosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aparatosToolStripMenuItem.Tag = "aparatos";
+            this.aparatosToolStripMenuItem.Text = "Aparatos";
+            this.aparatosToolStripMenuItem.Click += new System.EventHandler(this.aparatosToolStripMenuItem_Click);
+            // 
+            // gruposMuscularesToolStripMenuItem
+            // 
+            this.gruposMuscularesToolStripMenuItem.Name = "gruposMuscularesToolStripMenuItem";
+            this.gruposMuscularesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gruposMuscularesToolStripMenuItem.Tag = "gruposMusculares";
+            this.gruposMuscularesToolStripMenuItem.Text = "Grupos Musculares";
+            this.gruposMuscularesToolStripMenuItem.Click += new System.EventHandler(this.gruposMuscularesToolStripMenuItem_Click);
             // 
             // menuStrip
             // 
@@ -188,40 +225,13 @@
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
-            // configurarToolStripMenuItem
+            // asignarToolStripMenuItem
             // 
-            this.configurarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ejerciciosToolStripMenuItem,
-            this.aparatosToolStripMenuItem,
-            this.gruposMuscularesToolStripMenuItem});
-            this.configurarToolStripMenuItem.Name = "configurarToolStripMenuItem";
-            this.configurarToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.configurarToolStripMenuItem.Tag = "configurar";
-            this.configurarToolStripMenuItem.Text = "Configurar";
-            // 
-            // ejerciciosToolStripMenuItem
-            // 
-            this.ejerciciosToolStripMenuItem.Name = "ejerciciosToolStripMenuItem";
-            this.ejerciciosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ejerciciosToolStripMenuItem.Tag = "ejercicios";
-            this.ejerciciosToolStripMenuItem.Text = "Ejercicios";
-            this.ejerciciosToolStripMenuItem.Click += new System.EventHandler(this.ejerciciosToolStripMenuItem_Click);
-            // 
-            // aparatosToolStripMenuItem
-            // 
-            this.aparatosToolStripMenuItem.Name = "aparatosToolStripMenuItem";
-            this.aparatosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aparatosToolStripMenuItem.Tag = "aparatos";
-            this.aparatosToolStripMenuItem.Text = "Aparatos";
-            this.aparatosToolStripMenuItem.Click += new System.EventHandler(this.aparatosToolStripMenuItem_Click);
-            // 
-            // gruposMuscularesToolStripMenuItem
-            // 
-            this.gruposMuscularesToolStripMenuItem.Name = "gruposMuscularesToolStripMenuItem";
-            this.gruposMuscularesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gruposMuscularesToolStripMenuItem.Tag = "gruposMusculares";
-            this.gruposMuscularesToolStripMenuItem.Text = "Grupos Musculares";
-            this.gruposMuscularesToolStripMenuItem.Click += new System.EventHandler(this.gruposMuscularesToolStripMenuItem_Click);
+            this.asignarToolStripMenuItem.Name = "asignarToolStripMenuItem";
+            this.asignarToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.asignarToolStripMenuItem.Tag = "asignar";
+            this.asignarToolStripMenuItem.Text = "Asignar ejercicios";
+            this.asignarToolStripMenuItem.Click += new System.EventHandler(this.asignarToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -270,6 +280,7 @@
         private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aparatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gruposMuscularesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asignarToolStripMenuItem;
     }
 }
 

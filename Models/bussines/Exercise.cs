@@ -11,6 +11,6 @@ namespace Models.bussines
         public int Id { get; set; }
         public MachineType MachineType { get; set; }
         public MuscularGroup MuscularGroup { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } 
     }
 }

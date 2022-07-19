@@ -15,9 +15,10 @@ using Utiles;
 
 namespace View
 {
-    public partial class frmResetPassword : Form,ILanguageObserber
+    public partial class frmResetPassword : Form, ILanguageObserber
     {
         UserService userService;
+        private static int PASSWORD_MIN_LENGTH = 5;
         public frmResetPassword()
         {
             userService = new UserService();
@@ -38,27 +39,33 @@ namespace View
         private void button1_Click(object sender, EventArgs e)
         {
             User user = Session.GetInstance.user;
-            if ((Crypto.HashSha256(passTxt.Text) == user?.Password) && (npass2Txt.Text.Equals(npassTxt.Text)))
+            try
             {
-                try
+                if (
+                (npassTxt.GetStringMinLength(PASSWORD_MIN_LENGTH).Equals(npass2Txt.GetStringMinLength(PASSWORD_MIN_LENGTH)) &&
+                Crypto.HashSha256(passTxt.Text) == user?.Password)
+                )
                 {
+
                     userService.ChangePassword(passTxt.Text, npassTxt.Text, user);
                     MessageBox.Show("Actualización exitosa");
                     this.Close();
-                } 
-                catch
-                {
-                    CleanForm();
-                    MessageBox.Show("Ocurrio un error por favor reintente");
+                    return;
                 }
-                
+                throw new Exception();
             }
-            else
+            catch
+            {
+                MessageBox.Show("Ocurrio un error por favor reintente");
+            }
+            finally
             {
                 CleanForm();
-                MessageBox.Show("Por favor reintente");
             }
+
         }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {

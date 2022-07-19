@@ -47,14 +47,22 @@ namespace View
         }
         private void Button1_Click(object sender, EventArgs e)
         {
-            Family p = new Family()
+            try
             {
-                Nombre = txtNombreFamilia.Text
 
-            };
-            permissionsService.SaveComponent(p, true);
-            LlenarPatentesFamilias();
-            MessageBox.Show("Family guardada correctamente");
+                Family p = new Family()
+                {
+                    Nombre = txtNombreFamilia.GetStringMinLength(3)
+
+                };
+                permissionsService.SaveComponent(p, true);
+                LlenarPatentesFamilias();
+                MessageBox.Show("Family guardada correctamente");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un Error " + (ex.Message?? (":"+ex.Message)));
+            }
         }
         private void MostrarFamilia(bool init)
         {

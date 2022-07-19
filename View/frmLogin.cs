@@ -28,8 +28,8 @@ namespace View
             }
             catch (Exception ex)
             {
+                clearForm();
                 MessageBox.Show(ex.Message);
-
             }
         }
         private void clearForm()
@@ -40,6 +40,7 @@ namespace View
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            Icon = Properties.Resources.icongray_icono_7282;
             clearForm();
         }
         private void button2_Click_1(object sender, EventArgs e)

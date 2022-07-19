@@ -32,6 +32,7 @@ namespace View
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
+            Icon = Properties.Resources.icongray_icono_7282;
             updateLanguage(Session.GetInstance.language);
         }
         private void languageChange_click(object sender, EventArgs e)
@@ -54,7 +55,7 @@ namespace View
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {
                     rutinas.Visible = true;
-                    createForm(typeof(frmExercisesTest));
+                    createForm(typeof(frmExercisesVisualization));
                 }
             }
         }
@@ -108,6 +109,7 @@ namespace View
                 Session.GetInstance.addObserber((ILanguageObserber)form);
             }
             form.MdiParent = this;
+            form.Icon = Properties.Resources.icongray_icono_7282;
             form.Show();
             return form;
         }
@@ -129,7 +131,7 @@ namespace View
 
         private void rutinas_Click(object sender, EventArgs e)
         {
-            createForm(typeof(frmExercisesTest));
+            createForm(typeof(frmExercisesVisualization));
         }
 
         private void listaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -156,7 +158,7 @@ namespace View
 
         private void ejerciciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            createForm(typeof(frmEexerciseL));
+            createForm(typeof(frmExerciseAML));
         }
 
         private void aparatosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,6 +169,11 @@ namespace View
         private void gruposMuscularesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmMuscularGroupTypes));
+        }
+
+        private void asignarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmExersiceAssign));
         }
     }
 }
