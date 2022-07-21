@@ -73,7 +73,11 @@ namespace View
         }
         private void bloquearBtn_Click(object sender, EventArgs e)
         {
-            //int index = cboUsuarios.SelectedIndex;
+            if (selected.Id == Session.GetInstance.user.Id)
+            {
+                MessageBox.Show("no se puede realizar esta accion");
+                return;
+            }
             try
             {
                 userService.BlockUser(selected);
@@ -83,7 +87,6 @@ namespace View
             {
                 MessageBox.Show($"Ocurrio un error al intentar bloquear el user {selected.Nic}");
             }
-            //cboUsuarios.SelectedIndex = index;
             Close();
 
         }

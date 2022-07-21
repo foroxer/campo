@@ -69,7 +69,6 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Rutines";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Rutines_FormClosed);
             this.Load += new System.EventHandler(this.Rutines_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -51,6 +51,10 @@ namespace View
                 mnuPatentesFamilias.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesFamilias);
                 mnuUsuarioPatentes.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesUsuarios);
                 rutinas.Visible = Session.GetInstance.IsInRole(PermissionsEnum.VerRutina);
+                usuariosToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Usuarios);
+                configurarToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.ConfigurarEjercicios);
+                asignarToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.AsignarEjercicios);
+                
 
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {

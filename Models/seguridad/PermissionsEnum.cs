@@ -8,6 +8,10 @@
         PatentesUsuarios,
         Usuarios,
         VerRutina,
-        ConfigIdioma
+        ConfigIdioma,
+        ConfigurarEjercicios,
+        AsignarEjercicios,
+
+
     }
 }

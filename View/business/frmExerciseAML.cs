@@ -101,9 +101,16 @@ namespace View.business
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MuscularGroup muscularGroup = comboBox4.SelectedItem as MuscularGroup;
-            MachineType machineType = comboBox3.SelectedItem as MachineType;
-            dataGridView1.DataSource = exersiceService.GetExercisesBy(machineType,muscularGroup);
+            try
+            {
+                MuscularGroup muscularGroup = comboBox4.SelectedItem as MuscularGroup;
+                MachineType machineType = comboBox3.SelectedItem as MachineType;
+                dataGridView1.DataSource = exersiceService.GetExercisesBy(machineType, muscularGroup);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Por favor reintente");
+            }
         }
     }
 }

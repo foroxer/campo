@@ -119,6 +119,11 @@ namespace View
         }
         private void eliminarPatenteBtn_Click(object sender, EventArgs e)
         {
+            if (user.Id == Session.GetInstance.user.Id)
+            {
+                MessageBox.Show("No se puede realizar esta accion");
+                return;
+            }
             Patent patent = (Patent)cboPatentes.SelectedItem;
             if (patent != null)
             {
@@ -129,7 +134,12 @@ namespace View
         }
         private void eliminarFamiliaBtn_Click(object sender, EventArgs e)
         {
-            Family family = (Family)cboFamilias.SelectedItem;
+            if (user.Id == Session.GetInstance.user.Id)
+            {
+                MessageBox.Show("No se puede realizar esta accion");
+                return;
+            }
+                Family family = (Family)cboFamilias.SelectedItem;
             if (family != null)
             {
                 user.Permissions.Remove(user.Permissions.Where(component => family.Id == component.Id).First());
