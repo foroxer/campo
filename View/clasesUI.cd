@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="View.frmExercisesTest" BaseTypeListCollapsed="true">
-    <Position X="0.75" Y="1" Width="5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAgAAAQBACQAAACCAAAAAAAAAAAgAAAABA=</HashCode>
-      <FileName>business\frmExercisesTest.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="exersiceService" />
-    </ShowAsAssociation>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
   <Class Name="View.frmPatentesFamilias" BaseTypeListCollapsed="true">
     <Position X="14.75" Y="0.75" Width="5" />
     <TypeIdentifier>
@@ -25,7 +14,7 @@
   <Class Name="View.frmResetPassword" BaseTypeListCollapsed="true">
     <Position X="0.75" Y="16" Width="4" />
     <TypeIdentifier>
-      <HashCode>BAACIAAAACAAABCAAACAAAACCABYAAAAAGAAAAAAAEA=</HashCode>
+      <HashCode>BAACIAAAACAAABCAAACAAAACCABYAIAAAGAAAAAAAEA=</HashCode>
       <FileName>security\frmResetPassword.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -48,8 +37,8 @@
       <FileName>security\frmUsuariosPatentes.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="permissionsService" />
       <Field Name="userService" />
+      <Field Name="permissionsService" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -119,20 +108,13 @@
   </Class>
   <Class Name="View.frmMain" BaseTypeListCollapsed="true">
     <Position X="22.25" Y="14" Width="4.75" />
-    <AssociationLine Name="sesionService" Type="Business.SessionService" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="25.156" Y="22.03" />
-        <Point X="25.156" Y="24.25" />
-        <Point X="28.25" Y="24.25" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AcAAYACAACABUAIoQAiAAAAyCYAAAABAAEGAAggBIAE=</HashCode>
+      <HashCode>AZAAYQCAACABaAIoQAiIBAIyCYACAAAIAEGAAggBYAE=</HashCode>
       <FileName>frmMain.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="languageService" />
       <Field Name="sesionService" />
+      <Field Name="languageService" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -181,8 +163,79 @@
     <Position X="28.25" Y="24" Width="1.5" />
     <TypeIdentifier />
   </Class>
+  <Class Name="View.business.frmExerciseAML" BaseTypeListCollapsed="true">
+    <Position X="41.25" Y="2" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAEBBAQAACAAAACCAgYAAAAEGAAgQAAAAA=</HashCode>
+      <FileName>business\frmExerciseAML.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="exersiceService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.business.frmExersiceAssign" BaseTypeListCollapsed="true">
+    <Position X="41.75" Y="17.25" Width="5" />
+    <AssociationLine Name="exerciseService" Type="Business.ExerciseService" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="41.75" Y="21.825" />
+        <Point X="35.812" Y="21.825" />
+        <Point X="35.812" Y="18.562" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="userService" Type="Business.UserService" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="42.969" Y="25.088" />
+        <Point X="42.969" Y="25.463" />
+        <Point X="2.5" Y="25.463" />
+        <Point X="2.5" Y="24.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BCAAAAQAAiAAABCAAACCABJCCDggAAQgEBAAAQAAgAA=</HashCode>
+      <FileName>business\frmExersiceAssign.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="exerciseService" />
+      <Field Name="userService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.business.frmMachineTypes" BaseTypeListCollapsed="true">
+    <Position X="29.25" Y="8" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAEAAAAAACAAAACCAgIAAAAEEAAgQAAAAA=</HashCode>
+      <FileName>business\frmMachineTypes.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="exersiceService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.business.frmMuscularGroupTypes" BaseTypeListCollapsed="true">
+    <Position X="31.75" Y="1.25" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAEAAAAAACAAAACCAgIAAAAEEAAgQAAAAA=</HashCode>
+      <FileName>business\frmMuscularGroupTypes.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="exersiceService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.frmExercisesVisualization" BaseTypeListCollapsed="true">
+    <Position X="36" Y="8" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAiAAAAAABACQAAICCBgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>business\frmExercisesVisualization.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="exerciseService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="Business.ExerciseService" Collapsed="true">
-    <Position X="0.75" Y="7" Width="1.5" />
+    <Position X="35" Y="18" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />

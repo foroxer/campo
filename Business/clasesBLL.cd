@@ -9,7 +9,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAEAAAAAA=</HashCode>
+      <HashCode>AABgAAAAQACAQAAQAAAAAJAAAAAAABCBgQAAAAAAAAA=</HashCode>
       <FileName>ExerciseService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -27,7 +27,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Business.MailService">
-    <Position X="15.25" Y="6.25" Width="3" />
+    <Position X="17" Y="6" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MailService.cs</FileName>
@@ -46,11 +46,10 @@
   <Class Name="Business.SessionService">
     <Position X="12.75" Y="3.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAACQAAAAAAAAACAAAAAAAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAACAAAAAAAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>SessionService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="languageService" />
       <Field Name="userService" />
     </ShowAsAssociation>
   </Class>
@@ -81,7 +80,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="DataAccess.PermissionsRepository" Collapsed="true">
-    <Position X="9.5" Y="8.25" Width="1.75" />
+    <Position X="9.25" Y="11.25" Width="1.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="DataAccess.LanguageRepository" Collapsed="true">

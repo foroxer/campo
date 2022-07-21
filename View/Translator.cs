@@ -19,6 +19,7 @@ namespace View
 
         public static void translate(Form form, Language language)
         {
+
             if (language == null) return;
             form.Text = language.Translations.Find(
                        (translation) => translation.Key.Equals(form.Tag)

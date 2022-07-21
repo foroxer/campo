@@ -62,12 +62,6 @@
     <Compile Include="business\frmExersiceAssign.Designer.cs">
       <DependentUpon>frmExersiceAssign.cs</DependentUpon>
     </Compile>
-    <Compile Include="business\frmMachine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="business\frmMachine.Designer.cs">
-      <DependentUpon>frmMachine.cs</DependentUpon>
-    </Compile>
     <Compile Include="business\frmMachineTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,9 +150,6 @@
     <EmbeddedResource Include="business\frmExersiceAssign.resx">
       <DependentUpon>frmExersiceAssign.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="business\frmMachine.resx">
-      <DependentUpon>frmMachine.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="business\frmMachineTypes.resx">
       <DependentUpon>frmMachineTypes.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +201,7 @@
       <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="clasesUI.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
