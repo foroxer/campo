@@ -13,6 +13,7 @@ namespace View
         {
             try
             {
+                if(int.Parse(textBox.Text) > 0) throw new Exception("Este campo debe ser mayor a 0 ");
                 return int.Parse(textBox.Text);
             }
             catch
@@ -28,6 +29,7 @@ namespace View
         {
             try
             {
+                if (int.Parse(textBox.Text) > 0) throw new Exception("Este campo debe ser mayor a 0 ");
                 return double.Parse(textBox.Text);
             }
             catch

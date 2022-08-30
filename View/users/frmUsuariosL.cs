@@ -68,11 +68,15 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            User selected = dataGridView1?.SelectedRows[0]?.DataBoundItem as User;
-            if (selected != null)
+
+            if (dataGridView1?.SelectedRows.Count > 0)
             {
-                Form form = ((frmMain)MdiParent).createForm(typeof(frmUsuariosM));
-                ((frmUsuariosM)form).setUser(selected);
+                User selected = dataGridView1?.SelectedRows[0]?.DataBoundItem as User;
+                if (selected != null)
+                {
+                    Form form = ((frmMain)MdiParent).createForm(typeof(frmUsuariosM));
+                    ((frmUsuariosM)form).setUser(selected);
+                } 
             }
         }
 
