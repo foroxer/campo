@@ -13,18 +13,21 @@ namespace BitacoraLib.entities
         public String message { get; }
         public PriorityEnum priority { get; }
 
-        public Registry(string message, PriorityEnum priority)
+        public string user { get; }
+        public Registry(string message, PriorityEnum priority, string user)
         {
             this.dateTime = DateTime.Now;
             this.message = message;
             this.priority = priority;
+            this.user = user;
         }
 
-        public Registry(string message, PriorityEnum priority,DateTime dateTime)
+        public Registry(string message, PriorityEnum priority,DateTime dateTime, string user)
         {
             this.dateTime = dateTime;
             this.message = message;
             this.priority = priority;
+            this.user = user;
         }
         private Registry()
         {

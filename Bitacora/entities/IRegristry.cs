@@ -10,7 +10,9 @@ namespace BitacoraLib.entities
     public interface IRegistry
     {
         DateTime dateTime { get; }
-        String message { get; }
+        string message { get; }
         PriorityEnum priority { get; }
+        string user { get; }
+
     }
 }

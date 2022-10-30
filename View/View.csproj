@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bitacora\frmBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bitacora\frmBitacora.Designer.cs">
+      <DependentUpon>frmBitacora.cs</DependentUpon>
+    </Compile>
     <Compile Include="business\frmExerciseAML.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
       <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </Compile>
     <Compile Include="Translator.cs" />
+    <EmbeddedResource Include="bitacora\frmBitacora.resx">
+      <DependentUpon>frmBitacora.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="business\frmExerciseAML.resx">
       <DependentUpon>frmExerciseAML.cs</DependentUpon>
     </EmbeddedResource>
@@ -223,6 +232,10 @@
     <ProjectReference Include="..\Business\Business.csproj">
       <Project>{427c0196-d78a-4367-b617-631245b8b53d}</Project>
       <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitosVerificadoresLib\DigitosVerificadoresLib.csproj">
+      <Project>{212b76d5-c82d-496e-9e1e-bb6d99f4acf5}</Project>
+      <Name>DigitosVerificadoresLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{ae6101de-b0b6-40a1-83f3-6e72edb26a9d}</Project>

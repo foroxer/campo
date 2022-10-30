@@ -27,27 +27,20 @@ namespace BitacoraLib.services
             registryDAO = new RegistryDAO(conn, tablename);
         }
 
-        public static void register(PriorityEnum priority , String toRegister)
+        public static void register(PriorityEnum priority , String toRegister, String user = "System")
         {
-            IRegistry registry = new Registry(toRegister, priority);
+            IRegistry registry = new Registry(toRegister, priority, user);
 
-            save(registry);
-
+            registryDAO.save(registry);
         }
-        
-        public static void register(PriorityEnum priority , Object objectToRegister)
+
+
+        public static void register(PriorityEnum priority , Object objectToRegister, String user)
         {
             //hacer un string del objeto toRetoRegister
 
-            IRegistry registry = new Registry((string)objectToRegister , priority);
+            IRegistry registry = new Registry((string)objectToRegister , priority, user);
 
-            save(registry);
-
-        }
-        
-
-        private static void save(IRegistry registry)
-        {
             registryDAO.save(registry);
         }
 

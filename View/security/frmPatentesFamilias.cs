@@ -1,4 +1,6 @@
-﻿using Business;
+﻿using BitacoraLib.entities;
+using BitacoraLib.services;
+using Business;
 using Models;
 using Models.interfaces;
 using Models.language;
@@ -29,6 +31,7 @@ namespace View
         }
         private void FrmSeguridad_Load(object sender, EventArgs e)
         {
+            BitacoraService.register(PriorityEnum.High, this.Name,Session.GetInstance.user.Id.ToString() );
             updateLanguage(Session.GetInstance.language);
             LlenarPatentesFamilias();
         }

@@ -39,6 +39,7 @@ namespace BitacoraLib.dataAccess
 	                            [mensaje] [nchar](500) NOT NULL,
 	                            [prioridad] [nchar](10) NOT NULL,
 	                            [fecha] [nchar](100) NOT NULL,
+                                [usuario] [nchar](100) NOT NULL,
                              CONSTRAINT [PK_bitacora] PRIMARY KEY CLUSTERED 
                             (
 	                            [id] ASC
@@ -68,11 +69,13 @@ namespace BitacoraLib.dataAccess
                         INSERT INTO {table}
                                    ([mensaje]
                                    ,[prioridad]
-                                   ,[fecha])
+                                   ,[fecha]
+                                   ,[usuario])
                              VALUES
                                    (@message
                                    ,@priority
-                                   ,@dateTime)
+                                   ,@dateTime
+                                   ,@user)
                         ";
 
                     IDbDataParameter dateTime = command.CreateParameter();
@@ -88,7 +91,12 @@ namespace BitacoraLib.dataAccess
                     IDbDataParameter message = command.CreateParameter();
                     message.ParameterName = "message";
                     message.Value = registry.message;
-                    command.Parameters.Add(message);
+                    command.Parameters.Add(message);                    
+                    
+                    IDbDataParameter user = command.CreateParameter();
+                    user.ParameterName = "user";
+                    user.Value = registry.user;
+                    command.Parameters.Add(user);
 
                     command.ExecuteNonQuery();
                 }
@@ -112,11 +120,12 @@ namespace BitacoraLib.dataAccess
                     command.Connection = connection;
                     command.CommandText = $@"
                         SELECT  [id]
-                              ,[mensaje]
-                              ,[prioridad]
-                              ,[fecha]
-                          FROM {table}
-                        ";
+                            ,[mensaje]
+                            ,[prioridad]
+                            ,[fecha]
+                            ,[usuario]
+                            FROM {table}
+                    ";
 
                     DbDataAdapter dataAdapter = DbProviderFactories.GetFactory(connection as DbConnection).CreateDataAdapter();
                     dataAdapter.SelectCommand = command as DbCommand;
@@ -125,8 +134,9 @@ namespace BitacoraLib.dataAccess
                     
                     response.AddRange(ds.Tables[0].AsEnumerable()
                         .Select(dataRow => new Registry(dataRow.Field<string>("mensaje"),
-                                                        (PriorityEnum)Enum.Parse(typeof(PriorityEnum), dataRow.Field<string>("prioridad")),
-                                                        new DateTime(long.Parse(dataRow.Field<string>("fecha"))))
+                                           (PriorityEnum)Enum.Parse(typeof(PriorityEnum), dataRow.Field<string>("prioridad")),
+                                           new DateTime(long.Parse(dataRow.Field<string>("fecha"))),
+                                           dataRow.Field<string>("usuario"))
                         ).ToList());
                    
                     

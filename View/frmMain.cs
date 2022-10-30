@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using View.bitacora;
 using View.business;
 using View.language;
 
@@ -178,6 +179,11 @@ namespace View
         private void asignarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createForm(typeof(frmExersiceAssign));
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createForm(typeof(frmBitacora));
         }
     }
 }

@@ -39,6 +39,7 @@ namespace View
                 {
                     updateToolStrip(language, ((MenuStrip)control).Items);
                 }
+
                 if (control.GetType().Equals(typeof(DataGridView)))
                 {
                     updateDataGridColumns((DataGridView)control, language);
