@@ -36,6 +36,7 @@
             this.altaUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.modificacionUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlDeCambiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configidioma = new System.Windows.Forms.ToolStripMenuItem();
             this.asignarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,13 +44,13 @@
             this.aparatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gruposMuscularesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuSelectIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.rutinas = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             this.logOutToolStripMenuItem});
             this.mnuConfig.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.mnuConfig.Name = "mnuConfig";
-            this.mnuConfig.Size = new System.Drawing.Size(59, 24);
+            this.mnuConfig.Size = new System.Drawing.Size(59, 26);
             this.mnuConfig.Tag = "inicio";
             this.mnuConfig.Text = "Inicio";
             // 
@@ -93,7 +94,8 @@
             this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altaUsuario,
             this.modificacionUsuario,
-            this.listaToolStripMenuItem});
+            this.listaToolStripMenuItem,
+            this.controlDeCambiosToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
             this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
             this.usuariosToolStripMenuItem.Tag = "usuarios";
@@ -102,7 +104,7 @@
             // altaUsuario
             // 
             this.altaUsuario.Name = "altaUsuario";
-            this.altaUsuario.Size = new System.Drawing.Size(179, 26);
+            this.altaUsuario.Size = new System.Drawing.Size(222, 26);
             this.altaUsuario.Tag = "alta";
             this.altaUsuario.Text = "Alta";
             this.altaUsuario.Click += new System.EventHandler(this.altaUsuario_Click);
@@ -110,7 +112,7 @@
             // modificacionUsuario
             // 
             this.modificacionUsuario.Name = "modificacionUsuario";
-            this.modificacionUsuario.Size = new System.Drawing.Size(179, 26);
+            this.modificacionUsuario.Size = new System.Drawing.Size(222, 26);
             this.modificacionUsuario.Tag = "modificacion";
             this.modificacionUsuario.Text = "Modificacion";
             this.modificacionUsuario.Click += new System.EventHandler(this.modificacionUsuario_Click);
@@ -118,10 +120,17 @@
             // listaToolStripMenuItem
             // 
             this.listaToolStripMenuItem.Name = "listaToolStripMenuItem";
-            this.listaToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.listaToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.listaToolStripMenuItem.Tag = "lista";
             this.listaToolStripMenuItem.Text = "Lista";
             this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaToolStripMenuItem_Click);
+            // 
+            // controlDeCambiosToolStripMenuItem
+            // 
+            this.controlDeCambiosToolStripMenuItem.Name = "controlDeCambiosToolStripMenuItem";
+            this.controlDeCambiosToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.controlDeCambiosToolStripMenuItem.Text = "Control de cambios";
+            this.controlDeCambiosToolStripMenuItem.Click += new System.EventHandler(this.controlDeCambiosToolStripMenuItem_Click);
             // 
             // configidioma
             // 
@@ -182,6 +191,14 @@
             this.changePasswordToolStripMenuItem.Text = "Cambiar Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
+            // bitacoraToolStripMenuItem
+            // 
+            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.bitacoraToolStripMenuItem.Tag = "bitacora";
+            this.bitacoraToolStripMenuItem.Text = "Bitacora";
+            this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
+            // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
@@ -200,14 +217,14 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(843, 28);
+            this.menuStrip.Size = new System.Drawing.Size(843, 30);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
             // mnuSelectIdioma
             // 
             this.mnuSelectIdioma.Name = "mnuSelectIdioma";
-            this.mnuSelectIdioma.Size = new System.Drawing.Size(146, 24);
+            this.mnuSelectIdioma.Size = new System.Drawing.Size(146, 26);
             this.mnuSelectIdioma.Tag = "selectLanguage";
             this.mnuSelectIdioma.Text = "Seleccionar Idoma";
             this.mnuSelectIdioma.ToolTipText = "seleccionarIdioma";
@@ -215,7 +232,7 @@
             // rutinas
             // 
             this.rutinas.Name = "rutinas";
-            this.rutinas.Size = new System.Drawing.Size(71, 24);
+            this.rutinas.Size = new System.Drawing.Size(71, 26);
             this.rutinas.Text = "Rutinas";
             this.rutinas.Click += new System.EventHandler(this.rutinas_Click);
             // 
@@ -236,14 +253,6 @@
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
-            // bitacoraToolStripMenuItem
-            // 
-            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.bitacoraToolStripMenuItem.Tag = "bitacora";
-            this.bitacoraToolStripMenuItem.Text = "Bitacora";
-            this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -255,7 +264,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -294,6 +303,7 @@
         private System.Windows.Forms.ToolStripMenuItem gruposMuscularesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asignarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlDeCambiosToolStripMenuItem;
     }
 }
 

@@ -28,9 +28,9 @@ namespace View.business
             exerciseService = new ExerciseService();
         }
 
-        private void frmExersiceAssign_Load(object sender, EventArgs e)
+        private void frmExersiceAssign_Load( object sender, EventArgs e )
         {
-            userList = (from user in userService.GetAll() select new User() { Id = user.Id, Name = user.Name, LastName = user.LastName, Dni = user.Dni }).ToList<User>();
+            userList = ( from user in userService.GetAll() select new User() { Id = user.Id, Name = user.Name, LastName = user.LastName, Dni = user.Dni } ).ToList<User>();
             dataGridView1.DataSource = userList;
             dataGridView2.DataSource = exerciseService.GetAllMuscularGroups();
             dataGridView3.DataSource = exerciseService.GetAssignedMuscularGroupBy(userList.First().Id);
@@ -40,22 +40,6 @@ namespace View.business
             configDatagrid(dataGridView2);
             configDatagrid(dataGridView3);
 
-            dataGridView1.Columns["tries"].Visible = false;
-            dataGridView1.Columns["language"].Visible = false;
-            dataGridView1.Columns["password"].Visible = false;
-            dataGridView1.Columns["nic"].Visible = false;
-            dataGridView1.Columns["mail"].Visible = false;
-            dataGridView1.Columns["phone"].Visible = false;
-            dataGridView1.Columns["adress"].Visible = false;
-            dataGridView1.Columns["blocked"].Visible = false;
-            dataGridView1.Columns["id"].Visible = false;
-            dataGridView2.Columns["id"].Visible = false;
-
-            if (dataGridView3.Columns.Count > 0)
-            {
-                dataGridView3.Columns["id_grupo_muscular"].Visible = false;
-                dataGridView3.Columns["id_usuario"].Visible = false;
-            }
 
             DataGridViewButtonColumn button = new DataGridViewButtonColumn();
             button.Name = "borrar";
@@ -64,19 +48,19 @@ namespace View.business
             button.UseColumnTextForButtonValue = true;
 
             int columnIndex = 0;
-            if (dataGridView3.Columns["borrar"] == null)
+            if ( dataGridView3.Columns["borrar"] == null )
             {
                 dataGridView3.Columns.Insert(columnIndex, button);
             }
 
             updateLanguage(null);
         }
-        public void updateLanguage(Language language)
+        public void updateLanguage( Language language )
         {
             Translator.translate(this);
         }
 
-        private void search_TextChanged(object sender, EventArgs e)
+        private void search_TextChanged( object sender, EventArgs e )
         {
             dataGridView1.DataSource = userList.Where(user =>
 
@@ -86,12 +70,12 @@ namespace View.business
             ).ToList();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged( object sender, EventArgs e )
         {
 
             try
             {
-                if (dataGridView1.SelectedRows.Count != 0)
+                if ( dataGridView1.SelectedRows.Count != 0 )
                 {
                     User selected = dataGridView1?.SelectedRows[0]?.DataBoundItem as User;
 
@@ -99,13 +83,13 @@ namespace View.business
                 }
 
             }
-            catch (Exception)
+            catch ( Exception )
             {
 
 
             }
         }
-        private void configDatagrid(DataGridView dataGridView)
+        private void configDatagrid( DataGridView dataGridView )
         {
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
@@ -116,13 +100,13 @@ namespace View.business
             dataGridView.ReadOnly = true;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            foreach (DataGridViewColumn column in dataGridView.Columns)
+            foreach ( DataGridViewColumn column in dataGridView.Columns )
             {
                 column.Tag = "table" + column.HeaderText.ToLower().RemoveWhitespaces();
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click( object sender, EventArgs e )
         {
             try
             {
@@ -131,17 +115,17 @@ namespace View.business
                 exerciseService.AssingMuscularGroup(user, muscularGroup, Convert.ToInt32(repetitions.Value), Convert.ToDouble(weight.Value));
                 dataGridView3.DataSource = exerciseService.GetAssignedMuscularGroupBy(user.Id);
             }
-            catch (Exception)
+            catch ( Exception )
             {
                 MessageBox.Show("Ocurrio un error, por favor verifique los campos ingresados");
             }
         }
 
-        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView3_CellClick( object sender, DataGridViewCellEventArgs e )
         {
             try
             {
-                if (e.ColumnIndex == dataGridView3.Columns["borrar"].Index && DialogResult.OK == MessageBox.Show("Esta seguro que desea continuar", "", MessageBoxButtons.OKCancel))
+                if ( e.ColumnIndex == dataGridView3.Columns["borrar"].Index && DialogResult.OK == MessageBox.Show("Esta seguro que desea continuar", "", MessageBoxButtons.OKCancel) )
                 {
                     int columnId = dataGridView3.Columns["id_grupo_muscular"].Index;
                     int muscularGroupId = int.Parse(dataGridView3.Rows[e.RowIndex].Cells[columnId].Value.ToString());
@@ -155,9 +139,42 @@ namespace View.business
                     dataGridView3.DataSource = exerciseService.GetAssignedMuscularGroupBy(user.Id);
                 }
             }
-            catch (Exception)
+            catch ( Exception )
             {
                 MessageBox.Show("Ocurrio un error");
+            }
+        }
+
+        private void dataGridView1_DataBindingComplete( object sender, DataGridViewBindingCompleteEventArgs e )
+        {
+            if ( dataGridView1.Rows.Count > 0 )
+            {
+                dataGridView1.Columns["tries"].Visible = false;
+                dataGridView1.Columns["language"].Visible = false;
+                dataGridView1.Columns["password"].Visible = false;
+                dataGridView1.Columns["nic"].Visible = false;
+                dataGridView1.Columns["mail"].Visible = false;
+                dataGridView1.Columns["phone"].Visible = false;
+                dataGridView1.Columns["adress"].Visible = false;
+                dataGridView1.Columns["blocked"].Visible = false;
+                dataGridView1.Columns["id"].Visible = false;
+            }
+        }
+
+        private void dataGridView2_DataBindingComplete( object sender, DataGridViewBindingCompleteEventArgs e )
+        {
+            if ( dataGridView2.Rows.Count > 0 )
+            {
+                dataGridView2.Columns["id"].Visible = false;
+            }
+        }
+
+        private void dataGridView3_DataBindingComplete( object sender, DataGridViewBindingCompleteEventArgs e )
+        {
+            if ( dataGridView3.Rows.Count > 0 )
+            {
+                dataGridView3.Columns["id_grupo_muscular"].Visible = false;
+                dataGridView3.Columns["id_usuario"].Visible = false;
             }
         }
     }

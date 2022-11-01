@@ -1,6 +1,6 @@
-﻿namespace View.bitacora
+﻿namespace View.logbook
 {
-    partial class frmBitacora
+    partial class frmLogbook
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.priorityCombo = new System.Windows.Forms.ComboBox();
             this.userCombo = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,17 +74,17 @@
             this.userCombo.Size = new System.Drawing.Size(200, 24);
             this.userCombo.TabIndex = 4;
             // 
-            // button1
+            // searchBtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(806, 55);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 40);
-            this.button1.TabIndex = 5;
-            this.button1.Tag = "ask";
-            this.button1.Text = "Consultar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBtn.Location = new System.Drawing.Point(806, 55);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(118, 40);
+            this.searchBtn.TabIndex = 5;
+            this.searchBtn.Tag = "ask";
+            this.searchBtn.Text = "Consultar";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // label1
             // 
@@ -167,7 +167,7 @@
             this.userCheck.UseVisualStyleBackColor = true;
             this.userCheck.CheckedChanged += new System.EventHandler(this.userCheck_CheckedChanged);
             // 
-            // frmBitacora
+            // frmLogbook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -180,15 +180,15 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.userCombo);
             this.Controls.Add(this.priorityCombo);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Name = "frmBitacora";
+            this.Name = "frmLogbook";
             this.Tag = "bitacora";
             this.Text = "Bitacora";
-            this.Load += new System.EventHandler(this.Bitacora_Load);
+            this.Load += new System.EventHandler(this.Logbook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -201,7 +201,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.ComboBox priorityCombo;
         private System.Windows.Forms.ComboBox userCombo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

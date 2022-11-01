@@ -43,7 +43,6 @@ namespace View.business
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 
-            dataGridView1.Columns["id"].Visible = false;
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
                 column.Tag = "table" + column.HeaderText.ToLower().RemoveWhitespaces();
@@ -111,6 +110,12 @@ namespace View.business
             {
                 MessageBox.Show("Por favor reintente");
             }
+        }
+
+        private void dataGridView1_DataBindingComplete( object sender, DataGridViewBindingCompleteEventArgs e )
+        {
+            if ( dataGridView1.Rows.Count > 0 )
+                dataGridView1.Columns["id"].Visible = false;
         }
     }
 }

@@ -50,11 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bitacora\frmBitacora.cs">
+    <Compile Include="changeControl\frmUserChangeControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="bitacora\frmBitacora.Designer.cs">
-      <DependentUpon>frmBitacora.cs</DependentUpon>
+    <Compile Include="changeControl\frmUserChangeControl.Designer.cs">
+      <DependentUpon>frmUserChangeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="logbook\frmLogbook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="logbook\frmLogbook.Designer.cs">
+      <DependentUpon>frmLogbook.cs</DependentUpon>
     </Compile>
     <Compile Include="business\frmExerciseAML.cs">
       <SubType>Form</SubType>
@@ -150,8 +156,11 @@
       <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </Compile>
     <Compile Include="Translator.cs" />
-    <EmbeddedResource Include="bitacora\frmBitacora.resx">
-      <DependentUpon>frmBitacora.cs</DependentUpon>
+    <EmbeddedResource Include="changeControl\frmUserChangeControl.resx">
+      <DependentUpon>frmUserChangeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="logbook\frmLogbook.resx">
+      <DependentUpon>frmLogbook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="business\frmExerciseAML.resx">
       <DependentUpon>frmExerciseAML.cs</DependentUpon>
@@ -249,5 +258,6 @@
   <ItemGroup>
     <Content Include="Properties\icongray_icono_7282.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

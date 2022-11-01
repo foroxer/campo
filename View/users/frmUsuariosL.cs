@@ -18,7 +18,7 @@ namespace View
     public partial class frmUsuariosL : Form, ILanguageObserber
     {
         UserService userService;
-        private List<User> userList; 
+        private List<User> userList;
         public frmUsuariosL()
         {
             InitializeComponent();
@@ -27,12 +27,12 @@ namespace View
             dataGridView1.DataSource = userList;
         }
 
-        private void frmUsuariosL_Load(object sender, EventArgs e)
+        private void frmUsuariosL_Load( object sender, EventArgs e )
         {
             updateLanguage(Session.GetInstance.language);
 
             Dock = DockStyle.Fill;
-            
+
 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
@@ -43,11 +43,7 @@ namespace View
             dataGridView1.ReadOnly = true;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-
-            dataGridView1.Columns["tries"].Visible = false;
-            dataGridView1.Columns["language"].Visible = false;
-            dataGridView1.Columns["password"].Visible = false;
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            foreach ( DataGridViewColumn column in dataGridView1.Columns )
             {
                 column.Tag = "table" + column.HeaderText.ToLower().RemoveWhitespaces();
             }
@@ -55,7 +51,7 @@ namespace View
 
         }
 
-        private void search_TextChanged(object sender, EventArgs e)
+        private void search_TextChanged( object sender, EventArgs e )
         {
             dataGridView1.DataSource = userList.Where(user =>
 
@@ -66,32 +62,42 @@ namespace View
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click( object sender, EventArgs e )
         {
 
-            if (dataGridView1?.SelectedRows.Count > 0)
+            if ( dataGridView1?.SelectedRows.Count > 0 )
             {
                 User selected = dataGridView1?.SelectedRows[0]?.DataBoundItem as User;
-                if (selected != null)
+                if ( selected != null )
                 {
-                    Form form = ((frmMain)MdiParent).createForm(typeof(frmUsuariosM));
-                    ((frmUsuariosM)form).setUser(selected);
-                } 
+                    Form form = ( (frmMain)MdiParent ).createForm(typeof(frmUsuariosM));
+                    ( (frmUsuariosM)form ).setUser(selected);
+                }
             }
         }
 
-        private void frmUsuariosL_Activated(object sender, EventArgs e)
+        private void frmUsuariosL_Activated( object sender, EventArgs e )
         {
             frmUsuariosL_Load(null, null);
         }
-        public void updateLanguage(Language language)
+        public void updateLanguage( Language language )
         {
             Translator.translate(this);
         }
 
-        private void frmUsuariosL_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmUsuariosL_FormClosed( object sender, FormClosedEventArgs e )
         {
             dataGridView1.Dispose();
+        }
+
+        private void dataGridView1_DataBindingComplete( object sender, DataGridViewBindingCompleteEventArgs e )
+        {
+            if ( dataGridView1.Rows.Count > 0 )
+            {
+                dataGridView1.Columns["tries"].Visible = false;
+                dataGridView1.Columns["language"].Visible = false;
+                dataGridView1.Columns["password"].Visible = false;
+            }
         }
     }
 }

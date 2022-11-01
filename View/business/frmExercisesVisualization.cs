@@ -33,8 +33,7 @@ namespace View
             dataGridView1.DataSource = exerciseService.GetAssignedMuscularGroupBy(Session.GetInstance.user.Id);
             dataGridView1.DataMember = "mitabla";
 
-            dataGridView1.Columns["id_usuario"].Visible = false;
-            dataGridView1.Columns["id_grupo_muscular"].Visible = false;
+           
             configDatagrid(dataGridView1);
             configDatagrid(dataGridView2);
             updateLanguage(null);
@@ -75,6 +74,15 @@ namespace View
             catch (Exception)
             {
 
+            }
+        }
+
+        private void dataGridView1_DataBindingComplete( object sender, DataGridViewBindingCompleteEventArgs e )
+        {
+            if ( dataGridView1.Rows.Count > 0 )
+            {
+                dataGridView1.Columns["id_usuario"].Visible = false;
+                dataGridView1.Columns["id_grupo_muscular"].Visible = false;
             }
         }
     }

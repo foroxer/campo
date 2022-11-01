@@ -277,6 +277,7 @@ namespace DataAccess
                     string query = $@"UPDATE [dbo].[usuarios]
                    SET [mail] = @mail
                         ,[nic] = @nic
+                        ,[key_idioma] = @idioma
                       where id_usuario =@id
                     ";
 
@@ -287,6 +288,7 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("id", user.Id));
                     cmd.Parameters.Add(new SqlParameter("mail", user.Mail));
                     cmd.Parameters.Add(new SqlParameter("nic", user.Nic));
+                    cmd.Parameters.Add(new SqlParameter("idioma", user.Language.ID));
 
                     cmd.ExecuteNonQuery();
 

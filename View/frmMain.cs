@@ -6,9 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using View.bitacora;
+using View.logbook;
 using View.business;
 using View.language;
+using View.changeControl;
 
 namespace View
 {
@@ -183,7 +184,12 @@ namespace View
 
         private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            createForm(typeof(frmBitacora));
+            createForm(typeof(frmLogbook));
+        }
+
+        private void controlDeCambiosToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(frmUserChangeControl));
         }
     }
 }

@@ -9,6 +9,9 @@ using DigitosVerificadoresLib.services;
 using Models;
 using Models.interfaces;
 using Models.language;
+using static System.Windows.Forms.AxHost;
+using System.Drawing.Text;
+using System.Runtime.InteropServices;
 
 namespace View
 {
@@ -20,26 +23,13 @@ namespace View
         [STAThread]
         static void Main()
         {
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           
-            
+
             BitacoraService.config(ConnectionSingleton.getConnection(), "bitacora");
 
-            DVService dVService = new DVService();
-            User user = new User();
-            user.Adress = "adasd";
-            user.Id = 123;
-            Language l = new Language();
-            l.Name = "asdasd";
-            l.ID = 1234;
-            user.Language = l;
-            dVService.getDvv<User>(user);
-            //Ejemplos de uso Bitacora
             BitacoraService.register(PriorityEnum.Low, "Start up");
-            //List<IRegistry> list =  BitacoraService.getRegisters();
-           
+
             Application.Run(new frmLogin());
         }
     }
