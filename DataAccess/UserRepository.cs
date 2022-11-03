@@ -54,7 +54,7 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("Nic", user.Nic.NullOrEmpty()));
                     cmd.Parameters.Add(new SqlParameter("password", user.Password.NullOrEmpty()));
                     cmd.Parameters.Add(new SqlParameter("mail", user.Mail.NullOrEmpty()));
-                    cmd.Parameters.Add(new SqlParameter("dvh", getDVH(user)));
+                    cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(user)));
 
 
 
@@ -96,7 +96,7 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("telefono", user.Phone.NullOrEmpty()));
                     cmd.Parameters.Add(new SqlParameter("direccion", user.Adress.NullOrEmpty()));
                     cmd.Parameters.Add(new SqlParameter("dni", user.Dni.NullOrEmpty()));
-                    cmd.Parameters.Add(new SqlParameter("dvh", getDVH(user)));
+                    cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(user)));
 
 
                     cmd.ExecuteNonQuery();
@@ -364,7 +364,7 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("idioma", user.Language.ID));
                     cmd.Parameters.Add(new SqlParameter("tries", user.Tries));
                     cmd.Parameters.Add(new SqlParameter("blocked", user.Blocked));
-                    cmd.Parameters.Add(new SqlParameter("dvh", getDVH(user)));
+                    cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(user)));
 
                     cmd.ExecuteNonQuery();
 
@@ -388,7 +388,7 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("apellido", user.LastName));
                     cmd.Parameters.Add(new SqlParameter("direccion", user.Adress));
                     cmd.Parameters.Add(new SqlParameter("dni", user.Dni));
-                    cmd.Parameters.Add(new SqlParameter("dvh", getDVH(user)));
+                    cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(user)));
 
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -407,7 +407,7 @@ namespace DataAccess
                 throw;
             }
         }
-        public string getDVH( User user )
+        public string calculateDVH( User user )
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(user.Name);
@@ -421,7 +421,7 @@ namespace DataAccess
 
             return DVService.getDV(sb.ToString());
         }
-        public string getDVV( List<User> list )
+        public string calculateDVV( List<User> list )
         {
             return DVService.getDV(list.Aggregate<User, String>("", ( a, b ) => a + b.dvh));
         }

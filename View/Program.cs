@@ -28,6 +28,7 @@ namespace View
 
             BitacoraService.config(ConnectionSingleton.getConnection(), "bitacora");
 
+
             BitacoraService.register(PriorityEnum.Low, "Start up");
 
             Application.Run(new frmLogin());

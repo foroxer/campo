@@ -44,6 +44,7 @@
     <Compile Include="BackupService.cs" />
     <Compile Include="ChangesControlService.cs" />
     <Compile Include="ExerciseService.cs" />
+    <Compile Include="IntegrityChecker.cs" />
     <Compile Include="LanguageService.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="exceptions\LoginException.cs" />
@@ -53,6 +54,10 @@
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bitacora\BitacoraLib.csproj">
+      <Project>{239234FD-A0EA-49AD-8964-C067C17AFE8C}</Project>
+      <Name>BitacoraLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{c62aa5ef-a62e-41b0-8f0d-1697a01fb53f}</Project>
       <Name>DataAccess</Name>

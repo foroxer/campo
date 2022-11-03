@@ -103,12 +103,13 @@ namespace BitacoraLib.dataAccess
 
                     IDbDataParameter dvh = command.CreateParameter();
                     dvh.ParameterName = "dvh";
-                    dvh.Value = getDVH(registry);
+                    dvh.Value = calculateDVH(registry);
                     command.Parameters.Add(dvh);
 
                     command.ExecuteNonQuery();
                 }
                 connection.Close();
+                updateDVV();
             }
             catch ( Exception ex )
             {
@@ -162,7 +163,7 @@ namespace BitacoraLib.dataAccess
             }
         }
 
-        public string getDVH( IRegistry obj )
+        public string calculateDVH( IRegistry obj )
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(obj.message);
@@ -173,7 +174,7 @@ namespace BitacoraLib.dataAccess
             return DVService.getDV(sb.ToString());
         }
 
-        public string getDVV( List<IRegistry> list )
+        public string calculateDVV( List<IRegistry> list )
         {
             return DVService.getDV(list.Aggregate<IRegistry, String>("", ( a, b ) => a + b.dvh));
         }
@@ -218,12 +219,13 @@ namespace BitacoraLib.dataAccess
 
                     IDbDataParameter dvh = command.CreateParameter();
                     user.ParameterName = "dvh";
-                    user.Value = getDVH(obj);
+                    user.Value = calculateDVH(obj);
                     command.Parameters.Add(dvh);
 
                     command.ExecuteNonQuery();
                 }
                 connection.Close();
+                updateDVV();
             }
             catch ( Exception ex )
             {
@@ -232,6 +234,82 @@ namespace BitacoraLib.dataAccess
             }
         }
 
-       
+        private void updateDVV()
+        {
+            try
+            {
+                String dvvString = calculateDVV(getAll());
+                if ( connection.State != ConnectionState.Open ) connection.Open();
+                using ( IDbCommand command = connection.CreateCommand() )
+                {
+                    command.Connection = connection;
+                    command.CommandText = $@"
+                                             UPDATE [campo].[dbo].[dvv]
+		                                        SET [dvv] = @dvv
+		                                        WHERE [tablename] = @tablename ;
+
+                                           ";
+
+                    IDbDataParameter dvv = command.CreateParameter();
+                    dvv.ParameterName = "dvv";
+                    dvv.Value = dvvString;
+                    command.Parameters.Add(dvv);
+                    
+                    
+                    IDbDataParameter tablename = command.CreateParameter();
+                    tablename.ParameterName = "tablename";
+                    tablename.Value = table;
+                    command.Parameters.Add(tablename);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+            catch ( Exception ex )
+            {
+                // TODO: ver como hacemos el handle de este error
+                Console.Write(ex.ToString());
+                throw ex;
+            }
+
+            getDVV();
+        }
+        
+        public string getDVV()
+        {
+            try
+            {
+                String dvv = "";
+                if ( connection.State != ConnectionState.Open ) connection.Open();
+                using ( IDbCommand command = connection.CreateCommand() )
+                {
+                    command.Connection = connection;
+                    command.CommandText = $@"
+                        SELECT  dvv
+                            FROM dvv 
+                            where tablename = @tablename
+                    ";
+
+                    IDbDataParameter tablename = command.CreateParameter();
+                    tablename.ParameterName = "tablename";
+                    tablename.Value = table;
+                    command.Parameters.Add(tablename);
+
+                    IDataReader reader = command.ExecuteReader();
+
+                    while ( reader.Read() )
+                    {
+                        dvv = reader.GetValue(reader.GetOrdinal("dvv")).ToString();
+                    }
+                }
+                connection.Close();
+                return dvv;
+            }
+            catch ( Exception ex )
+            {
+                Console.Write(ex.ToString());
+                throw ex;
+            }
+        }
     }
 }

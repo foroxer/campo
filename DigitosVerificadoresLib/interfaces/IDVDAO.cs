@@ -10,9 +10,9 @@ namespace DigitosVerificadoresLib
     {
         List<T> getAll();
 
-        String getDVH( T obj );
+        String calculateDVH( T obj );
 
-        String getDVV( List<T> list );
+        String calculateDVV( List<T> list );
 
         void save( T obj );
 
