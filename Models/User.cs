@@ -1,10 +1,11 @@
-﻿using Models.language;
+﻿using DigitosVerificadoresLib.interfaces;
+using Models.language;
 using System;
 using System.Collections.Generic;
 
 namespace Models
 {
-    public class User
+    public class User : IDVEntity
     {
         public User()
         {
@@ -32,5 +33,6 @@ namespace Models
                 return _Permissions;
             }
         }
+        public string dvh { get; set; }
     }
 }

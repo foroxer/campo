@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BitacoraLib.services;
+using BitacoraLib.entities;
 
 namespace View
 {
@@ -31,7 +33,7 @@ namespace View
         }
 
 
-        private void updateBtn_Click(object sender, EventArgs e)
+        private void updateBtn_Click( object sender, EventArgs e )
         {
             try
             {
@@ -46,34 +48,44 @@ namespace View
                 userService.UpdateUser(selected);
 
                 MessageBox.Show("El user se actualizo con exito");
+                BitacoraService.register(
+                    PriorityEnum.Medium
+                    , $"modificacion del usuario: {selected.Id}"
+                    , Session.GetInstance.user.Id.ToString()
+                    );
+                Close();
             }
-            catch (Exception)
+            catch ( Exception )
             {
                 MessageBox.Show($"ocurrio un error al intentar actualizar el user {selected.Nic}");
+                BitacoraService.register(
+                   PriorityEnum.High
+                   , $"Intento fallido de modificacion del usuario: {selected.Id}"
+                   , Session.GetInstance.user.Id.ToString()
+                   );
             }
-            Close();
         }
 
-        private void cboUsuarios_SelectionChangeCommitted(object sender, EventArgs e)
+        private void cboUsuarios_SelectionChangeCommitted( object sender, EventArgs e )
         {
 
         }
-        private void frmMUsuarios_Load(object sender, EventArgs e)
+        private void frmMUsuarios_Load( object sender, EventArgs e )
         {
             cboUsuarios.DataSource = userService.GetAll();
             cboUsuarios.DisplayMember = "nic";
             updateLanguage(Session.GetInstance.language);
         }
-        public void updateLanguage(Language language)
+        public void updateLanguage( Language language )
         {
             Translator.translate(this);
         }
-        private void frmMUsuarios_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmMUsuarios_FormClosed( object sender, FormClosedEventArgs e )
         {
         }
-        private void bloquearBtn_Click(object sender, EventArgs e)
+        private void bloquearBtn_Click( object sender, EventArgs e )
         {
-            if (selected.Id == Session.GetInstance.user.Id)
+            if ( selected.Id == Session.GetInstance.user.Id )
             {
                 MessageBox.Show("no se puede realizar esta accion");
                 return;
@@ -90,7 +102,7 @@ namespace View
             Close();
 
         }
-        private void desbloquearBtn_Click(object sender, EventArgs e)
+        private void desbloquearBtn_Click( object sender, EventArgs e )
         {
             //int index = cboUsuarios.SelectedIndex;
             try
@@ -106,14 +118,14 @@ namespace View
             //cboUsuarios.SelectedIndex = index;
             Close();
         }
-        private void cboUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboUsuarios_SelectedIndexChanged( object sender, EventArgs e )
         {
             selected = (User)cboUsuarios.SelectedItem;
             loadFields(selected);
         }
-        public void setUser(User user)
+        public void setUser( User user )
         {
-            if (user != null)
+            if ( user != null )
             {
                 cboUsuarios.Text = "";
                 cboUsuarios.Enabled = false;
@@ -121,7 +133,7 @@ namespace View
                 loadFields(user);
             }
         }
-        private void loadFields(User user)
+        private void loadFields( User user )
         {
             LNameUpdate.Text = user.LastName;
             NameUpdate.Text = user.Name;

@@ -1,12 +1,16 @@
-﻿using Models;
+﻿using DigitosVerificadoresLib;
+using DigitosVerificadoresLib.services;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
 using Utiles;
 
 namespace DataAccess
 {
-    public class UserRepository
+    public class UserRepository : IDVDAO<User>
     {
         PermissionsRepository permisosRepository;
         LanguageRepository languageRepository;
@@ -16,7 +20,7 @@ namespace DataAccess
             permisosRepository = new PermissionsRepository();
             languageRepository = new LanguageRepository();
         }
-        public void Create(User user)
+        public void save( User user )
         {
             try
             {
@@ -33,7 +37,8 @@ namespace DataAccess
                                     ,[mail]
                                     ,[key_idioma]
                                     ,[bloqueado]
-                                    ,[intentos])
+                                    ,[intentos]
+                                    ,[dvh])
                                     VALUES
                                     (@Nic
                                     ,@password
@@ -41,7 +46,7 @@ namespace DataAccess
                                     ,1
                                     ,0
                                     ,0
-                                     )";
+                                    ,@dvh)";
 
 
                     cmd.Connection = connection;
@@ -49,7 +54,9 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("Nic", user.Nic.NullOrEmpty()));
                     cmd.Parameters.Add(new SqlParameter("password", user.Password.NullOrEmpty()));
                     cmd.Parameters.Add(new SqlParameter("mail", user.Mail.NullOrEmpty()));
-                    
+                    cmd.Parameters.Add(new SqlParameter("dvh", getDVH(user)));
+
+
 
                     cmd.ExecuteNonQuery();
 
@@ -70,7 +77,8 @@ namespace DataAccess
                                     ,[apellido]
                                     ,[telefono]
                                     ,[direccion]
-                                    ,[dni])
+                                    ,[dni]
+                                    ,[dvh])
                                     VALUES
                                     (@id
                                     ,@nombre
@@ -78,7 +86,7 @@ namespace DataAccess
                                     ,@telefono  
                                     ,@direccion
                                     ,@dni
-                                    )";
+                                    ,@dvh)";
 
                     cmd.Connection = connection;
                     cmd.Transaction = transaction;
@@ -88,13 +96,16 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("telefono", user.Phone.NullOrEmpty()));
                     cmd.Parameters.Add(new SqlParameter("direccion", user.Adress.NullOrEmpty()));
                     cmd.Parameters.Add(new SqlParameter("dni", user.Dni.NullOrEmpty()));
+                    cmd.Parameters.Add(new SqlParameter("dvh", getDVH(user)));
+
 
                     cmd.ExecuteNonQuery();
 
                     transaction.Commit();
 
                     connection.Close();
- 
+
+                    savePermissions(user);
                 }
                 catch
                 {
@@ -102,7 +113,7 @@ namespace DataAccess
                     connection.Close();
                     throw;
                 }
-                SavePermissions(user);
+
 
             }
             catch
@@ -110,7 +121,7 @@ namespace DataAccess
                 throw;
             }
         }
-        public User Get(String Nic)
+        public User get( String Nic )
         {
             User user = null;
             try
@@ -124,8 +135,8 @@ namespace DataAccess
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                int idLanguaje  = 0;
-                while (reader.Read())
+                int idLanguaje = 0;
+                while ( reader.Read() )
                 {
                     user = new User
                     {
@@ -139,7 +150,8 @@ namespace DataAccess
                         Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
                         Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
                         Blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado")),
-                        Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString())
+                        Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString()),
+                        dvh = reader.GetValue(reader.GetOrdinal("dvh")).ToString()
                     };
                     idLanguaje = int.Parse(reader.GetValue(reader.GetOrdinal("key_idioma")).ToString());
                 }
@@ -147,7 +159,7 @@ namespace DataAccess
                 reader.Close();
                 connection.Close();
 
-                if (user != null)
+                if ( user != null )
                 {
                     permisosRepository.FillUserComponents(user);
                     user.Language = languageRepository.GetLanguage(idLanguaje);
@@ -160,8 +172,60 @@ namespace DataAccess
                 throw;
             }
         }
-        public List<User> GetAll()
+        public User get( int id )
         {
+            User user = null;
+            try
+            {
+                SqlConnection connection = ConnectionSingleton.getConnection();
+                connection.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = $@"select * from usuarios u inner join usuario_data ud on u.id_usuario = ud.id_usuario  where ud.id_usuario = @id ;";
+                cmd.Parameters.Add(new SqlParameter("id", id));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                int idLanguaje = 0;
+                while ( reader.Read() )
+                {
+                    user = new User
+                    {
+                        Id = int.Parse(reader.GetValue(reader.GetOrdinal("id_usuario")).ToString()),
+                        Nic = reader.GetValue(reader.GetOrdinal("Nic")).ToString(),
+                        Password = reader.GetValue(reader.GetOrdinal("password")).ToString(),
+                        Mail = reader.GetValue(reader.GetOrdinal("mail")).ToString(),
+                        LastName = reader.GetValue(reader.GetOrdinal("apellido")).ToString(),
+                        Name = reader.GetValue(reader.GetOrdinal("nombre")).ToString(),
+                        Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
+                        Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
+                        Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
+                        Blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado")),
+                        Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString()),
+                        dvh = reader.GetValue(reader.GetOrdinal("dvh")).ToString()
+                    };
+                    idLanguaje = int.Parse(reader.GetValue(reader.GetOrdinal("key_idioma")).ToString());
+                }
+
+                reader.Close();
+                connection.Close();
+
+                if ( user != null )
+                {
+                    permisosRepository.FillUserComponents(user);
+                    user.Language = languageRepository.GetLanguage(idLanguaje);
+                }
+
+                return user;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public List<User> getAll()
+        {
+            //los usuarios no tienen los idiomas 
             SqlConnection connection = ConnectionSingleton.getConnection();
             connection.Open();
             var cmd = new SqlCommand();
@@ -175,7 +239,7 @@ namespace DataAccess
 
             var lista = new List<User>();
 
-            while (reader.Read())
+            while ( reader.Read() )
             {
                 User user = new User()
                 {
@@ -188,7 +252,11 @@ namespace DataAccess
                     Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
                     Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
                     Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
-                    Blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado"))
+                    Blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado")),
+                    Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString()),
+                    dvh = reader.GetValue(reader.GetOrdinal("dvh")).ToString(),
+                    Language = new Models.language.Language() { ID = int.Parse(reader.GetValue(reader.GetOrdinal("key_idioma")).ToString()) }
+                 
                 };
                 lista.Add(user);
             }
@@ -197,14 +265,14 @@ namespace DataAccess
             connection.Close();
 
             //vinculo los usuarios con las patentes y familias que tiene configuradas.
-            foreach (var user in lista)
+            foreach ( var user in lista )
             {
                 permisosRepository.FillUserComponents(user);
             }
 
             return lista;
         }
-        public void SavePermissions(User user)
+        public void savePermissions( User user )
         {
             try
             {
@@ -218,7 +286,7 @@ namespace DataAccess
                 cmd.Parameters.Add(new SqlParameter("id", user.Id));
                 cmd.ExecuteNonQuery();
 
-                foreach (var item in user.Permissions)
+                foreach ( var item in user.Permissions )
                 {
                     cmd = new SqlCommand();
                     cmd.Connection = connection;
@@ -231,15 +299,15 @@ namespace DataAccess
                 }
                 connection.Close();
             }
-            catch (Exception)
+            catch ( Exception )
             {
 
                 throw;
             }
         }
-        public void UpdatePassword(User user)
+        public void updatePassword( User user )
         {
-            
+
             SqlConnection connection = ConnectionSingleton.getConnection();
             try
             {
@@ -260,8 +328,10 @@ namespace DataAccess
                 connection.Close();
                 throw;
             }
+            user = get(user.Nic);
+            update(user);
         }
-        public void updateUser(User user)
+        public void update( User user )
         {
             SqlConnection connection = ConnectionSingleton.getConnection();
 
@@ -275,11 +345,14 @@ namespace DataAccess
                     SqlCommand cmd;
 
                     string query = $@"UPDATE [dbo].[usuarios]
-                   SET [mail] = @mail
-                        ,[nic] = @nic
-                        ,[key_idioma] = @idioma
-                      where id_usuario =@id
-                    ";
+                                       SET [mail] = @mail
+                                            ,[nic] = @nic
+                                            ,[key_idioma] = @idioma
+                                            ,[intentos] = @tries
+                                            ,[bloqueado] = @blocked
+                                            ,[dvh] = @dvh
+                                          where id_usuario =@id
+                                        ";
 
                     cmd = new SqlCommand();
                     cmd.Transaction = transaction;
@@ -289,16 +362,19 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("mail", user.Mail));
                     cmd.Parameters.Add(new SqlParameter("nic", user.Nic));
                     cmd.Parameters.Add(new SqlParameter("idioma", user.Language.ID));
+                    cmd.Parameters.Add(new SqlParameter("tries", user.Tries));
+                    cmd.Parameters.Add(new SqlParameter("blocked", user.Blocked));
+                    cmd.Parameters.Add(new SqlParameter("dvh", getDVH(user)));
 
                     cmd.ExecuteNonQuery();
 
                     query = $@"UPDATE [dbo].[usuario_data]
-                               SET 
-                                  [nombre] = @nombre
-                                  ,[apellido] = @apellido
-                                  ,[telefono] = @telefono
-                                  ,[direccion] = @direccion
-                                  ,[dni] = @dni
+                               SET  [nombre] = @nombre
+                                    ,[apellido] = @apellido
+                                    ,[telefono] = @telefono
+                                    ,[direccion] = @direccion
+                                    ,[dni] = @dni
+                                    ,[dvh] = @dvh
                                   where id_usuario =@id
                                 ";
 
@@ -312,6 +388,7 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("apellido", user.LastName));
                     cmd.Parameters.Add(new SqlParameter("direccion", user.Adress));
                     cmd.Parameters.Add(new SqlParameter("dni", user.Dni));
+                    cmd.Parameters.Add(new SqlParameter("dvh", getDVH(user)));
 
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -330,101 +407,23 @@ namespace DataAccess
                 throw;
             }
         }
-        public void addTries(User user)
+        public string getDVH( User user )
         {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(user.Name);
+            sb.Append(user.Password);
+            sb.Append(user.Blocked.ToString());
+            sb.Append(user.Dni);
+            sb.Append(user.Mail);
+            sb.Append(user.Phone);
+            sb.Append(user.Nic);
+            sb.Append(user.Tries.ToString());
 
-            SqlConnection connection = ConnectionSingleton.getConnection();
-            try
-            {
-                connection.Open();
-                string query = $@"update usuarios set intentos = @intentos where id_usuario =@id";
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = query;
-                cmd.Connection = connection;
-                cmd.Parameters.Add(new SqlParameter("id", user.Id));
-                cmd.Parameters.Add(new SqlParameter("intentos", user.Tries + 1));
-
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch
-            {
-                connection.Close();
-                throw;
-            }
+            return DVService.getDV(sb.ToString());
         }
-        public void resetTries(User user)
+        public string getDVV( List<User> list )
         {
-
-            SqlConnection connection = ConnectionSingleton.getConnection();
-            try
-            {
-                connection.Open();
-                string query = $@"update usuarios set intentos = 0 where id_usuario =@id";
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = query;
-                cmd.Connection = connection;
-                cmd.Parameters.Add(new SqlParameter("id", user.Id));
-
-
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch
-            {
-                connection.Close();
-                throw;
-            }
-        }
-        public void blockUser(User user)
-        {
-
-            SqlConnection connection = ConnectionSingleton.getConnection();
-            try
-            {
-                connection.Open();
-                string query = $@"update usuarios set bloqueado = 1 where id_usuario =@id";
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = query;
-                cmd.Connection = connection;
-                cmd.Parameters.Add(new SqlParameter("id", user.Id));
-
-
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch
-            {
-                connection.Close();
-                throw;
-            }
-        }
-        public void unblockUser(User user)
-        {
-
-            SqlConnection connection = ConnectionSingleton.getConnection();
-            try
-            {
-                connection.Open();
-                string query = $@"update usuarios set bloqueado = 0 where id_usuario =@id";
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = query;
-                cmd.Connection = connection;
-                cmd.Parameters.Add(new SqlParameter("id", user.Id));
-
-
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch
-            {
-                connection.Close();
-                throw;
-            }
+            return DVService.getDV(list.Aggregate<User, String>("", ( a, b ) => a + b.dvh));
         }
     }
 }

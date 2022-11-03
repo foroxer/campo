@@ -23,6 +23,10 @@ namespace Business
             return languageRepository.GetLanguage(name);
         }
 
+        public Language GetLanguage( int id )
+        {
+            return languageRepository.GetLanguage(id);
+        }
         public List<Language> GetLanguages()
         {
             List<Language> languages = languageRepository.GetAllLanguagesWithTranslations();

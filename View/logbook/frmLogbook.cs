@@ -6,22 +6,17 @@ using Models.interfaces;
 using Models.language;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utiles;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace View.logbook
 {
     public partial class frmLogbook : Form, ILanguageObserber
     {
-        UserService userService;
         List<IRegistry> bitacoraList;
         public frmLogbook()
         {
@@ -38,7 +33,6 @@ namespace View.logbook
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             bitacoraList = BitacoraService.getRegisters();
-            userService = new UserService();
         }
 
         private void searchBtn_Click( object sender, EventArgs e )
@@ -47,7 +41,7 @@ namespace View.logbook
 
                 register.dateTime.Ticks > dateTimePicker1.Value.Date.Ticks && register.dateTime.Ticks < dateTimePicker2.Value.Date.Ticks
                 && ( priorityCheck.Checked ? register.priority.Equals(priorityCombo.SelectedItem) : true ) //devuelve true cuando el check esta desactivado
-                && ( userCheck.Checked ? register.user.Trim().Equals(( userCombo.SelectedItem as User ).Id.ToString()) : true )  //devuelve true cuando el check esta desactivado
+                && ( userCheck.Checked ? register.user.Trim().Equals(userTxt.Text) : true )  //devuelve true cuando el check esta desactivado
 
           ).ToList();
 
@@ -65,10 +59,7 @@ namespace View.logbook
                 column.Tag = "table" + column.HeaderText.ToLower().RemoveWhitespaces();
             }
 
-            userCombo.DataSource = userService.GetAll();
-            userCombo.ValueMember = "name";
-
-            userCombo.Enabled = userCheck.Checked;
+            userTxt.Enabled = userCheck.Checked;
             priorityCombo.Enabled = priorityCheck.Checked;
 
         }
@@ -90,7 +81,7 @@ namespace View.logbook
 
         private void userCheck_CheckedChanged( object sender, EventArgs e )
         {
-            userCombo.Enabled = userCheck.Checked;
+            userTxt.Enabled = userCheck.Checked;
         }
     }
 }

@@ -48,6 +48,11 @@
     <Compile Include="entities\Registry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DigitosVerificadoresLib\DigitosVerificadoresLib.csproj">
+      <Project>{212b76d5-c82d-496e-9e1e-bb6d99f4acf5}</Project>
+      <Name>DigitosVerificadoresLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

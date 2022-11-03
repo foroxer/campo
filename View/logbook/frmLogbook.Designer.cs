@@ -31,7 +31,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.priorityCombo = new System.Windows.Forms.ComboBox();
-            this.userCombo = new System.Windows.Forms.ComboBox();
             this.searchBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +40,7 @@
             this.restoreBtn = new System.Windows.Forms.Button();
             this.priorityCheck = new System.Windows.Forms.CheckBox();
             this.userCheck = new System.Windows.Forms.CheckBox();
+            this.userTxt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,14 +65,6 @@
             this.priorityCombo.Name = "priorityCombo";
             this.priorityCombo.Size = new System.Drawing.Size(200, 24);
             this.priorityCombo.TabIndex = 3;
-            // 
-            // userCombo
-            // 
-            this.userCombo.FormattingEnabled = true;
-            this.userCombo.Location = new System.Drawing.Point(485, 124);
-            this.userCombo.Name = "userCombo";
-            this.userCombo.Size = new System.Drawing.Size(200, 24);
-            this.userCombo.TabIndex = 4;
             // 
             // searchBtn
             // 
@@ -167,11 +159,19 @@
             this.userCheck.UseVisualStyleBackColor = true;
             this.userCheck.CheckedChanged += new System.EventHandler(this.userCheck_CheckedChanged);
             // 
+            // userTxt
+            // 
+            this.userTxt.Location = new System.Drawing.Point(480, 124);
+            this.userTxt.Name = "userTxt";
+            this.userTxt.Size = new System.Drawing.Size(200, 22);
+            this.userTxt.TabIndex = 14;
+            // 
             // frmLogbook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 527);
+            this.Controls.Add(this.userTxt);
             this.Controls.Add(this.userCheck);
             this.Controls.Add(this.priorityCheck);
             this.Controls.Add(this.restoreBtn);
@@ -181,7 +181,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchBtn);
-            this.Controls.Add(this.userCombo);
             this.Controls.Add(this.priorityCombo);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
@@ -200,7 +199,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.ComboBox priorityCombo;
-        private System.Windows.Forms.ComboBox userCombo;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -210,5 +208,6 @@
         private System.Windows.Forms.Button restoreBtn;
         private System.Windows.Forms.CheckBox priorityCheck;
         private System.Windows.Forms.CheckBox userCheck;
+        private System.Windows.Forms.TextBox userTxt;
     }
 }

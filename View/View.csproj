@@ -56,6 +56,18 @@
     <Compile Include="changeControl\frmUserChangeControl.Designer.cs">
       <DependentUpon>frmUserChangeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="dbmanage\frmBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dbmanage\frmBackup.Designer.cs">
+      <DependentUpon>frmBackup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dbmanage\frmRestore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dbmanage\frmRestore.Designer.cs">
+      <DependentUpon>frmRestore.cs</DependentUpon>
+    </Compile>
     <Compile Include="logbook\frmLogbook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +170,12 @@
     <Compile Include="Translator.cs" />
     <EmbeddedResource Include="changeControl\frmUserChangeControl.resx">
       <DependentUpon>frmUserChangeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbmanage\frmBackup.resx">
+      <DependentUpon>frmBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbmanage\frmRestore.resx">
+      <DependentUpon>frmRestore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="logbook\frmLogbook.resx">
       <DependentUpon>frmLogbook.cs</DependentUpon>

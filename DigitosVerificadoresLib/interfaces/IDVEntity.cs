@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigitosVerifiacdoresLib.services
+namespace DigitosVerificadoresLib.interfaces
 {
-    internal class DVService
-    {
-    }
+	public interface IDVEntity
+	{
+        String dvh
+		{
+			get;
+			set;
+		}
+	}
 }

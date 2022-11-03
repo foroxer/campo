@@ -1,4 +1,5 @@
 ﻿using Business;
+using Models;
 using Models.bussines;
 using Models.interfaces;
 using Models.language;
@@ -72,6 +73,19 @@ namespace View.changeControl
             {
                 //TODO restaurar usuario
                 //userService.UpdateUser();
+                int userID = ((int)dataGridView1.SelectedRows[0].Cells["id_usuario"]?.Value);
+                User user = userService.Get(userID);
+
+                user.Name = (string)dataGridView1.SelectedRows[0].Cells["nombre"]?.Value;
+                user.Nic = (string)dataGridView1.SelectedRows[0].Cells["nic"]?.Value;
+                user.Mail = (string)dataGridView1.SelectedRows[0].Cells["mail"]?.Value;
+                user.LastName = (string)dataGridView1.SelectedRows[0].Cells["apellido"]?.Value;
+                user.Phone = (string)dataGridView1.SelectedRows[0].Cells["telefono"]?.Value;
+                user.Adress = (string)dataGridView1.SelectedRows[0].Cells["direccion"]?.Value;
+                user.Dni = (string)dataGridView1.SelectedRows[0].Cells["dni"]?.Value;
+
+                userService.UpdateUser(user);
+
             }
         }
 

@@ -493,7 +493,7 @@ namespace DataAccess
             catch (Exception ex)
             {
                 connection.Close();
-                throw;
+                throw ex;
             }
         }
         public DataSet GetAssignedMuscularGroupBy(int userId)
@@ -550,7 +550,7 @@ namespace DataAccess
             catch (Exception ex)
             {
                 connection.Close();
-                throw;
+                throw ex;
             }
         }
 

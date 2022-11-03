@@ -10,25 +10,33 @@ namespace Business
 
     public class UserService
     {
-        UserRepository userRepository;
-        PermissionsRepository permissionsRepository;
+        PermissionsService permissionsService;
+        LanguageService languageService;
 
+        UserRepository userRepository;
         public UserService()
         {
             userRepository = new UserRepository();
-            permissionsRepository = new PermissionsRepository();
+            permissionsService = new PermissionsService();
+            languageService = new LanguageService();
         }
         public List<User> GetAll()
         {
-            return userRepository.GetAll();
+            List<User> users = userRepository.getAll();
+            users.ForEach(user => user.Language = languageService.GetLanguage(user.Language.ID));
+            return users;
         }
         public User Get(String nic)
         {
-            return userRepository.Get(nic);
+            return userRepository.get(nic);
+        }
+        public User Get( int id )
+        {
+            return userRepository.get(id);
         }
         public void SavePermissions(User user)
         {
-            userRepository.SavePermissions(user);
+            userRepository.savePermissions(user);
         }
         public void ResetPassword(User user)
         {
@@ -37,7 +45,7 @@ namespace Business
             {
                 string nonHashedPassword = Crypto.RandomString(10);
                 user.Password = Crypto.HashSha256(nonHashedPassword);
-                userRepository.UpdatePassword(user);
+                userRepository.updatePassword(user);
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Hola, ");
@@ -52,7 +60,7 @@ namespace Business
                 try
                 {
                     user.Password = oldPassword;
-                    userRepository.UpdatePassword(user);
+                    userRepository.updatePassword(user);
                 }
                 catch (Exception)
                 {
@@ -64,11 +72,11 @@ namespace Business
         {
             try
             {
-                user.Permissions.Add(permissionsRepository.GetPatent(PermissionsEnum.VerRutina));
+                user.Permissions.Add(permissionsService.GetPatent(PermissionsEnum.VerRutina));
 
                 string nonHashedPassword = Crypto.RandomString(10);
                 user.Password = Crypto.HashSha256(nonHashedPassword);
-                userRepository.Create(user);
+                userRepository.save(user);
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Hola, ");
@@ -82,29 +90,35 @@ namespace Business
             catch (Exception)
             {
                 throw;
-            }
-
-                
+            }  
         }
         public void UpdateUser(User user)
         {
-            userRepository.updateUser(user);
+            userRepository.update(user);
         }
         public void AddTries(User user)
         {
-            userRepository.addTries(user);
+            User toUpdate = Get(user.Nic);
+            toUpdate.Tries += 1;
+            UpdateUser(toUpdate);
         }
         public void ResetTries(User user)
         {
-            userRepository.resetTries(user);
+            User toUpdate = Get(user.Nic);
+            toUpdate.Tries = 0;
+            UpdateUser(toUpdate);
         }
         public void BlockUser(User user)
         {
-            userRepository.blockUser(user);
+            User toUpdate = Get(user.Nic);
+            toUpdate.Blocked = true;
+            UpdateUser(toUpdate);
         }
         public void UnblockUser(User user)
         {
-            userRepository.unblockUser(user);
+            User toUpdate = Get(user.Nic);
+            toUpdate.Blocked = false;
+            UpdateUser(toUpdate);
         }
         public void ChangePassword(string pass, string newPass, User user)
         {
@@ -115,7 +129,7 @@ namespace Business
                 {
                     string nonHashedPassword = newPass;
                     user.Password = Crypto.HashSha256(nonHashedPassword);
-                    userRepository.UpdatePassword(user);
+                    userRepository.updatePassword(user);
 
                     StringBuilder sb = new StringBuilder();
                     sb.Append("Hola, ");
@@ -130,7 +144,7 @@ namespace Business
                     try
                     {
                         user.Password = oldPassword;
-                        userRepository.UpdatePassword(user);
+                        userRepository.updatePassword(user);
                     }
                     catch (Exception)
                     {

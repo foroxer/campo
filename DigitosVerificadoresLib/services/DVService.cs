@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,34 +9,25 @@ namespace DigitosVerificadoresLib.services
 {
     public class DVService
     {
-        private static List<string> tables = new List<string>();
-        public void config()
+        public static String getDV(String obj )
         {
-
+            return hashSha256( obj );
         }
 
-        public String getDvv<T>(T obj)
+        private static string hashSha256( string toHash )
         {
-            Dictionary<string, string> _dict = new Dictionary<string, string>();
+            StringBuilder Sb = new StringBuilder();
 
-            PropertyInfo[] props = typeof(T).GetProperties();
-            foreach (PropertyInfo prop in props)
+            using ( SHA256 hash = SHA256Managed.Create() )
             {
-                /*object[] attrs = prop.GetCustomAttributes(true);
-                foreach (object authAttr in attrs)
-                {*/
-                //AuthorAttribute authAttr = attr as AuthorAttribute;
-                if (prop.GetValue(obj) != null)
-                {
-                    string propName = prop.PropertyType.Name;
-                    string value = prop.GetValue(obj).ToString();
+                Encoding enc = Encoding.UTF8;
+                Byte[] result = hash.ComputeHash(enc.GetBytes(toHash));
 
-                    //_dict.Add(propName, value);
-                }
-                //}
+                foreach ( Byte b in result )
+                    Sb.Append(b.ToString("x2"));
             }
 
-            return "string";
+            return Sb.ToString();
         }
     }
 }

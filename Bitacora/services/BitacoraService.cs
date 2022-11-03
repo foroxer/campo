@@ -47,7 +47,7 @@ namespace BitacoraLib.services
         public static  List<IRegistry> getRegisters()
         {
             //recuperar data
-            return registryDAO.getRegistries();
+            return registryDAO.getAll();
         }
 
     }

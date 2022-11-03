@@ -10,6 +10,7 @@ using View.logbook;
 using View.business;
 using View.language;
 using View.changeControl;
+using View.dbmanage;
 
 namespace View
 {
@@ -190,6 +191,16 @@ namespace View
         private void controlDeCambiosToolStripMenuItem_Click( object sender, EventArgs e )
         {
             createForm(typeof(frmUserChangeControl));
+        }
+
+        private void backUpToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(frmBackup));
+        }
+
+        private void restoreToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(frmRestore));
         }
     }
 }

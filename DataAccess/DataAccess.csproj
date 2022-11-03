@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupRepository.cs" />
     <Compile Include="ChangesControlRepository.cs" />
     <Compile Include="ExerciseRepository.cs" />
     <Compile Include="LanguageRepository.cs" />
@@ -49,6 +50,14 @@
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bitacora\BitacoraLib.csproj">
+      <Project>{239234fd-a0ea-49ad-8964-c067c17afe8c}</Project>
+      <Name>BitacoraLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitosVerificadoresLib\DigitosVerificadoresLib.csproj">
+      <Project>{212b76d5-c82d-496e-9e1e-bb6d99f4acf5}</Project>
+      <Name>DigitosVerificadoresLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{ae6101de-b0b6-40a1-83f3-6e72edb26a9d}</Project>
       <Name>Models</Name>

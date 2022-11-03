@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="interfaces\IDVDAO.cs" />
+    <Compile Include="interfaces\IDVEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\DVService.cs" />
   </ItemGroup>

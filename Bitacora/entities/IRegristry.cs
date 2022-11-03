@@ -1,4 +1,5 @@
 ﻿using BitacoraLib.entities;
+using DigitosVerificadoresLib.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace BitacoraLib.entities
 {
-    public interface IRegistry
+    public interface IRegistry : IDVEntity
     {
         DateTime dateTime { get; }
-        string message { get; }
+        String message { get; }
         PriorityEnum priority { get; }
-        string user { get; }
+        String user { get; }
 
     }
 }

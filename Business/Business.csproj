@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupService.cs" />
     <Compile Include="ChangesControlService.cs" />
     <Compile Include="ExerciseService.cs" />
     <Compile Include="LanguageService.cs" />
@@ -55,6 +56,10 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{c62aa5ef-a62e-41b0-8f0d-1697a01fb53f}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitosVerificadoresLib\DigitosVerificadoresLib.csproj">
+      <Project>{212b76d5-c82d-496e-9e1e-bb6d99f4acf5}</Project>
+      <Name>DigitosVerificadoresLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{ae6101de-b0b6-40a1-83f3-6e72edb26a9d}</Project>

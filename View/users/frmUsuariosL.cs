@@ -97,6 +97,7 @@ namespace View
                 dataGridView1.Columns["tries"].Visible = false;
                 dataGridView1.Columns["language"].Visible = false;
                 dataGridView1.Columns["password"].Visible = false;
+                dataGridView1.Columns["dvh"].Visible = false;
             }
         }
     }
