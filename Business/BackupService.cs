@@ -28,7 +28,6 @@ namespace Business
 
         public void realizarRestore( String fullPath )
         {
-            //TODO: Arreglar mutipart backup
             String regex = Path.GetFileName(fullPath).Split('-')[0] + "??" + Path.GetExtension(fullPath);
 
             String directorioActual = Path.GetDirectoryName(fullPath);
