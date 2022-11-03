@@ -1,4 +1,7 @@
 ﻿using Business;
+using Models;
+using Models.interfaces;
+using Models.language;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +14,7 @@ using System.Windows.Forms;
 
 namespace View.dbmanage
 {
-    public partial class frmBackup : Form
+    public partial class frmBackup : Form , ILanguageObserber
     {
         private BackupService backupService;
 
@@ -75,6 +78,12 @@ namespace View.dbmanage
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            updateLanguage(null);
+        }
+
+        public void updateLanguage( Language language )
+        {
+            Translator.translate(this);
         }
     }
 }

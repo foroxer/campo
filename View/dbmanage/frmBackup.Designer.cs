@@ -48,7 +48,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 16);
             this.label1.TabIndex = 0;
-            this.label1.Tag = "com.td.cantidad.de.partes";
+            this.label1.Tag = "cantidaddepartes";
             this.label1.Text = "Cantidad de Partes";
             // 
             // pathtxt
@@ -67,7 +67,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(105, 28);
             this.btnCancelar.TabIndex = 2;
-            this.btnCancelar.Tag = "com.td.cancelar";
+            this.btnCancelar.Tag = "Cancelar";
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -99,7 +99,7 @@
             this.groupBox1.Size = new System.Drawing.Size(731, 286);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Tag = "com.td.generate.respaldo";
+            this.groupBox1.Tag = "generarrespaldo";
             this.groupBox1.Text = "Generar Respaldo";
             // 
             // btnExaminar
@@ -109,7 +109,7 @@
             this.btnExaminar.Name = "btnExaminar";
             this.btnExaminar.Size = new System.Drawing.Size(105, 28);
             this.btnExaminar.TabIndex = 6;
-            this.btnExaminar.Tag = "com.td.examinar";
+            this.btnExaminar.Tag = "examinar";
             this.btnExaminar.Text = "Examinar";
             this.btnExaminar.UseVisualStyleBackColor = true;
             this.btnExaminar.Click += new System.EventHandler(this.btnExaminar_Click);
@@ -122,7 +122,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 16);
             this.label2.TabIndex = 5;
-            this.label2.Tag = "com.td.seleccione.destino";
+            this.label2.Tag = "seleccionedestino";
             this.label2.Text = "Seleccione Destino";
             // 
             // btnRespaldar
@@ -132,7 +132,7 @@
             this.btnRespaldar.Name = "btnRespaldar";
             this.btnRespaldar.Size = new System.Drawing.Size(100, 28);
             this.btnRespaldar.TabIndex = 4;
-            this.btnRespaldar.Tag = "com.td.respaldar";
+            this.btnRespaldar.Tag = "Respaldar";
             this.btnRespaldar.Text = "Respaldar";
             this.btnRespaldar.UseVisualStyleBackColor = true;
             this.btnRespaldar.Click += new System.EventHandler(this.btnRespaldar_Click);
@@ -145,7 +145,7 @@
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmBackup";
-            this.Tag = "com.td.generate.respaldo";
+            this.Tag = "backup";
             this.Text = "Respaldo Base de Datos";
             this.Load += new System.EventHandler(this.backup_Load);
             this.groupBox1.ResumeLayout(false);

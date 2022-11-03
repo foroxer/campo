@@ -113,6 +113,7 @@ namespace View
             Form form = (Form)Activator.CreateInstance(formType);
             if (typeof(ILanguageObserber).IsAssignableFrom(form.GetType()))
             {
+                //TODO todos los forms deberian ser ILanguageObserber
                 Session.GetInstance.addObserber((ILanguageObserber)form);
             }
             form.MdiParent = this;
@@ -202,5 +203,7 @@ namespace View
         {
             createForm(typeof(frmRestore));
         }
+
+
     }
 }

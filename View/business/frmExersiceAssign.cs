@@ -158,6 +158,7 @@ namespace View.business
                 dataGridView1.Columns["adress"].Visible = false;
                 dataGridView1.Columns["blocked"].Visible = false;
                 dataGridView1.Columns["id"].Visible = false;
+                dataGridView1.Columns["dvh"].Visible = false;
             }
         }
 
