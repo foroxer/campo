@@ -1,4 +1,6 @@
-﻿using DataAccess;
+﻿using BitacoraLib.dataAccess;
+using BitacoraLib.entities;
+using DataAccess;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -153,6 +155,27 @@ namespace Business
                 }
             }
               
+        }
+
+        public List<String> checkintegrity()
+        {
+            List<String> errors = new List<string>();
+            List<User> list = userRepository.getAll();
+
+            list.ForEach(item =>
+            {
+                if ( !item.dvh.Equals(userRepository.calculateDVH(item)) )
+                {
+                    errors.Add($"Usuarios: El Usuario con id : {item.Id} , fue modificado");
+                }
+            });
+
+            if ( !userRepository.calculateDVV(list).Equals(userRepository.getDVV()) )
+            {
+                errors.Add($"El digito verificador vertical de la tabla usuarios no es correcto");
+            }
+
+            return errors;
         }
     }
 }

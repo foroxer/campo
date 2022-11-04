@@ -9,12 +9,18 @@ namespace Business
 {
     public  class IntegrityChecker
     {
-        public static List<String> check()
+        UserService userService;
+
+        public IntegrityChecker()
+        {
+            userService = new UserService();
+        }
+        public  List<String> check()
         {
             List<String> result = new List<String>();
 
             result.AddRange(BitacoraService.checkintegrity());
-
+            result.AddRange(userService.checkintegrity());
 
 
             return result;
