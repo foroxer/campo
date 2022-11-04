@@ -1,4 +1,6 @@
-﻿using Business;
+﻿using BitacoraLib.entities;
+using BitacoraLib.services;
+using Business;
 using System;
 using System.Windows.Forms;
 
@@ -30,6 +32,8 @@ namespace View
             {
                 clearForm();
                 MessageBox.Show(ex.Message);
+                BitacoraService.register(PriorityEnum.Medium, "Logued failed");
+
             }
         }
         private void clearForm()
@@ -40,10 +44,17 @@ namespace View
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            BitacoraService.register(PriorityEnum.Low, "Start up");
+
             Icon = Properties.Resources.icongray_icono_7282;
             clearForm();
         }
         private void button2_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void frmLogin_FormClosed( object sender, FormClosedEventArgs e )
         {
             Application.Exit();
         }

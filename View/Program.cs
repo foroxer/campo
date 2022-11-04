@@ -12,6 +12,7 @@ using Models.language;
 using static System.Windows.Forms.AxHost;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
+using Business;
 
 namespace View
 {
@@ -28,10 +29,7 @@ namespace View
 
             BitacoraService.config(ConnectionSingleton.getConnection(), "bitacora");
 
-
-            BitacoraService.register(PriorityEnum.Low, "Start up");
-
-            Application.Run(new frmLogin());
+            Application.Run(new PreCheck());
         }
     }
 }

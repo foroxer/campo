@@ -3,6 +3,7 @@ using DigitosVerificadoresLib.services;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace DataAccess
     {
         PermissionsRepository permisosRepository;
         LanguageRepository languageRepository;
+        private string tableName = "usuarios";
 
         public UserRepository()
         {
@@ -106,6 +108,8 @@ namespace DataAccess
                     connection.Close();
 
                     savePermissions(user);
+
+                    updateDVV();
                 }
                 catch
                 {
@@ -330,6 +334,9 @@ namespace DataAccess
             }
             user = get(user.Nic);
             update(user);
+
+
+            updateDVV();
         }
         public void update( User user )
         {
@@ -400,6 +407,7 @@ namespace DataAccess
                     transaction.Rollback();
                     throw;
                 }
+                updateDVV();
             }
             catch
             {
@@ -423,7 +431,87 @@ namespace DataAccess
         }
         public string calculateDVV( List<User> list )
         {
-            return DVService.getDV(list.Aggregate<User, String>("", ( a, b ) => a + b.dvh));
+            return list.Aggregate<User, String>("", ( a, b ) => DVService.getDV(a + b.dvh));
+        }
+
+        public string getDVV()
+        {
+            try
+            {
+                String dvv = "";
+                SqlConnection connection = ConnectionSingleton.getConnection();
+
+                if ( connection.State != ConnectionState.Open ) connection.Open();
+                using ( IDbCommand command = connection.CreateCommand() )
+                {
+                    command.Connection = connection;
+                    command.CommandText = $@"
+                        SELECT  dvv
+                            FROM dvv 
+                            where tablename = @tablename
+                    ";
+
+                    IDbDataParameter tablename = command.CreateParameter();
+                    tablename.ParameterName = "tablename";
+                    tablename.Value = tableName;
+                    command.Parameters.Add(tablename);
+
+                    IDataReader reader = command.ExecuteReader();
+
+                    while ( reader.Read() )
+                    {
+                        dvv = reader.GetValue(reader.GetOrdinal("dvv")).ToString();
+                    }
+                }
+                connection.Close();
+                return dvv;
+            }
+            catch ( Exception ex )
+            {
+                Console.Write(ex.ToString());
+                throw ex;
+            }
+        }
+
+        public void updateDVV()
+        {
+            try
+            {
+                SqlConnection connection = ConnectionSingleton.getConnection();
+
+                String dvvString = calculateDVV(getAll());
+                if ( connection.State != ConnectionState.Open ) connection.Open();
+                using ( IDbCommand command = connection.CreateCommand() )
+                {
+                    command.Connection = connection;
+                    command.CommandText = $@"
+                                             UPDATE [campo].[dbo].[dvv]
+		                                        SET [dvv] = @dvv
+		                                        WHERE [tablename] = @tablename ;
+
+                                           ";
+
+                    IDbDataParameter dvv = command.CreateParameter();
+                    dvv.ParameterName = "dvv";
+                    dvv.Value = dvvString;
+                    command.Parameters.Add(dvv);
+
+
+                    IDbDataParameter tablename = command.CreateParameter();
+                    tablename.ParameterName = "tablename";
+                    tablename.Value = tableName;
+                    command.Parameters.Add(tablename);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+            catch ( Exception ex )
+            {
+                // TODO: ver como hacemos el handle de este error
+                Console.Write(ex.ToString());
+                throw ex;
+            }
         }
     }
 }

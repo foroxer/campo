@@ -176,7 +176,7 @@ namespace BitacoraLib.dataAccess
 
         public string calculateDVV( List<IRegistry> list )
         {
-            return DVService.getDV(list.Aggregate<IRegistry, String>("", ( a, b ) => a + b.dvh));
+            return list.Aggregate<IRegistry, String>("", ( a, b ) => DVService.getDV(a + b.dvh));
         }
 
         public void update( IRegistry obj )
@@ -234,7 +234,7 @@ namespace BitacoraLib.dataAccess
             }
         }
 
-        private void updateDVV()
+        public void updateDVV()
         {
             try
             {
@@ -271,8 +271,6 @@ namespace BitacoraLib.dataAccess
                 Console.Write(ex.ToString());
                 throw ex;
             }
-
-            getDVV();
         }
         
         public string getDVV()

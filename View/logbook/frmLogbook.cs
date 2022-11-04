@@ -41,7 +41,7 @@ namespace View.logbook
 
                 register.dateTime.Ticks > dateTimePicker1.Value.Date.Ticks && register.dateTime.Ticks < dateTimePicker2.Value.Date.Ticks
                 && ( priorityCheck.Checked ? register.priority.Equals(priorityCombo.SelectedItem) : true ) //devuelve true cuando el check esta desactivado
-                && ( userCheck.Checked ? register.user.Trim().Equals(userTxt.Text) : true )  //devuelve true cuando el check esta desactivado
+                && ( userTxt.Text.Length > 0 ? register.user.Trim().Equals(userTxt.Text) : true )  //devuelve true cuando el check esta desactivado
 
           ).ToList();
 
@@ -53,13 +53,13 @@ namespace View.logbook
             dateTimePicker2.Value = DateTime.Today.AddDays(1);
             dataGridView1.DataSource = bitacoraList;
             priorityCombo.DataSource = Enum.GetValues(typeof(PriorityEnum));
+            userTxt.Text = "";
 
             foreach ( DataGridViewColumn column in dataGridView1.Columns )
             {
                 column.Tag = "table" + column.HeaderText.ToLower().RemoveWhitespaces();
             }
 
-            userTxt.Enabled = userCheck.Checked;
             priorityCombo.Enabled = priorityCheck.Checked;
 
         }
@@ -77,11 +77,6 @@ namespace View.logbook
         private void priorityCheck_CheckedChanged( object sender, EventArgs e )
         {
             priorityCombo.Enabled = priorityCheck.Checked;
-        }
-
-        private void userCheck_CheckedChanged( object sender, EventArgs e )
-        {
-            userTxt.Enabled = userCheck.Checked;
         }
     }
 }

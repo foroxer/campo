@@ -39,7 +39,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.restoreBtn = new System.Windows.Forms.Button();
             this.priorityCheck = new System.Windows.Forms.CheckBox();
-            this.userCheck = new System.Windows.Forms.CheckBox();
             this.userTxt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -149,16 +148,6 @@
             this.priorityCheck.UseVisualStyleBackColor = true;
             this.priorityCheck.CheckedChanged += new System.EventHandler(this.priorityCheck_CheckedChanged);
             // 
-            // userCheck
-            // 
-            this.userCheck.AutoSize = true;
-            this.userCheck.Location = new System.Drawing.Point(691, 128);
-            this.userCheck.Name = "userCheck";
-            this.userCheck.Size = new System.Drawing.Size(18, 17);
-            this.userCheck.TabIndex = 13;
-            this.userCheck.UseVisualStyleBackColor = true;
-            this.userCheck.CheckedChanged += new System.EventHandler(this.userCheck_CheckedChanged);
-            // 
             // userTxt
             // 
             this.userTxt.Location = new System.Drawing.Point(480, 124);
@@ -172,7 +161,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 527);
             this.Controls.Add(this.userTxt);
-            this.Controls.Add(this.userCheck);
             this.Controls.Add(this.priorityCheck);
             this.Controls.Add(this.restoreBtn);
             this.Controls.Add(this.dataGridView1);
@@ -187,6 +175,7 @@
             this.Name = "frmLogbook";
             this.Tag = "bitacora";
             this.Text = "Bitacora";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Logbook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -207,7 +196,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button restoreBtn;
         private System.Windows.Forms.CheckBox priorityCheck;
-        private System.Windows.Forms.CheckBox userCheck;
         private System.Windows.Forms.TextBox userTxt;
     }
 }

@@ -110,6 +110,12 @@
     <Compile Include="language\frmLanguageA.Designer.cs">
       <DependentUpon>frmLanguageA.cs</DependentUpon>
     </Compile>
+    <Compile Include="PreCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PreCheck.Designer.cs">
+      <DependentUpon>PreCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="security\frmResetPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="language\frmLanguageL.resx">
       <DependentUpon>frmLanguageL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreCheck.resx">
+      <DependentUpon>PreCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="security\frmResetPassword.resx">
       <DependentUpon>frmResetPassword.cs</DependentUpon>
