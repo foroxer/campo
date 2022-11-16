@@ -1,9 +1,11 @@
 ﻿
+using Bitacora.dataAccess.Exeptions;
 using BitacoraLib.dataAccess;
 using BitacoraLib.entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace BitacoraLib.services
 {
@@ -20,9 +22,17 @@ namespace BitacoraLib.services
 
         public static void config( IDbConnection conn, String tablename )
         {
-            connection = conn;
-            tableName = tablename;
-            registryDAO = new RegistryDAO(conn, tablename);
+            try
+            {
+
+                connection = conn;
+                tableName = tablename;
+                registryDAO = new RegistryDAO(conn, tablename);
+            }
+            catch ( DBException ex )
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public static void register( PriorityEnum priority, String toRegister, String user = "System" )
@@ -49,7 +59,15 @@ namespace BitacoraLib.services
         public static List<String> checkintegrity()
         {
             List<String> errors = new List<string>();
-            List<IRegistry> list = registryDAO.getAll();
+            List<IRegistry> list = new List<IRegistry>();
+            try
+            {
+                list.AddRange(registryDAO?.getAll());
+            }
+            catch ( DBException ex )
+            {
+                errors.Add(ex.Message);
+            }
 
             list.ForEach(registry =>
             {

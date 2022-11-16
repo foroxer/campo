@@ -1,5 +1,6 @@
 ﻿using Models.interfaces;
 using Models.language;
+using System;
 using System.Collections.Generic;
 
 
@@ -29,7 +30,7 @@ namespace Models
         {
             get
             {
-                if (_session == null) _session = new Session();
+                if ( _session == null ) _session = new Session();
                 return _session;
             }
         }
@@ -39,32 +40,32 @@ namespace Models
         {
             return user != null;
         }
-        bool isInRole(Component c, PermissionsEnum permiso, bool existe)
+        bool isInRole( Component c, PermissionsEnum permiso, bool existe )
         {
-            if (c.Permiso.Equals(permiso))
+            if ( c.Permiso.Equals(permiso) )
                 existe = true;
             else
             {
-                foreach (var item in c.Childs)
+                foreach ( var item in c.Childs )
                 {
                     existe = isInRole(item, permiso, existe);
-                    if (existe) return true;
+                    if ( existe ) return true;
                 }
             }
 
             return existe;
         }
-        public bool IsInRole(PermissionsEnum permiso)
+        public bool IsInRole( PermissionsEnum permiso )
         {
             bool existe = false;
-            foreach (var item in user.Permissions)
+            foreach ( var item in user.Permissions )
             {
-                if (item.Permiso.Equals(permiso))
+                if ( item.Permiso.Equals(permiso) )
                     return true;
                 else
                 {
                     existe = isInRole(item, permiso, existe);
-                    if (existe) return true;
+                    if ( existe ) return true;
                 }
             }
             return existe;
@@ -74,23 +75,23 @@ namespace Models
             _session.user = null;
             _session.language = null;
         }
-        public void Login(User user)
+        public void Login( User user )
         {
             _session.user = user;
             _session.language = user.Language;
 
         }
-        public void addObserber(ILanguageObserber languageObserber)
+        public void addObserber( ILanguageObserber languageObserber )
         {
             languageObserbers.Add(languageObserber);
         }
-        public void removeObserber(ILanguageObserber languageObserber)
+        public void removeObserber( ILanguageObserber languageObserber )
         {
             languageObserbers.Remove(languageObserber);
         }
-        public void notifyObserbers(Language languaje)
+        public void notifyObserbers( Language languaje )
         {
-            foreach (ILanguageObserber obserber in languageObserbers)
+            foreach ( ILanguageObserber obserber in languageObserbers )
             {
                 obserber.updateLanguage(language);
             }

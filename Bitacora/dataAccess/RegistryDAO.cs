@@ -1,4 +1,5 @@
-﻿using BitacoraLib.entities;
+﻿using Bitacora.dataAccess.Exeptions;
+using BitacoraLib.entities;
 using DigitosVerificadoresLib;
 using DigitosVerificadoresLib.interfaces;
 using DigitosVerificadoresLib.services;
@@ -54,8 +55,7 @@ namespace BitacoraLib.dataAccess
             }
             catch ( Exception ex )
             {
-                Console.Write(ex.ToString());
-                throw;
+                throw new DBException(ex.Message);
             }
         }
         public void save( IRegistry registry )
@@ -113,9 +113,7 @@ namespace BitacoraLib.dataAccess
             }
             catch ( Exception ex )
             {
-                // TODO: ver como hacemos el handle de este error
-                Console.Write(ex.ToString());
-                throw ex;
+                throw new DBException(ex.Message);
             }
         }
         public List<IRegistry> getAll()
@@ -158,8 +156,7 @@ namespace BitacoraLib.dataAccess
             }
             catch ( Exception ex )
             {
-                Console.Write(ex.ToString());
-                throw ex;
+                throw new DBException(ex.Message);
             }
         }
 
@@ -229,8 +226,7 @@ namespace BitacoraLib.dataAccess
             }
             catch ( Exception ex )
             {
-                Console.Write(ex.ToString());
-                throw ex;
+                throw new DBException(ex.Message);
             }
         }
 
@@ -267,9 +263,7 @@ namespace BitacoraLib.dataAccess
             }
             catch ( Exception ex )
             {
-                // TODO: ver como hacemos el handle de este error
-                Console.Write(ex.ToString());
-                throw ex;
+                throw new DBException(ex.Message);
             }
         }
         
@@ -305,8 +299,7 @@ namespace BitacoraLib.dataAccess
             }
             catch ( Exception ex )
             {
-                Console.Write(ex.ToString());
-                throw ex;
+                throw new DBException(ex.Message);
             }
         }
     }

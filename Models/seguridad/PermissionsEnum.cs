@@ -11,7 +11,8 @@
         ConfigIdioma,
         ConfigurarEjercicios,
         AsignarEjercicios,
-
-
+        Backup,
+        Restore,
+        DVRecalc
     }
 }

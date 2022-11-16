@@ -20,23 +20,28 @@ namespace View
 
         SessionService sesionService;
         LanguageService languageService;
-
-        public frmMain(Form parent)
+        Boolean withoutDB;
+        public frmMain(Form parent, Boolean withoutDB = false )
         {
+            
             InitializeComponent();
 
+            this.withoutDB = withoutDB;
             loginForm = parent;
             sesionService = new SessionService();
             languageService = new LanguageService();
-            Session.GetInstance.addObserber(this);
-            loadLanguages();
-
+            if ( withoutDB )
+            {
+                Session.GetInstance.addObserber(this);
+                loadLanguages();
+            }
             ValidarPermisos();
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
             Icon = Properties.Resources.icongray_icono_7282;
-            updateLanguage(Session.GetInstance.language);
+
+            if(!withoutDB) updateLanguage(Session.GetInstance.language);
         }
         private void languageChange_click(object sender, EventArgs e)
         {
@@ -57,7 +62,8 @@ namespace View
                 usuariosToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Usuarios);
                 configurarToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.ConfigurarEjercicios);
                 asignarToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.AsignarEjercicios);
-                
+                restoreToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Restore);
+                backUpToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Backup);
 
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {
@@ -96,6 +102,8 @@ namespace View
                     Session.GetInstance.removeObserber((ILanguageObserber)form);
                 }
             }
+
+
             loginForm.Show();
             sesionService.Logout();
         }

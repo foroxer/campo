@@ -246,7 +246,6 @@
       <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="clasesUI.cd" />
-    <None Include="CU1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

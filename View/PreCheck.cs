@@ -34,7 +34,7 @@ namespace View
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridView1.RowHeadersVisible = false;
 
-            listErrors = integrityChecker.check();
+            
         }
 
         private void PreCheck_Load( object sender, EventArgs e )
@@ -44,11 +44,12 @@ namespace View
 
         private void PreCheck_Shown( object sender, EventArgs e )
         {
+            listErrors = integrityChecker.check();
 
             dataGridView1.DataSource = listErrors.Select(er => new { error = er }).ToList();
             dataGridView1.CurrentCell.Selected = false;
 
-            pictureBox1.Dispose();
+            pictureBox1.Hide();
             if ( listErrors.Count == 0 )
             {
                 Hide();
@@ -61,9 +62,8 @@ namespace View
         private void button1_Click( object sender, EventArgs e )
         {
             Hide();
-            Form login = new frmLogin();
+            Form login = new frmLogin(true);
             login.Show();
         }
-
     }
 }

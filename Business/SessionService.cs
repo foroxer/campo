@@ -55,5 +55,53 @@ namespace Business
             Session.GetInstance.Logout();
         }
 
+        public void LoginWithDBProblem( String name, String password )
+        {
+            try
+            {
+
+                String defUser = RegReader.read("def_user");
+                String defPass = RegReader.read("def_pass");
+
+                if ( name.IsNullOrEmpty() || password.IsNullOrEmpty() || !Crypto.HashSha256(password).Equals(defPass) || !name.Equals(defUser) )
+                {
+                    throw new LoginException();
+                }
+                User user = new User()
+                {
+                    Nic = "superUser",
+                    Name = defUser,
+                    Password = defPass,
+                };
+
+                user.Permissions.Add(new Patent { 
+                    Description = PermissionsEnum.Backup.ToString() ,
+                    Nombre = PermissionsEnum.Backup.ToString() ,
+                    Permiso = PermissionsEnum.Backup
+                });
+
+                user.Permissions.Add(new Patent
+                {
+                    Description = PermissionsEnum.Restore.ToString(),
+                    Nombre = PermissionsEnum.Restore.ToString(),
+                    Permiso = PermissionsEnum.Restore
+                });
+
+                user.Permissions.Add(new Patent
+                {
+                    Description = PermissionsEnum.DVRecalc.ToString(),
+                    Nombre = PermissionsEnum.DVRecalc.ToString(),
+                    Permiso = PermissionsEnum.DVRecalc
+                });
+
+                Session.GetInstance.Login(user);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

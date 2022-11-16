@@ -9,32 +9,43 @@ namespace View
     public partial class frmLogin : Form
     {
         SessionService sessionService;
+        Boolean dbcheck;
 
-        public frmLogin()
+        public frmLogin( Boolean dbcheck = false )
         {
             InitializeComponent();
-            sessionService = new SessionService();
+            this.sessionService = new SessionService();
+            this.dbcheck = dbcheck;
+
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click( object sender, EventArgs e )
         {
             Close();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click( object sender, EventArgs e )
         {
+
             try
             {
-                sessionService.Login(textBox1.Text, textBox2.Text);
+                if ( dbcheck )
+                {
+                    sessionService.LoginWithDBProblem(textBox1.Text, textBox2.Text);
+                }
+                else
+                {
+                    sessionService.Login(textBox1.Text, textBox2.Text);
+                    BitacoraService.register(PriorityEnum.Low, "Start up");
+                }
                 new frmMain(this).Show();
                 clearForm();
                 Hide();
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 clearForm();
                 MessageBox.Show(ex.Message);
-                BitacoraService.register(PriorityEnum.Medium, "Logued failed");
-
             }
+
         }
         private void clearForm()
         {
@@ -42,14 +53,13 @@ namespace View
             textBox2.Clear();
             textBox1.Focus();
         }
-        private void frmLogin_Load(object sender, EventArgs e)
+        private void frmLogin_Load( object sender, EventArgs e )
         {
-            BitacoraService.register(PriorityEnum.Low, "Start up");
 
             Icon = Properties.Resources.icongray_icono_7282;
             clearForm();
         }
-        private void button2_Click_1(object sender, EventArgs e)
+        private void button2_Click_1( object sender, EventArgs e )
         {
             Application.Exit();
         }

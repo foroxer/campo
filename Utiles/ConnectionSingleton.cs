@@ -1,4 +1,7 @@
-﻿using System.Data.SqlClient;
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
+using System.Xml.Linq;
 
 namespace Utiles
 {
@@ -17,7 +20,8 @@ namespace Utiles
             return new SqlConnection(cs.ConnectionString;);
              */
 
-            return new SqlConnection(Properties.Resources.ConnectionString);
+           // return new SqlConnection(Properties.Resources.ConnectionString);
+            return new SqlConnection(RegReader.read("conection"));
         }
 
         public static SqlConnection getConnection()

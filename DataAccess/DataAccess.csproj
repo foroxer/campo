@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BackupRepository.cs" />
     <Compile Include="ChangesControlRepository.cs" />
+    <Compile Include="DBchecker.cs" />
+    <Compile Include="Exceptions\DBException.cs" />
     <Compile Include="ExerciseRepository.cs" />
     <Compile Include="LanguageRepository.cs" />
     <Compile Include="PermissionsRepository.cs" />
