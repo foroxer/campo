@@ -176,5 +176,10 @@ namespace Business
 
             return errors;
         }
+
+        public void reacalcDV()
+        {
+            userRepository.UpdateAllDV();
+        }
     }
 }

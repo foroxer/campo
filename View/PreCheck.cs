@@ -17,12 +17,12 @@ namespace View
 {
     public partial class PreCheck : Form
     {
-        IntegrityChecker integrityChecker;
+        IntegrityService integrityChecker;
         List<String> listErrors;
         public PreCheck()
         {
             InitializeComponent();
-            integrityChecker = new IntegrityChecker();
+            integrityChecker = new IntegrityService();
 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
@@ -34,28 +34,39 @@ namespace View
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridView1.RowHeadersVisible = false;
 
-            
+
         }
 
         private void PreCheck_Load( object sender, EventArgs e )
         {
-
+            Icon = Properties.Resources.icongray_icono_7282;
         }
 
         private void PreCheck_Shown( object sender, EventArgs e )
         {
+            pictureBox1.Hide();
             listErrors = integrityChecker.check();
 
             dataGridView1.DataSource = listErrors.Select(er => new { error = er }).ToList();
-            dataGridView1.CurrentCell.Selected = false;
+            if ( dataGridView1.CurrentCell != null ) dataGridView1.CurrentCell.Selected = false;
 
-            pictureBox1.Hide();
             if ( listErrors.Count == 0 )
             {
                 Hide();
                 Form login = new frmLogin();
                 login.Show();
+                return;
             }
+
+            Hide();
+            var response = MessageBox.Show("Ocurrio un Error , por favor comuniquese con un admin. \nSi es un admin de click en aceptar", "ERROR", MessageBoxButtons.OKCancel);
+            if ( DialogResult.OK.Equals(response))
+            {
+                Show();
+                return;
+            }
+            Close();
+
         }
 
 

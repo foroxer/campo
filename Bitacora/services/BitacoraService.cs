@@ -29,9 +29,9 @@ namespace BitacoraLib.services
                 tableName = tablename;
                 registryDAO = new RegistryDAO(conn, tablename);
             }
-            catch ( DBException ex )
+            catch ( DBException )
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al configurar la Bitacora");
             }
         }
 
@@ -83,6 +83,11 @@ namespace BitacoraLib.services
             }
 
             return errors;
+        }
+
+        public static void reacalcDV()
+        {
+            registryDAO.UpdateAllDV();
         }
 
     }

@@ -23,7 +23,7 @@ namespace DataAccess
                 var cmd = new SqlCommand();
                 cmd.Connection = connection;
 
-                var sql = $@"select count(*) from master.sys.tables where name like 'usuarios';";
+                var sql = $@"select count(*) as cantidad from master.sys.tables where name like 'usuarios';";
 
                 cmd.CommandText = sql;
 

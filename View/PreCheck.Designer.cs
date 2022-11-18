@@ -39,11 +39,11 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(721, 446);
+            this.button1.Location = new System.Drawing.Point(853, 429);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 32);
+            this.button1.Size = new System.Drawing.Size(182, 32);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Continuar";
+            this.button1.Text = "Continuar como admin";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -57,7 +57,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(801, 405);
+            this.dataGridView1.Size = new System.Drawing.Size(1023, 388);
             this.dataGridView1.TabIndex = 2;
             // 
             // pictureBox1
@@ -66,7 +66,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(825, 490);
+            this.pictureBox1.Size = new System.Drawing.Size(1047, 473);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -75,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 490);
+            this.ClientSize = new System.Drawing.Size(1047, 473);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);

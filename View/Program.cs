@@ -27,8 +27,14 @@ namespace View
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            BitacoraService.config(ConnectionSingleton.getConnection(), "bitacora");
-
+            try
+            {
+                BitacoraService.config(ConnectionSingleton.getConnection(), "bitacora");
+            }
+            catch
+            {
+                
+            }
             Application.Run(new PreCheck());
         }
     }

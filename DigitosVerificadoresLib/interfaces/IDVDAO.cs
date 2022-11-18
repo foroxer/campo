@@ -21,6 +21,8 @@ namespace DigitosVerificadoresLib
         void update( T obj );
         void updateDVV();
 
+        void UpdateAllDV();
+
         string getDVV();
     }
 }

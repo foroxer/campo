@@ -1,4 +1,5 @@
-﻿using DigitosVerificadoresLib;
+﻿using BitacoraLib.entities;
+using DigitosVerificadoresLib;
 using DigitosVerificadoresLib.services;
 using Models;
 using System;
@@ -512,6 +513,15 @@ namespace DataAccess
                 Console.Write(ex.ToString());
                 throw ex;
             }
+        }
+
+        public void UpdateAllDV()
+        {
+            List<User> list = getAll();
+            list.ForEach(user =>
+            {
+                update(user);
+            });
         }
     }
 }

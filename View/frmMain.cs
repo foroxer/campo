@@ -11,6 +11,7 @@ using View.business;
 using View.language;
 using View.changeControl;
 using View.dbmanage;
+using View.reports;
 
 namespace View
 {
@@ -30,7 +31,7 @@ namespace View
             loginForm = parent;
             sesionService = new SessionService();
             languageService = new LanguageService();
-            if ( withoutDB )
+            if ( !withoutDB )
             {
                 Session.GetInstance.addObserber(this);
                 loadLanguages();
@@ -64,6 +65,7 @@ namespace View
                 asignarToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.AsignarEjercicios);
                 restoreToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Restore);
                 backUpToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Backup);
+                dVRestoreToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.DVRecalc);
 
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {
@@ -212,6 +214,14 @@ namespace View
             createForm(typeof(frmRestore));
         }
 
+        private void dVRestoreToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(frmDV));
+        }
 
+        private void bitacoraToolStripMenuItem1_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(frmReportViewer));
+        }
     }
 }

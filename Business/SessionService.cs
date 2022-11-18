@@ -1,5 +1,6 @@
 ﻿using Business.exceptions;
 using Models;
+using Models.language;
 using System;
 using Utiles;
 
@@ -74,11 +75,6 @@ namespace Business
                     Password = defPass,
                 };
 
-                user.Permissions.Add(new Patent { 
-                    Description = PermissionsEnum.Backup.ToString() ,
-                    Nombre = PermissionsEnum.Backup.ToString() ,
-                    Permiso = PermissionsEnum.Backup
-                });
 
                 user.Permissions.Add(new Patent
                 {

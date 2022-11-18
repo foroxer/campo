@@ -215,8 +215,8 @@ namespace BitacoraLib.dataAccess
                     command.Parameters.Add(user);
 
                     IDbDataParameter dvh = command.CreateParameter();
-                    user.ParameterName = "dvh";
-                    user.Value = calculateDVH(obj);
+                    dvh.ParameterName = "dvh";
+                    dvh.Value = calculateDVH(obj);
                     command.Parameters.Add(dvh);
 
                     command.ExecuteNonQuery();
@@ -226,6 +226,7 @@ namespace BitacoraLib.dataAccess
             }
             catch ( Exception ex )
             {
+                connection.Close();
                 throw new DBException(ex.Message);
             }
         }
@@ -250,8 +251,8 @@ namespace BitacoraLib.dataAccess
                     dvv.ParameterName = "dvv";
                     dvv.Value = dvvString;
                     command.Parameters.Add(dvv);
-                    
-                    
+
+
                     IDbDataParameter tablename = command.CreateParameter();
                     tablename.ParameterName = "tablename";
                     tablename.Value = table;
@@ -266,7 +267,7 @@ namespace BitacoraLib.dataAccess
                 throw new DBException(ex.Message);
             }
         }
-        
+
         public string getDVV()
         {
             try
@@ -301,6 +302,15 @@ namespace BitacoraLib.dataAccess
             {
                 throw new DBException(ex.Message);
             }
+        }
+
+        public void UpdateAllDV()
+        {
+            List<IRegistry> list = getAll();
+            list.ForEach(registry =>
+            {
+                update(registry);
+            });
         }
     }
 }

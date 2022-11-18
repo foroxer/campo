@@ -37,6 +37,51 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportingServices.BuildProcess, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.BuildProcess.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.Designer.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.Designer.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.Designer.RdlDowngrade, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.Designer.RdlDowngrade.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.Diagnostics, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.Interfaces, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.ProcessingCore, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.ProcessingCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.RdlObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.RdlObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.ReportDesign.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.ReportDesign.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportingServices.RsClient, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.RsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\Business\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\Business\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\Business\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\Business\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\Business\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\Business\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +112,18 @@
     </Compile>
     <Compile Include="dbmanage\frmRestore.Designer.cs">
       <DependentUpon>frmRestore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reports\frmReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reports\frmReportViewer.Designer.cs">
+      <DependentUpon>frmReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="security\frmDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="security\frmDV.Designer.cs">
+      <DependentUpon>frmDV.cs</DependentUpon>
     </Compile>
     <Compile Include="logbook\frmLogbook.cs">
       <SubType>Form</SubType>
@@ -122,6 +179,7 @@
     <Compile Include="security\frmResetPassword.Designer.cs">
       <DependentUpon>frmResetPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="TextBoxExtension.cs" />
     <Compile Include="users\frmUsuariosA.cs">
       <SubType>Form</SubType>
@@ -207,6 +265,13 @@
     <EmbeddedResource Include="PreCheck.resx">
       <DependentUpon>PreCheck.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="reports\BitacoraReport.rdlc" />
+    <EmbeddedResource Include="reports\frmReportViewer.resx">
+      <DependentUpon>frmReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="security\frmDV.resx">
+      <DependentUpon>frmDV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="security\frmResetPassword.resx">
       <DependentUpon>frmResetPassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +311,9 @@
       <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="clasesUI.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\BitacoraLib.entities.IRegistry.datasource" />
+    <None Include="Properties\DataSources\BitacoraLib.services.BitacoraService.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -283,7 +351,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\icongray_icono_7282.ico" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
