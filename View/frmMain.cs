@@ -56,20 +56,20 @@ namespace View
         {
             if (Session.GetInstance.IsLoggedIn())
             {
-                configidioma.Visible = Session.GetInstance.IsInRole(PermissionsEnum.ConfigIdioma);
-                mnuPatentesFamilias.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesFamilias);
-                mnuUsuarioPatentes.Visible = Session.GetInstance.IsInRole(PermissionsEnum.PatentesUsuarios);
-                rutinas.Visible = Session.GetInstance.IsInRole(PermissionsEnum.VerRutina);
-                usuariosToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Usuarios);
-                configurarToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.ConfigurarEjercicios);
-                asignarToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.AsignarEjercicios);
-                restoreToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Restore);
-                backUpToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.Backup);
-                dVRestoreToolStripMenuItem.Visible = Session.GetInstance.IsInRole(PermissionsEnum.DVRecalc);
+                configidioma.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.ConfigIdioma);
+                mnuPatentesFamilias.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.PatentesFamilias);
+                mnuUsuarioPatentes.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.PatentesUsuarios);
+                rutinas.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.VerRutina);
+                usuariosToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Usuarios);
+                configurarToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.ConfigurarEjercicios);
+                asignarToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.AsignarEjercicios);
+                restoreToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Restore);
+                backUpToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Backup);
+                dVRestoreToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.DVRecalc);
 
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {
-                    rutinas.Visible = true;
+                    rutinas.Enabled = true;
                     createForm(typeof(frmExercisesVisualization));
                 }
             }
@@ -124,6 +124,7 @@ namespace View
             if (typeof(ILanguageObserber).IsAssignableFrom(form.GetType()))
             {
                 //TODO todos los forms deberian ser ILanguageObserber
+                //excepto los de restore y recalc digitos 
                 Session.GetInstance.addObserber((ILanguageObserber)form);
             }
             form.MdiParent = this;
