@@ -62,15 +62,8 @@
   </Class>
   <Class Name="View.frmUsuariosL" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="9.5" Width="4.75" />
-    <AssociationLine Name="userService" Type="Business.UserService" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="5.031" Y="14.838" />
-        <Point X="5.031" Y="24.375" />
-        <Point X="3" Y="24.375" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>gCAAAAAgACAAABCAAACCAABCCAgICAAAEEAAAQAAgAA=</HashCode>
+      <HashCode>gCAAAAAgACAAABCAAACCAABCCAgICACAEEAAAQAAgAA=</HashCode>
       <FileName>users\frmUsuariosL.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -99,7 +92,7 @@
   <Class Name="View.frmLogin">
     <Position X="28" Y="14" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAACAAABAAAACAAAACIAAYADAAEGAAAAAAAAI=</HashCode>
+      <HashCode>ACAAAAAAACAAEBAAAACIAAACIAAYADAAEGAAAAAAAAI=</HashCode>
       <FileName>frmLogin.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -109,7 +102,7 @@
   <Class Name="View.frmMain" BaseTypeListCollapsed="true">
     <Position X="22.25" Y="14" Width="4.75" />
     <TypeIdentifier>
-      <HashCode>AZAAYQCAACABaAIoQAiIBAIyCYACAAAIAEGAAggBYAE=</HashCode>
+      <HashCode>AZAAYQCQECgBaAIqQgyIBAIyCYICABAMAEGQAkgBYCE=</HashCode>
       <FileName>frmMain.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -121,7 +114,7 @@
   <Class Name="View.Translator">
     <Position X="21.75" Y="1" Width="5.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAAAAAABAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAAAAAABCQ=</HashCode>
       <FileName>Translator.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -156,7 +149,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="Business.LanguageService" Collapsed="true">
-    <Position X="21.75" Y="24.25" Width="1.5" />
+    <Position X="19" Y="24.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Business.SessionService" Collapsed="true">
@@ -166,7 +159,7 @@
   <Class Name="View.business.frmExerciseAML" BaseTypeListCollapsed="true">
     <Position X="41.25" Y="2" Width="5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAEBBAQAACAAAACCAgYAAAAEGAAgQAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAEBBAQAACAAAACCAgYAACAEGAAgQAAAAA=</HashCode>
       <FileName>business\frmExerciseAML.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -183,28 +176,20 @@
         <Point X="35.812" Y="18.562" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="userService" Type="Business.UserService" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="42.969" Y="25.088" />
-        <Point X="42.969" Y="25.463" />
-        <Point X="2.5" Y="25.463" />
-        <Point X="2.5" Y="24.812" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BCAAAAQAAiAAABCAAACCABJCCDggAAQgEBAAAQAAgAA=</HashCode>
+      <HashCode>BCAAAAQAAiABABCAAACCABJCCDggAASgEhAAAQAAgAA=</HashCode>
       <FileName>business\frmExersiceAssign.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="exerciseService" />
       <Field Name="userService" />
+      <Field Name="exerciseService" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="View.business.frmMachineTypes" BaseTypeListCollapsed="true">
     <Position X="29.25" Y="8" Width="5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAICAEAAAAAACAAAACCAgIAAAAEEAAgQAAAAA=</HashCode>
+      <HashCode>AAAAAAAAICAEAAAAAACAAAACCAgIAACAEEAAgQAAAAA=</HashCode>
       <FileName>business\frmMachineTypes.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -215,7 +200,7 @@
   <Class Name="View.business.frmMuscularGroupTypes" BaseTypeListCollapsed="true">
     <Position X="31.75" Y="1.25" Width="5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAACAEAAAAAACAAAACCAgIAAAAEEAAgQAAAAA=</HashCode>
+      <HashCode>AAAAAAgAACAEAAAAAACAAAACCAgIAACAEEAAgQAAAAA=</HashCode>
       <FileName>business\frmMuscularGroupTypes.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -226,7 +211,7 @@
   <Class Name="View.frmExercisesVisualization" BaseTypeListCollapsed="true">
     <Position X="36" Y="8" Width="4.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAiAAAAAABACQAAICCBgAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAiABAAAABACQAAICCBgAAACAAAAAAAAAAAA=</HashCode>
       <FileName>business\frmExercisesVisualization.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

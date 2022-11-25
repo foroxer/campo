@@ -66,6 +66,9 @@ namespace View
                 restoreToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Restore);
                 backUpToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Backup);
                 dVRestoreToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.DVRecalc);
+                controlDeCambiosToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.ChangesControl);
+                bitacoraToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Bitacora);
+
 
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {

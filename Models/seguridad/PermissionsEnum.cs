@@ -13,6 +13,8 @@
         AsignarEjercicios,
         Backup,
         Restore,
-        DVRecalc
+        DVRecalc,
+        ChangesControl,
+        Bitacora
     }
 }

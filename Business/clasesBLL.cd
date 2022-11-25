@@ -46,7 +46,7 @@
   <Class Name="Business.SessionService">
     <Position X="12.75" Y="3.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAACAAAAAAAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAACAAAAAAAIIAAAAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>SessionService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -56,12 +56,11 @@
   <Class Name="Business.UserService">
     <Position X="2" Y="3.75" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQQAgABQAAAAAAAAAwAAAAAAAhEggIAAAAA=</HashCode>
+      <HashCode>AAAAQAAAAQQAgAFQAAAAAAAAAwAAAAAAAgEggIAoAAA=</HashCode>
       <FileName>UserService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="userRepository" />
-      <Field Name="permissionsRepository" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Business.exceptions.LoginException">
@@ -74,17 +73,52 @@
   <Class Name="DataAccess.UserRepository" Collapsed="true">
     <Position X="2" Y="8" Width="1.5" />
     <TypeIdentifier />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="DataAccess.ExerciseRepository" Collapsed="true">
     <Position X="12.75" Y="6.5" Width="1.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="DataAccess.PermissionsRepository" Collapsed="true">
-    <Position X="9.25" Y="11.25" Width="1.75" />
+    <Position X="18.25" Y="0.75" Width="1.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="DataAccess.LanguageRepository" Collapsed="true">
     <Position X="3.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Business.IntegrityService">
+    <Position X="2.25" Y="10" Width="2.5" />
+    <AssociationLine Name="userService" Type="Business.UserService" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.25" Y="12.324" />
+        <Point X="2.01" Y="12.324" />
+        <Point X="2.01" Y="9.76" />
+        <Point X="6.49" Y="9.76" />
+        <Point X="6.49" Y="6.724" />
+        <Point X="6.25" Y="6.724" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEgAIAACAAAAAAAAAAAAAAAAAAAAAAAAAEAg=</HashCode>
+      <FileName>IntegrityService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="userService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Business.BackupService">
+    <Position X="21.75" Y="4.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BackupService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="backupRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DataAccess.BackupRepository" Collapsed="true">
+    <Position X="22.25" Y="2.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
