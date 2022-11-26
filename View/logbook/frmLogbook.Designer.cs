@@ -59,6 +59,7 @@
             // 
             // priorityCombo
             // 
+            this.priorityCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.priorityCombo.FormattingEnabled = true;
             this.priorityCombo.Location = new System.Drawing.Point(152, 124);
             this.priorityCombo.Name = "priorityCombo";

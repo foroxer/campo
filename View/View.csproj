@@ -351,6 +351,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\testfile.chm" />
     <None Include="View_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

@@ -105,7 +105,9 @@ namespace View.changeControl
             if ( dniTxt.Text.Length > 0 ) builder.Append($@"{( idTxt.Text.Length > 0 ? " AND " : " " )} dni LIKE  '{dniTxt.Text}*' ");
             if ( nameTxt.Text.Length > 0 ) builder.Append($@"{( dniTxt.Text.Length > 0 ? " AND " : " " )} nombre LIKE  '{nameTxt.Text}*' ");
             if ( lastNameTxt.Text.Length > 0 ) builder.Append($@"{( nameTxt.Text.Length > 0 ? " AND " : " " )} apellido LIKE  '{lastNameTxt.Text}*' ");
-            dataGridView1.DataSource = changesTable.Select(builder.ToString()).CopyToDataTable();
+
+            DataRow[] rows = changesTable.Select(builder.ToString());
+            dataGridView1.DataSource = (rows.Length > 0) ? rows.CopyToDataTable(): null;
         }
     }
 }

@@ -69,5 +69,15 @@ namespace View.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        public static byte[] testfile {
+            get {
+                object obj = ResourceManager.GetObject("testfile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

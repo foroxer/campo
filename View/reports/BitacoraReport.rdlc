@@ -6,16 +6,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.91301cm</Width>
+              <Width>4.4738cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.66934cm</Width>
+              <Width>2.23013cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.66934cm</Width>
+              <Width>2.23013cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.27284cm</Width>
+              <Width>4.83363cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -53,6 +53,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -320,10 +321,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.28787cm</Top>
-        <Left>1.1557cm</Left>
-        <Height>1.72917cm</Height>
-        <Width>15.52451cm</Width>
+        <Top>0.56304cm</Top>
+        <Left>0.79587cm</Left>
+        <Height>1.72918cm</Height>
+        <Width>13.7677cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -334,7 +335,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>7.21701in</Width>
+  <Width>6.05034in</Width>
   <Page>
     <PageHeader>
       <Height>2.54cm</Height>
@@ -361,9 +362,39 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.66181cm</Top>
-          <Left>4.24837cm</Left>
+          <Left>1.72956cm</Left>
           <Height>0.91158cm</Height>
-          <Width>7.83633cm</Width>
+          <Width>8.61481cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Fecha: " + CDate(Today()).ToString("dd/MM/yyyy")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox3</rd:DefaultName>
+          <Top>0.66181cm</Top>
+          <Left>10.52076cm</Left>
+          <Height>0.91158cm</Height>
+          <Width>3.57714cm</Width>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -403,8 +434,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.60537cm</Top>
-          <Left>5.83353cm</Left>
+          <Top>0.47244cm</Top>
+          <Left>3.80623cm</Left>
           <Height>0.6cm</Height>
           <Width>4.95533cm</Width>
           <Style>

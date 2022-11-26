@@ -165,7 +165,7 @@ namespace Business
             {
                 if ( !item.dvh.Equals(userRepository.calculateDVH(item)) )
                 {
-                    errors.Add($"Usuarios: El Usuario con id : {item.Id} , fue modificado");
+                    errors.Add($"En la tabla Usuarios: El Usuario con id : {item.Id} , fue modificado");
                 }
             });
 

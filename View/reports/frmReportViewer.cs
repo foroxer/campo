@@ -35,7 +35,7 @@ namespace View.reports
             {
                 var bytes = reportViewer1.LocalReport.Render(format:"PDF", deviceInfo: "" );
 
-                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "report.pdf";
+                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\report.pdf";
                 File.WriteAllBytes(filePath, bytes);
                 System.Diagnostics.Process.Start(filePath);
             }
@@ -43,6 +43,11 @@ namespace View.reports
             {
                 MessageBox.Show("ocurrio un problema al crear el PDF");
             }
+        }
+
+        private void frmReportViewer_HelpRequested( object sender, HelpEventArgs hlpevent )
+        {
+            Help.ShowHelp(reportViewer1, AppContext.BaseDirectory+ @"Resources\testfile.chm");
         }
     }
 }

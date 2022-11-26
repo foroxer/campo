@@ -73,7 +73,7 @@ namespace BitacoraLib.services
             {
                 if ( !registry.dvh.Equals(registryDAO.calculateDVH(registry)) )
                 {
-                    errors.Add($"Bitacora: El registro de la fecha : {registry.dateTime} , para el usuario : {registry.user} , con el mensaje : {registry.message} , fue modificado");
+                    errors.Add($"en la tabla Bitacora: El registro de la fecha : {registry.dateTime} , para el usuario : {registry.user} , con el mensaje : {registry.message} , fue modificado");
                 }
             });
 
