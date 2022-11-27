@@ -64,16 +64,18 @@ namespace Business
 
             try
             {
-                ServiceController sc = new ServiceController("MSSQLSERVER");
+                //TODO: en las compus de la facu  el process no se llama asi  
+                //
+                //ServiceController sc = new ServiceController("MSSQLSERVER");
 
-                switch ( sc.Status )
-                {
-                    case ServiceControllerStatus.Running:
-                        break;
-                    default:
-                        result.Add("La base de datos no esta disponible");
-                        break;
-                }
+                //switch ( sc.Status )
+                //{
+                //    case ServiceControllerStatus.Running:
+                //        break;
+                //    default:
+                //        result.Add("La base de datos no esta disponible");
+                //        break;
+                //}
             }
             catch ( Exception ex )
             {

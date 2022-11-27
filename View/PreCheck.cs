@@ -33,13 +33,12 @@ namespace View
             dataGridView1.ReadOnly = true;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridView1.RowHeadersVisible = false;
-
+            this.Icon = Properties.Resources.icon;
 
         }
 
         private void PreCheck_Load( object sender, EventArgs e )
         {
-            Icon = Properties.Resources.icongray_icono_7282;
         }
 
         private void PreCheck_Shown( object sender, EventArgs e )

@@ -63,20 +63,20 @@ namespace View.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
-        public static System.Drawing.Icon icongray_icono_7282 {
+        public static System.Drawing.Icon icon {
             get {
-                object obj = ResourceManager.GetObject("icongray_icono_7282", resourceCulture);
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
-        public static byte[] testfile {
+        public static System.Drawing.Icon icon_16x16 {
             get {
-                object obj = ResourceManager.GetObject("testfile", resourceCulture);
-                return ((byte[])(obj));
+                object obj = ResourceManager.GetObject("icon_16x16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

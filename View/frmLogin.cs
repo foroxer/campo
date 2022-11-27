@@ -56,7 +56,7 @@ namespace View
         private void frmLogin_Load( object sender, EventArgs e )
         {
 
-            Icon = Properties.Resources.icongray_icono_7282;
+            Icon = Properties.Resources.icon_16x16;
             clearForm();
         }
         private void button2_Click_1( object sender, EventArgs e )

@@ -9,6 +9,8 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using System.IO;
+using View.Properties;
+using Utiles;
 
 namespace View.reports
 {
@@ -33,21 +35,67 @@ namespace View.reports
         {
             try
             {
-                var bytes = reportViewer1.LocalReport.Render(format:"PDF", deviceInfo: "" );
+                var bytes = reportViewer1.LocalReport.Render(format: "PDF", deviceInfo: "");
 
-                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\report.pdf";
-                File.WriteAllBytes(filePath, bytes);
-                System.Diagnostics.Process.Start(filePath);
+
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "pdf files (*.pdf)|*.pdf";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+                saveFileDialog1.DefaultExt = "json";
+                saveFileDialog1.FileName = "report_" + DateTime.Now.ToString("dd-MM-yyyy");
+
+                if ( saveFileDialog1.ShowDialog() == DialogResult.OK )
+                {
+                    
+                    File.WriteAllBytes(saveFileDialog1.FileName, bytes);
+                    System.Diagnostics.Process.Start(saveFileDialog1.FileName);
+                }
+                
             }
             catch
             {
-                MessageBox.Show("ocurrio un problema al crear el PDF");
+                MessageBox.Show("Ocurrio un problema al crear el PDF");
             }
         }
 
         private void frmReportViewer_HelpRequested( object sender, HelpEventArgs hlpevent )
         {
-            Help.ShowHelp(reportViewer1, AppContext.BaseDirectory+ @"Resources\testfile.chm");
+            string path = System.AppDomain.CurrentDomain.BaseDirectory + @"help\Help.chm.chm";
+#if DEBUG
+            path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\help\Help.chm";
+#endif
+            Help.ShowHelp(this, path);
+        }
+
+        private void button2_Click( object sender, EventArgs e )
+        {
+            try
+            {
+
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "json files (*.json)|*.json";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+                saveFileDialog1.DefaultExt = "json";
+                saveFileDialog1.FileName = "report_" + DateTime.Now.ToString("dd-MM-yyyy");
+
+
+                if ( saveFileDialog1.ShowDialog() == DialogResult.OK )
+                {
+                    Serializer.serializeAndSave(saveFileDialog1.FileName, registries);
+                    System.Diagnostics.Process.Start(saveFileDialog1.FileName);
+                }
+
+
+            }
+            catch ( Exception )
+            {
+
+                MessageBox.Show("Ocurrio un problema al Serializar");
+            }
         }
     }
 }

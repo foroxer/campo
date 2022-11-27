@@ -40,7 +40,7 @@ namespace View
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
-            Icon = Properties.Resources.icongray_icono_7282;
+            Icon = Properties.Resources.icon_16x16;
 
             if(!withoutDB) updateLanguage(Session.GetInstance.language);
         }
@@ -131,7 +131,8 @@ namespace View
                 Session.GetInstance.addObserber((ILanguageObserber)form);
             }
             form.MdiParent = this;
-            form.Icon = Properties.Resources.icongray_icono_7282;
+            form.Icon = Properties.Resources.icon_16x16;
+            form.BackColor = System.Drawing.Color.White;
             form.Show();
             return form;
         }
