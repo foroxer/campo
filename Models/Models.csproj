@@ -76,6 +76,10 @@
     <Compile Include="seguridad\Session.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="venta\Coupon.cs" />
+    <Compile Include="venta\Product.cs" />
+    <Compile Include="venta\SusbscriptionTypes.cs" />
+    <Compile Include="venta\Venta.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="clasesBEL.cd" />

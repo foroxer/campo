@@ -14,11 +14,15 @@ namespace Business
     {
         UserService userService;
         DBchecker dBchecker;
+        VentaService ventaService;
+        CouponsService couponsService;
 
         public IntegrityService()
         {
             userService = new UserService();
             dBchecker = new DBchecker();
+            couponsService = new CouponsService();
+            ventaService = new VentaService();
         }
         public List<String> check()
         {
@@ -35,6 +39,8 @@ namespace Business
         {
             BitacoraService.reacalcDV();
             userService.reacalcDV();
+            ventaService.reacalcDV();
+            couponsService.reacalcDV();
 
         }
 
@@ -45,15 +51,17 @@ namespace Business
 
             try
             {
-                
+                dBchecker.testDB();
                 result.AddRange(BitacoraService.checkintegrity());
                 result.AddRange(userService.checkintegrity());
-                dBchecker.testDB();
+                result.AddRange(ventaService.checkintegrity());
+                result.AddRange(couponsService.checkintegrity());
+                
 
             }
             catch ( Exception )
             {
-                result.Add("Errores al obtener informacion");
+                result.Add("Errores al obtener informacion por favor verifique la coneccion a la BD");
             }
 
             return result;

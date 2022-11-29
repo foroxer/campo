@@ -48,11 +48,11 @@ namespace View.reports
 
                 if ( saveFileDialog1.ShowDialog() == DialogResult.OK )
                 {
-                    
+
                     File.WriteAllBytes(saveFileDialog1.FileName, bytes);
                     System.Diagnostics.Process.Start(saveFileDialog1.FileName);
                 }
-                
+
             }
             catch
             {
@@ -88,8 +88,6 @@ namespace View.reports
                     Serializer.serializeAndSave(saveFileDialog1.FileName, registries);
                     System.Diagnostics.Process.Start(saveFileDialog1.FileName);
                 }
-
-
             }
             catch ( Exception )
             {

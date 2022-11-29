@@ -36,7 +36,8 @@ namespace View
                     sessionService.Login(textBox1.Text, textBox2.Text);
                     BitacoraService.register(PriorityEnum.Low, "Start up");
                 }
-                new frmMain(this).Show();
+                new frmMain(this, dbcheck).Show();
+
                 clearForm();
                 Hide();
             }

@@ -61,14 +61,17 @@
   <ItemGroup>
     <Compile Include="BackupRepository.cs" />
     <Compile Include="ChangesControlRepository.cs" />
+    <Compile Include="CouponRepository.cs" />
     <Compile Include="DBchecker.cs" />
     <Compile Include="Exceptions\DBException.cs" />
     <Compile Include="ExerciseRepository.cs" />
     <Compile Include="LanguageRepository.cs" />
     <Compile Include="PermissionsRepository.cs" />
+    <Compile Include="ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="UserRepository.cs" />
+    <Compile Include="VentaRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bitacora\BitacoraLib.csproj">

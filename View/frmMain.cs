@@ -99,6 +99,7 @@ namespace View
         }
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if ( withoutDB ) Application.Exit();
             Session.GetInstance.removeObserber(this);
             foreach (Form form in MdiChildren)
             {
