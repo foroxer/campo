@@ -7,48 +7,64 @@ using System.Threading.Tasks;
 
 namespace Models.venta
 {
-    public  class Venta :IDVEntity
+    public class Venta : IDVEntity
     {
-		private int _id;
+        private int _id;
 
-		public int id
-		{
-			get { return _id; }
-			set { _id = value; }
-		}
+        public int id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
 
-		private List<Product> _products = new List<Product>();
+        private List<Product> _products = new List<Product>();
 
-		public List<Product> products
-		{
-			get { return _products; }
-			set { _products = value; }
-		}
+        public List<Product> products
+        {
+            get { return _products; }
+            set { _products = value; }
+        }
 
-		private DateTime _date;	
+        private DateTime _date;
 
-		public DateTime date
-		{
-			get { return _date; }
-			set { _date = value; }
-		}
+        public DateTime date
+        {
+            get { return _date; }
+            set { _date = value; }
+        }
 
-		private User _user;
+        private User _user;
 
-		public User user
-		{
-			get { return _user; }
-			set { _user = value; }
-		}
+        public User user
+        {
+            get { return _user; }
+            set { _user = value; }
+        }
 
-		private Coupon _coupon;
+        private Coupon _coupon;
 
-		public Coupon coupon
-		{
-			get { return _coupon; }
-			set { _coupon = value; }
-		}
+        public Coupon coupon
+        {
+            get { return _coupon; }
+            set { _coupon = value; }
+        }
 
-		public string dvh { get; set; }
-	}
+        private Decimal _subTotal;
+
+        public Decimal subTotal
+        {
+            get { return _subTotal; }
+            set { _subTotal = value; }
+        }
+
+        private Decimal _total;
+
+        public Decimal total
+        {
+            get { return _total; }
+            set { _total = value; }
+        }
+
+        public string dvh { get; set; }
+    }
 }

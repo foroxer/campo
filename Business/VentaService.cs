@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DigitosVerificadoresLib.interfaces;
 using Models.venta;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public  class VentaService
+    public  class VentaService : IDVService
     {
         private VentaRepository ventaRepository = new VentaRepository();
         public Venta get(int id)
@@ -23,7 +24,14 @@ namespace Business
 
         public void createVenta()
         {
+            Venta venta = new Venta();
+            venta.total = 0;
+            venta.subTotal = 0;
 
+            venta.date = DateTime.Now;
+            venta.products = new List<Product>();
+            venta.user  = new Models.User();
+            venta.coupon = new Coupon();
         }
 
         private void saveVenta()

@@ -17,10 +17,11 @@ namespace DataAccess
         private string tableName = "cupon";
         public Coupon get( string code )
         {
+            SqlConnection connection = ConnectionSingleton.getConnection();
             try
             {
-                using ( SqlConnection connection = ConnectionSingleton.getConnection() )
-                {
+                
+                
                     Coupon coupon = new Coupon ();
                     connection.Open();
                     SqlCommand cmd = new SqlCommand();
@@ -41,19 +42,19 @@ namespace DataAccess
                             discount = int.Parse(reader.GetValue(reader.GetOrdinal("discount")).ToString()),
                             id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString()),
                             //por ahora el type es un string deberia ser un enum para las distintas estratigias
-                            type = reader.GetValue(reader.GetOrdinal("type")).ToString(),
+                            type = (CouponType)Enum.Parse(typeof(CouponType), reader.GetValue(reader.GetOrdinal("type")).ToString()),
                         };
 
 
                     }
-
                     reader.Close();
                     connection.Close();
                     return coupon;
-                }
             }
             catch
             {
+                connection.Close();
+
                 throw;
             }
         }
@@ -84,7 +85,7 @@ namespace DataAccess
                             discount = int.Parse(reader.GetValue(reader.GetOrdinal("discount")).ToString()),
                             id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString()),
                             //por ahora el type es un string deberia ser un enum para las distintas estratigias
-                            type = reader.GetValue(reader.GetOrdinal("type")).ToString(),
+                            type = (CouponType)Enum.Parse(typeof(CouponType), reader.GetValue(reader.GetOrdinal("type")).ToString()),
                         };
 
 
@@ -126,8 +127,8 @@ namespace DataAccess
                             expirationDate = new DateTime(long.Parse(reader.GetValue(reader.GetOrdinal("expirationDate")).ToString())),
                             discount = int.Parse(reader.GetValue(reader.GetOrdinal("discount")).ToString()),
                             id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString()),
-                            //por ahora el type es un string deberia ser un enum para las distintas estratigias
-                            type = reader.GetValue(reader.GetOrdinal("type")).ToString(),
+                            //hay que buscar otra manera de parcearlo porque si se rompe no sabes que fila es
+                            type = (CouponType)Enum.Parse(typeof(CouponType), reader.GetValue(reader.GetOrdinal("type")).ToString()),
                         };
                         coupons.Add(coupon);
                     }
@@ -197,26 +198,26 @@ namespace DataAccess
                     SqlCommand cmd;
 
                     string query = $@"INSERT INTO [dbo].[cupon]
-                                       ([discount]
-                                       ,[type]
-                                       ,[emmitDate]
-                                       ,[expirationDate]
-                                       ,[code]
-                                       ,[dvh])
-                                 VALUES
-                                       (discount
-                                       ,type
-                                       ,emmitDate
-                                       ,expirationDate
-                                       ,code
-                                       ,dvh)";
+                                           ([discount]
+                                           ,[type]
+                                           ,[emmitDate]
+                                           ,[expirationDate]
+                                           ,[code]
+                                           ,[dvh])
+                                     VALUES
+                                           (@discount
+                                           ,@type
+                                           ,@emmitDate
+                                           ,@expirationDate
+                                           ,@code
+                                           ,@dvh)";
 
                     cmd = new SqlCommand();
                     cmd.Transaction = transaction;
                     cmd.CommandText = query;
                     cmd.Connection = connection;
                     cmd.Parameters.Add(new SqlParameter("discount", obj.discount));
-                    cmd.Parameters.Add(new SqlParameter("type", obj.type));
+                    cmd.Parameters.Add(new SqlParameter("type", obj.type.ToString()));
                     cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(obj)));
                     cmd.Parameters.Add(new SqlParameter("emmitDate", DateTime.Now.Ticks));
                     cmd.Parameters.Add(new SqlParameter("expirationDate", obj.expirationDate.Ticks));
@@ -226,7 +227,6 @@ namespace DataAccess
 
                    
                     transaction.Commit();
-
                     connection.Close();
                 }
                 catch
@@ -271,7 +271,7 @@ namespace DataAccess
                     cmd.CommandText = query;
                     cmd.Connection = connection;
                     cmd.Parameters.Add(new SqlParameter("discount", obj.discount));
-                    cmd.Parameters.Add(new SqlParameter("type", obj.type));
+                    cmd.Parameters.Add(new SqlParameter("type", obj.type.ToString()));
                     cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(obj)));
                     cmd.Parameters.Add(new SqlParameter("emmitDate", obj.emmitDate.Ticks));
                     cmd.Parameters.Add(new SqlParameter("expirationDate", obj.expirationDate.Ticks));
@@ -302,13 +302,10 @@ namespace DataAccess
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(obj.discount);
-            sb.Append(obj.type);
+            sb.Append(obj.type.ToString());
             sb.Append(obj.emmitDate.Ticks);
             sb.Append(obj.expirationDate.Ticks);
             sb.Append(obj.code);
-            sb.Append(obj.id);
-
-            
 
             return DVService.getDV(sb.ToString());
         }
@@ -329,9 +326,10 @@ namespace DataAccess
 
         public void updateDVV()
         {
+            SqlConnection connection = ConnectionSingleton.getConnection();
             try
             {
-                SqlConnection connection = ConnectionSingleton.getConnection();
+                
 
                 String dvvString = calculateDVV(getAll());
                 if ( connection.State != ConnectionState.Open ) connection.Open();
@@ -357,11 +355,14 @@ namespace DataAccess
                     command.Parameters.Add(tablename);
 
                     command.ExecuteNonQuery();
+                    connection.Close();
+
                 }
-                connection.Close();
             }
             catch ( Exception ex )
             {
+                connection.Close();
+
                 // TODO: ver como hacemos el handle de este error
                 Console.Write(ex.ToString());
                 throw ex;

@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="interfaces\IDVDAO.cs" />
     <Compile Include="interfaces\IDVEntity.cs" />
+    <Compile Include="interfaces\IDVService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\DVService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />

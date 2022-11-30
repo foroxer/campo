@@ -12,6 +12,7 @@ using View.language;
 using View.changeControl;
 using View.dbmanage;
 using View.reports;
+using View.coupon;
 
 namespace View
 {
@@ -228,6 +229,11 @@ namespace View
         private void bitacoraToolStripMenuItem1_Click( object sender, EventArgs e )
         {
             createForm(typeof(frmReportViewer));
+        }
+
+        private void cuponesToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(frmCoupon));
         }
     }
 }

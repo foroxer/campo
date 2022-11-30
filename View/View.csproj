@@ -129,6 +129,12 @@
     <Compile Include="changeControl\frmUserChangeControl.Designer.cs">
       <DependentUpon>frmUserChangeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="coupon\frmCoupon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="coupon\frmCoupon.Designer.cs">
+      <DependentUpon>frmCoupon.cs</DependentUpon>
+    </Compile>
     <Compile Include="dbmanage\frmBackup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +273,9 @@
     <Compile Include="Translator.cs" />
     <EmbeddedResource Include="changeControl\frmUserChangeControl.resx">
       <DependentUpon>frmUserChangeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="coupon\frmCoupon.resx">
+      <DependentUpon>frmCoupon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dbmanage\frmBackup.resx">
       <DependentUpon>frmBackup.cs</DependentUpon>
@@ -411,6 +420,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="help\" />
+    <Folder Include="venta\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -48,6 +48,8 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                         venta.id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString());
                         venta.date = new DateTime(long.Parse(reader.GetValue(reader.GetOrdinal("fecha")).ToString()));
                         int.TryParse(reader.GetValue(reader.GetOrdinal("idCupon")).ToString(), out coupon);
+                        venta.subTotal = Decimal.Parse(reader.GetValue(reader.GetOrdinal("subTotal")).ToString());
+                        venta.total = Decimal.Parse(reader.GetValue(reader.GetOrdinal("total")).ToString());
                     }
                     first++;
                     productos.Add(int.Parse(reader.GetValue(reader.GetOrdinal("idProducto")).ToString()));
@@ -149,15 +151,19 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                     SqlCommand cmd;
 
                     string query = $@"INSERT INTO [dbo].[venta]
-                                                   ([fecha]
+                                                  ([fecha]
                                                    ,[idUsuario]
+                                                   ,[idCupon]
                                                    ,[dvh]
-                                                   ,[idCupon])
+                                                   ,[subTotal]
+                                                   ,[total])
                                              VALUES
                                                    (@fecha
                                                    ,@idUsuario
                                                    ,@dvh
-                                                   ,@idCupon)";
+                                                   ,@idCupon
+                                                   ,@subTotal
+                                                   ,@total)";
 
                     cmd = new SqlCommand();
                     cmd.Transaction = transaction;
@@ -166,7 +172,9 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                     cmd.Parameters.Add(new SqlParameter("fecha", obj.date.Ticks));
                     cmd.Parameters.Add(new SqlParameter("idUsuario", obj.user.Id));
                     cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(obj)));
-                    cmd.Parameters.Add(new SqlParameter("idCupon", obj.coupon.id));
+                    cmd.Parameters.Add(new SqlParameter("idCupon", (object)obj.coupon?.id ?? DBNull.Value));
+                    cmd.Parameters.Add(new SqlParameter("subTotal", obj.subTotal));
+                    cmd.Parameters.Add(new SqlParameter("total", obj.total));
 
                     cmd.ExecuteNonQuery();
 
@@ -224,6 +232,8 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                                            SET [fecha] = @fecha
                                               ,[idUsuario] = @idUsuario
                                               ,[dvh] = @dvh
+                                              ,[subTotal] = subTotal
+                                              ,[total] = total
                                          WHERE id = @id
                                         ";
 
@@ -234,6 +244,8 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                     cmd.Parameters.Add(new SqlParameter("fecha", obj.date.Ticks));
                     cmd.Parameters.Add(new SqlParameter("idUsuario", obj.user.Id));
                     cmd.Parameters.Add(new SqlParameter("id", obj.id));
+                    cmd.Parameters.Add(new SqlParameter("subTotal", obj.subTotal));
+                    cmd.Parameters.Add(new SqlParameter("total", obj.total));
                     cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(obj)));
 
                     cmd.ExecuteNonQuery();
@@ -247,8 +259,6 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                     cmd.Parameters.Add(new SqlParameter("idVenta", obj.id));
 
                     cmd.ExecuteNonQuery();
-
-
 
                     obj.products.ForEach(product =>
                     {
@@ -265,7 +275,6 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                         cmd.Connection = connection;
                         cmd.Parameters.Add(new SqlParameter("idVenta", obj.id));
                         cmd.Parameters.Add(new SqlParameter("idProducto", product.id));
-
 
                         cmd.ExecuteNonQuery();
                     });

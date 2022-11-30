@@ -83,7 +83,10 @@ namespace View
         private static String getTranslation( Language language, Object tag, String defaultText = "" )
         {
             if ( language == null ) return defaultText;
-            if ( tag == null ) Console.WriteLine("    "+ defaultText);
+            if ( tag == null ) Console.WriteLine(" en algun lado falta un tag con el texto " + defaultText);
+             if( language.Translations.Find(
+                       ( translation ) => translation.Key.Equals(tag)
+                   )?.Translate == null) Console.WriteLine("traduccion faltante:    "+ tag+ "   , texto: " +  defaultText);
 
             return language.Translations.Find(
                        ( translation ) => translation.Key.Equals(tag)

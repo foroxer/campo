@@ -1,6 +1,7 @@
 ﻿using BitacoraLib.dataAccess;
 using BitacoraLib.services;
 using DataAccess;
+using DigitosVerificadoresLib.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,21 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public class IntegrityService
+    public class IntegrityService 
     {
-        UserService userService;
+        List<IDVService> services = new List<IDVService>();
+
+       
         DBchecker dBchecker;
-        VentaService ventaService;
-        CouponsService couponsService;
+       
 
         public IntegrityService()
         {
-            userService = new UserService();
             dBchecker = new DBchecker();
-            couponsService = new CouponsService();
-            ventaService = new VentaService();
+
+            services.Add( new UserService());
+            services.Add(new CouponsService());
+            services.Add(new VentaService());
         }
         public List<String> check()
         {
@@ -38,9 +41,7 @@ namespace Business
         public void recalcDV()
         {
             BitacoraService.reacalcDV();
-            userService.reacalcDV();
-            ventaService.reacalcDV();
-            couponsService.reacalcDV();
+            services.ForEach(service => service.reacalcDV());
 
         }
 
@@ -53,9 +54,7 @@ namespace Business
             {
                 dBchecker.testDB();
                 result.AddRange(BitacoraService.checkintegrity());
-                result.AddRange(userService.checkintegrity());
-                result.AddRange(ventaService.checkintegrity());
-                result.AddRange(couponsService.checkintegrity());
+                services.ForEach(service => result.AddRange(service.checkintegrity()));
                 
 
             }

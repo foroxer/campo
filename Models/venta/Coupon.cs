@@ -42,9 +42,9 @@ namespace Models.venta
 		}
 
 
-		private string _type;
+		private CouponType _type;
 
-		public string type
+		public CouponType type
 		{
 			get { return _type; }
 			set { _type = value; }

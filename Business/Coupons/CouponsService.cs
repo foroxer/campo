@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DigitosVerificadoresLib.interfaces;
 using Models.venta;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public class CouponsService
+    public class CouponsService: IDVService
     {
         CouponRepository couponRepository =new CouponRepository();
         public Coupon get(int id )
@@ -32,13 +33,22 @@ namespace Business
             {
                 throw new Exception("Error al crear un cupon");
             }
-            Guid guid = Guid.NewGuid();
-            string uuid = guid.ToString();
 
-            coupon.code = uuid;
             couponRepository.save(coupon);
 
-            return couponRepository.get(uuid);
+            return couponRepository.get(coupon.code);
+        }      
+        
+        public Coupon update( Coupon coupon)
+        {
+            if( coupon.discount == 0 )
+            {
+                throw new Exception("Error al actualizar un cupon");
+            }
+
+            couponRepository.update(coupon);
+
+            return couponRepository.get(coupon.code);
         }
 
         public List<String> checkintegrity()

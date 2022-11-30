@@ -1,6 +1,7 @@
 ﻿using BitacoraLib.dataAccess;
 using BitacoraLib.entities;
 using DataAccess;
+using DigitosVerificadoresLib.interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using Utiles;
 namespace Business
 {
 
-    public class UserService
+    public class UserService : IDVService
     {
         PermissionsService permissionsService;
         LanguageService languageService;
