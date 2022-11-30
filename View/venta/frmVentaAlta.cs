@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using View.reports;
 
 namespace View.venta
 {
@@ -93,6 +94,7 @@ namespace View.venta
 
         private void button3_Click( object sender, EventArgs e )
         {
+            Venta venta;
             try
             {
 
@@ -101,7 +103,7 @@ namespace View.venta
                     MessageBox.Show("Por favor primero carge un usuario y un producto");
                     return;
                 }
-                ventaService.save(preventa);
+                venta = ventaService.save(preventa);
 
             }
             catch ( Exception )
@@ -112,5 +114,11 @@ namespace View.venta
             MessageBox.Show("Venta exitosa");
 
         }
+
+        private void button5_Click( object sender, EventArgs e )
+        {
+            Form form = ( (frmMain)MdiParent ).createForm(typeof(frmUsuariosL));
+        }
+
     }
 }

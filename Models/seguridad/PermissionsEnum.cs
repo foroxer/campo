@@ -15,6 +15,9 @@
         Restore,
         DVRecalc,
         ChangesControl,
-        Bitacora
+        Bitacora,
+        Coupons,
+        Venta,
+        Reports
     }
 }

@@ -54,7 +54,7 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                     first++;
                     productos.Add(int.Parse(reader.GetValue(reader.GetOrdinal("idProducto")).ToString()));
                     usuario = int.Parse(reader.GetValue(reader.GetOrdinal("idUsuario")).ToString());
-                    
+
                 }
 
                 reader.Close();
@@ -126,7 +126,9 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
             StringBuilder sb = new StringBuilder();
             sb.Append(obj.user.Id.ToString());
             sb.Append(obj.date.ToString());
-            sb.Append(obj.id.ToString());
+            sb.Append(obj.subTotal.ToString());
+            sb.Append(obj.total.ToString());
+
             sb.Append(obj?.coupon?.code);
 
             return DVService.getDV(sb.ToString());
@@ -137,82 +139,11 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
             return list.Aggregate<Venta, String>("", ( a, b ) => DVService.getDV(a + b.dvh));
         }
 
-        public void save( Venta obj )
+        public Venta saveGet( Venta obj )
         {
-            SqlConnection connection = ConnectionSingleton.getConnection();
+            save(obj);
+            return getByDVH(calculateDVH(obj));
 
-            SqlTransaction transaction;
-            try
-            {
-                connection.Open();
-                transaction = connection.BeginTransaction();
-                try
-                {
-                    SqlCommand cmd;
-
-                    string query = $@"INSERT INTO [dbo].[venta]
-                                                  ([fecha]
-                                                   ,[idUsuario]
-                                                   ,[idCupon]
-                                                   ,[dvh]
-                                                   ,[subTotal]
-                                                   ,[total])
-                                             VALUES
-                                                   (@fecha
-                                                   ,@idUsuario
-                                                   ,@idCupon
-                                                   ,@dvh
-                                                   ,@subTotal
-                                                   ,@total)";
-
-                    cmd = new SqlCommand();
-                    cmd.Transaction = transaction;
-                    cmd.CommandText = query;
-                    cmd.Connection = connection;
-                    cmd.Parameters.Add(new SqlParameter("fecha", obj.date.Ticks));
-                    cmd.Parameters.Add(new SqlParameter("idUsuario", obj.user.Id));
-                    cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(obj)));
-                    cmd.Parameters.Add(new SqlParameter("idCupon", (object)obj.coupon?.id ?? DBNull.Value));
-                    cmd.Parameters.Add(new SqlParameter("subTotal", obj.subTotal));
-                    cmd.Parameters.Add(new SqlParameter("total", obj.total));
-
-                    cmd.ExecuteNonQuery();
-
-                    obj.products.ForEach(product =>
-                    {
-                        query = $@"INSERT INTO [dbo].[venta_producto]
-                                               ([idVenta]
-                                               ,[idProducto])
-                                         VALUES
-                                               (@idVenta
-                                               ,@idProducto)";
-
-                        cmd = new SqlCommand();
-                        cmd.Transaction = transaction;
-                        cmd.CommandText = query;
-                        cmd.Connection = connection;
-                        cmd.Parameters.Add(new SqlParameter("idVenta", obj.id));
-                        cmd.Parameters.Add(new SqlParameter("idProducto", product.id));
-
-
-                        cmd.ExecuteNonQuery();
-                    });
-                    transaction.Commit();
-
-                    connection.Close();
-                }
-                catch
-                {
-                    transaction.Rollback();
-                    throw;
-                }
-                updateDVV();
-            }
-            catch
-            {
-                connection.Close();
-                throw;
-            }
         }
 
         public void update( Venta obj )
@@ -296,14 +227,108 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
             }
         }
 
-        public void updateDVV()
+        public void save( Venta obj )
         {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+
+            SqlTransaction transaction;
             try
             {
-                SqlConnection connection = ConnectionSingleton.getConnection();
+                connection.Open();
+                transaction = connection.BeginTransaction();
+                try
+                {
+                    SqlCommand cmd;
 
-                String dvvString = calculateDVV(getAll());
-                if ( connection.State != ConnectionState.Open ) connection.Open();
+                    string query = $@"INSERT INTO [dbo].[venta]
+                                                  ([fecha]
+                                                   ,[idUsuario]
+                                                   ,[idCupon]
+                                                   ,[dvh]
+                                                   ,[subTotal]
+                                                   ,[total])
+                                             VALUES
+                                                   (@fecha
+                                                   ,@idUsuario
+                                                   ,@idCupon
+                                                   ,@dvh
+                                                   ,@subTotal
+                                                   ,@total)";
+
+                    cmd = new SqlCommand();
+                    cmd.Transaction = transaction;
+                    cmd.CommandText = query;
+                    cmd.Connection = connection;
+                    cmd.Parameters.Add(new SqlParameter("fecha", obj.date.Ticks));
+                    cmd.Parameters.Add(new SqlParameter("idUsuario", obj.user.Id));
+                    cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(obj)));
+                    cmd.Parameters.Add(new SqlParameter("idCupon", (object)obj.coupon?.id ?? DBNull.Value));
+                    cmd.Parameters.Add(new SqlParameter("subTotal", obj.subTotal));
+                    cmd.Parameters.Add(new SqlParameter("total", obj.total));
+
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand();
+                    cmd.Transaction = transaction;
+                    cmd.Connection = connection;
+                    cmd.CommandText = $@"select * from dbo.venta as v  where v.dvh = @dvh;";
+                    cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(obj)));
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+
+                    reader.Read();
+
+                    int id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString());
+                    reader.Close();
+
+                    obj.products.ForEach(product =>
+                    {
+                        query = $@"INSERT INTO [dbo].[venta_producto]
+                                               ([idVenta]
+                                               ,[idProducto])
+                                         VALUES
+                                               (@idVenta
+                                               ,@idProducto)";
+
+                        cmd = new SqlCommand();
+                        cmd.Transaction = transaction;
+                        cmd.CommandText = query;
+                        cmd.Connection = connection;
+                        cmd.Parameters.Add(new SqlParameter("idVenta", id));
+                        cmd.Parameters.Add(new SqlParameter("idProducto", product.id));
+
+
+                        cmd.ExecuteNonQuery();
+                    });
+                    transaction.Commit();
+
+                    connection.Close();
+                }
+                catch
+                {
+                    connection.Close();
+                    transaction.Rollback();
+                    throw;
+                }
+                updateDVV();
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+        }
+
+        public void updateDVV()
+        {
+            String dvvString = calculateDVV(getAll());
+            SqlConnection connection = ConnectionSingleton.getConnection();
+
+            try
+            {
+
+                if ( connection.State != ConnectionState.Open ) { connection.Open(); }
                 using ( IDbCommand command = connection.CreateCommand() )
                 {
                     command.Connection = connection;
@@ -326,11 +351,15 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                     command.Parameters.Add(tablename);
 
                     command.ExecuteNonQuery();
+
                 }
                 connection.Close();
+
             }
             catch ( Exception ex )
             {
+                connection.Close();
+
                 // TODO: ver como hacemos el handle de este error
                 Console.Write(ex.ToString());
                 throw ex;
@@ -384,7 +413,67 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                 throw ex;
             }
         }
+        private Venta getByDVH( string dvh )
+        {
+            Venta venta = new Venta();
+            List<int> productos = new List<int>();
+            int usuario = 0;
+            int coupon = 0;
+            SqlConnection connection = ConnectionSingleton.getConnection();
 
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = $@"select * , v.dvh as ventadvh from dbo.venta as v 
+inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.dvh = @dvh;";
+                cmd.Parameters.Add(new SqlParameter("dvh", dvh));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                int first = 0;
+                while ( reader.Read() )
+                {
+                    if ( first == 0 )
+                    {
+                        venta.dvh = reader.GetValue(reader.GetOrdinal("dvh")).ToString();
+                        venta.id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString());
+                        venta.date = new DateTime(long.Parse(reader.GetValue(reader.GetOrdinal("fecha")).ToString()));
+                        int.TryParse(reader.GetValue(reader.GetOrdinal("idCupon")).ToString(), out coupon);
+                        venta.subTotal = Decimal.Parse(reader.GetValue(reader.GetOrdinal("subTotal")).ToString());
+                        venta.total = Decimal.Parse(reader.GetValue(reader.GetOrdinal("total")).ToString());
+                    }
+                    first++;
+                    productos.Add(int.Parse(reader.GetValue(reader.GetOrdinal("idProducto")).ToString()));
+                    usuario = int.Parse(reader.GetValue(reader.GetOrdinal("idUsuario")).ToString());
+
+                }
+
+                reader.Close();
+                connection.Close();
+
+            }
+            catch
+            {
+                connection.Close();
+                throw;
+            }
+
+            //fill products
+            productos.ForEach(( idProducto ) =>
+            {
+                venta.products.Add(productRepository.get(idProducto));
+            });
+            venta.user = userRepository.get(usuario);
+            if ( coupon != 0 )
+            {
+                venta.coupon = couponRepository.get(coupon);
+            }
+
+            return venta;
+
+        }
 
 
     }

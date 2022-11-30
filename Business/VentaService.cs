@@ -21,7 +21,7 @@ namespace Business
 
         public List<Venta> getAll()
         {
-            return new List<Venta>();
+            return ventaRepository.getAll();
         }
 
         public Venta createPreventa( Venta preventa, string couponCode = null )
@@ -71,15 +71,15 @@ namespace Business
             return venta;
         }
 
-        public void save( Venta venta )
+        public Venta save( Venta venta )
         {
-            ventaRepository.save(venta);
+           return  ventaRepository.saveGet(venta);
         }
 
         public List<String> checkintegrity()
         {
             List<String> errors = new List<string>();
-            List<Venta> list = ventaRepository.getAll();
+            List<Venta> list = getAll();
 
             list.ForEach(item =>
             {

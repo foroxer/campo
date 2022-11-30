@@ -45,6 +45,7 @@ namespace View
             Icon = Properties.Resources.icon_16x16;
 
             if(!withoutDB) updateLanguage(Session.GetInstance.language);
+            
         }
         private void languageChange_click(object sender, EventArgs e)
         {
@@ -70,8 +71,9 @@ namespace View
                 dVRestoreToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.DVRecalc);
                 controlDeCambiosToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.ChangesControl);
                 bitacoraToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Bitacora);
-
-
+                ventasToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Venta);
+                cuponesToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Coupons);
+                reportesToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Reports);
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {
                     rutinas.Enabled = true;
@@ -117,27 +119,47 @@ namespace View
         }
         public Form createForm(Type formType)
         {
-            foreach (Form mdiChild in (MdiChildren.ToList()))
-            {
-                if (mdiChild.GetType().Equals(formType))
-                {
-                    mdiChild.Focus();
-                    return mdiChild;
-                }
-            }
 
-            Form form = (Form)Activator.CreateInstance(formType);
-            if (typeof(ILanguageObserber).IsAssignableFrom(form.GetType()))
+            try
             {
-                //TODO todos los forms deberian ser ILanguageObserber
-                //excepto los de restore y recalc digitos 
-                Session.GetInstance.addObserber((ILanguageObserber)form);
+                foreach ( Form mdiChild in ( MdiChildren.ToList() ) )
+                {
+                    if ( mdiChild.GetType().Equals(formType) )
+                    {
+                        mdiChild.Focus();
+                        return mdiChild;
+                    }
+                }
+
+                Form form = (Form)Activator.CreateInstance(formType);
+                if ( typeof(ILanguageObserber).IsAssignableFrom(form.GetType()) )
+                {
+                    //TODO todos los forms deberian ser ILanguageObserber
+                    //excepto los de restore y recalc digitos 
+                    Session.GetInstance.addObserber((ILanguageObserber)form);
+                }
+                form.MdiParent = this;
+                form.Icon = Properties.Resources.icon_16x16;
+                form.BackColor = System.Drawing.Color.White;
+
+                form.HelpRequested += helpshow;
+                form.Show();
+                return form;
             }
-            form.MdiParent = this;
-            form.Icon = Properties.Resources.icon_16x16;
-            form.BackColor = System.Drawing.Color.White;
-            form.Show();
-            return form;
+            catch ( Exception )
+            {
+                MessageBox.Show("Ocurrio un Error");
+                return null;
+            }
+        }
+
+        private void helpshow( object sender, HelpEventArgs hlpevent )
+        {
+            string path = System.AppDomain.CurrentDomain.BaseDirectory + @"help\Help.chm.chm";
+#if DEBUG
+            path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\help\Help.chm";
+#endif
+            Help.ShowHelp((Control)sender, path);
         }
         public void updateLanguage(Language language)
         {
@@ -240,6 +262,11 @@ namespace View
         private void ventasToolStripMenuItem_Click( object sender, EventArgs e )
         {
             createForm(typeof(frmVentaAlta));
+        }
+
+        private void ventaToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(VentaViewer));
         }
     }
 }
