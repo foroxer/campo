@@ -79,7 +79,6 @@
     <Compile Include="venta\Coupon.cs" />
     <Compile Include="venta\CouponType.cs" />
     <Compile Include="venta\Product.cs" />
-    <Compile Include="venta\SusbscriptionTypes.cs" />
     <Compile Include="venta\Venta.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -63,6 +63,7 @@
     <Compile Include="BackupService.cs" />
     <Compile Include="ChangesControlService.cs" />
     <Compile Include="Coupons\CouponAmountStrategy.cs" />
+    <Compile Include="Coupons\CouponNoStrategy.cs" />
     <Compile Include="Coupons\CouponPercentageStrategy.cs" />
     <Compile Include="Coupons\CouponsService.cs" />
     <Compile Include="Coupons\ICouponStrategy.cs" />

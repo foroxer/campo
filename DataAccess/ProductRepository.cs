@@ -83,53 +83,56 @@ namespace DataAccess
 
         public List<Product> getAll()
         {
+            SqlConnection connection = ConnectionSingleton.getConnection();
             try
             {
                 List<Product> products = new List<Product>();
-                using ( SqlConnection connection = ConnectionSingleton.getConnection() )
+
+                connection.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = $@"select * from producto ;";
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+
+
+                while ( reader.Read() )
                 {
-                    connection.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = connection;
-                    cmd.CommandText = $@"select * from producto ;";
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-
-
-                    while ( reader.Read() )
+                    Product product = new Product
                     {
-                        Product product = new Product
-                        {
-                            id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString()),
-                            name = reader.GetValue(reader.GetOrdinal("name")).ToString(),
-                            description = reader.GetValue(reader.GetOrdinal("description")).ToString(),
-                            price = decimal.Parse(reader.GetValue(reader.GetOrdinal("price")).ToString()),
-                            code = int.Parse(reader.GetValue(reader.GetOrdinal("code")).ToString()),
-                            dvh = reader.GetValue(reader.GetOrdinal("dvh")).ToString()
-                        };
-                        products.Add(product);
-                    }
-
-                    reader.Close();
-                    connection.Close();
-
-                    return products;
+                        id = int.Parse(reader.GetValue(reader.GetOrdinal("id")).ToString()),
+                        name = reader.GetValue(reader.GetOrdinal("name")).ToString(),
+                        description = reader.GetValue(reader.GetOrdinal("description")).ToString(),
+                        price = decimal.Parse(reader.GetValue(reader.GetOrdinal("price")).ToString()),
+                        code = int.Parse(reader.GetValue(reader.GetOrdinal("code")).ToString()),
+                        dvh = reader.GetValue(reader.GetOrdinal("dvh")).ToString()
+                    };
+                    products.Add(product);
                 }
+
+                reader.Close();
+                connection.Close();
+
+                return products;
+
 
             }
             catch
             {
+                connection.Close();
+
                 throw;
             }
         }
 
         public string getDVV()
         {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+
             try
             {
                 String dvv = "";
-                SqlConnection connection = ConnectionSingleton.getConnection();
 
                 if ( connection.State != ConnectionState.Open ) connection.Open();
                 using ( IDbCommand command = connection.CreateCommand() )
@@ -158,6 +161,7 @@ namespace DataAccess
             }
             catch ( Exception ex )
             {
+                connection.Close();
                 Console.Write(ex.ToString());
                 throw ex;
             }
@@ -283,9 +287,10 @@ namespace DataAccess
 
         public void updateDVV()
         {
+            SqlConnection connection = ConnectionSingleton.getConnection();
+
             try
             {
-                SqlConnection connection = ConnectionSingleton.getConnection();
 
                 String dvvString = calculateDVV(getAll());
                 if ( connection.State != ConnectionState.Open ) connection.Open();
@@ -316,6 +321,8 @@ namespace DataAccess
             }
             catch ( Exception ex )
             {
+                connection.Close();
+
                 // TODO: ver como hacemos el handle de este error
                 Console.Write(ex.ToString());
                 throw ex;

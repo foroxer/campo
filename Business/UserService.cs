@@ -37,6 +37,11 @@ namespace Business
         {
             return userRepository.get(id);
         }
+
+        public User getByDni( int dni )
+        {
+            return userRepository.getByDni(dni);
+        }
         public void SavePermissions(User user)
         {
             userRepository.savePermissions(user);

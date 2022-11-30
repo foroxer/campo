@@ -26,6 +26,7 @@ namespace Business
             services.Add( new UserService());
             services.Add(new CouponsService());
             services.Add(new VentaService());
+            services.Add(new ProductService());
         }
         public List<String> check()
         {

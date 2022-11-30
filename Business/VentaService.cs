@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using Business.Coupons;
+using DataAccess;
 using DigitosVerificadoresLib.interfaces;
 using Models.venta;
 using System;
@@ -9,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public  class VentaService : IDVService
+    public class VentaService : IDVService
     {
         private VentaRepository ventaRepository = new VentaRepository();
-        public Venta get(int id)
+        CouponsService couponsService = new CouponsService();
+        public Venta get( int id )
         {
             return new Venta();
         }
@@ -22,21 +24,56 @@ namespace Business
             return new List<Venta>();
         }
 
-        public void createVenta()
+        public Venta createPreventa( Venta preventa, string couponCode = null )
         {
-            Venta venta = new Venta();
-            venta.total = 0;
-            venta.subTotal = 0;
+            try
+            {
+                if ( couponCode != null )
+                {
+                    Coupon coupon = couponsService.get(couponCode);
+                    preventa.coupon = couponsService.isValid(coupon) ? coupon : throw new Exception();
+                }
+            }
+            catch ( Exception ex )
+            {
+                throw new Exception("Cupon no valido");
+            }
 
+            ICouponStrategy couponStrategy;
+            switch ( preventa.coupon?.type )
+            {
+                case CouponType.Percentage:
+                    {
+                        couponStrategy = new CouponPercentageStrategy();
+                        break;
+                    }
+                case CouponType.Amount:
+                    {
+                        couponStrategy = new CouponAmountStrategy();
+                        break;
+                    }
+                default:
+                    {
+                        couponStrategy = new CouponNoStrategy();
+                        break;
+                    }
+            }
+
+
+            Venta venta = new Venta();
+
+            venta.subTotal = preventa.products.Sum(x => x.price);
+            venta.total = couponStrategy.calcDiscount(venta.subTotal, preventa.coupon);
             venta.date = DateTime.Now;
-            venta.products = new List<Product>();
-            venta.user  = new Models.User();
-            venta.coupon = new Coupon();
+            venta.products = preventa.products;
+            venta.user = preventa.user;
+            venta.coupon = preventa.coupon;
+            return venta;
         }
 
-        private void saveVenta()
+        public void save( Venta venta )
         {
-
+            ventaRepository.save(venta);
         }
 
         public List<String> checkintegrity()

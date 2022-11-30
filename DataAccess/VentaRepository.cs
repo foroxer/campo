@@ -160,8 +160,8 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                                              VALUES
                                                    (@fecha
                                                    ,@idUsuario
-                                                   ,@dvh
                                                    ,@idCupon
+                                                   ,@dvh
                                                    ,@subTotal
                                                    ,@total)";
 
@@ -185,7 +185,7 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                                                ,[idProducto])
                                          VALUES
                                                (@idVenta
-                                               ,@idProducto";
+                                               ,@idProducto)";
 
                         cmd = new SqlCommand();
                         cmd.Transaction = transaction;

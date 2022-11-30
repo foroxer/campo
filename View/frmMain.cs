@@ -13,6 +13,7 @@ using View.changeControl;
 using View.dbmanage;
 using View.reports;
 using View.coupon;
+using View.venta;
 
 namespace View
 {
@@ -234,6 +235,11 @@ namespace View
         private void cuponesToolStripMenuItem_Click( object sender, EventArgs e )
         {
             createForm(typeof(frmCoupon));
+        }
+
+        private void ventasToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(frmVentaAlta));
         }
     }
 }

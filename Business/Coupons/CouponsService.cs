@@ -37,8 +37,19 @@ namespace Business
             couponRepository.save(coupon);
 
             return couponRepository.get(coupon.code);
-        }      
-        
+        }
+
+        public Boolean isValid( Coupon coupon )
+        {
+            try
+            {
+                return coupon.expirationDate.Ticks > DateTime.Now.Ticks;
+            }
+            catch ( Exception )
+            {
+                return false;
+            }
+        }
         public Coupon update( Coupon coupon)
         {
             if( coupon.discount == 0 )

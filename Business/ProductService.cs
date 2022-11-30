@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DigitosVerificadoresLib.interfaces;
 using Models.venta;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public class ProductService
+    public class ProductService : IDVService
     {
         private ProductRepository productRepository = new ProductRepository();
 
@@ -33,6 +34,10 @@ namespace Business
             return errors;
         }
 
+        public List<Product> getAll()
+        {
+            return productRepository.getAll();
+        }
         public void reacalcDV()
         {
             productRepository.UpdateAllDV();

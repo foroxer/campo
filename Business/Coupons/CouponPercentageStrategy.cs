@@ -14,7 +14,7 @@ namespace Business.Coupons
             if(coupon != null && coupon.discount <= 100 && coupon.discount > 0 )
             {
                 Decimal percentage = (Decimal)coupon.discount/100;
-                return (Decimal)subtotal * 1 - percentage;
+                return (Decimal)subtotal * (1 - percentage);
             }
             return subtotal;
         }

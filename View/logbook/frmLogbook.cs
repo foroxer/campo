@@ -49,7 +49,7 @@ namespace View.logbook
 
         private void Logbook_Load( object sender, EventArgs e )
         {
-
+            bitacoraList.Sort(( x, y ) => DateTime.Compare(x.dateTime, y.dateTime));
             dataGridView1.DataSource = bitacoraList;
             priorityCombo.DataSource = Enum.GetValues(typeof(PriorityEnum));
             userTxt.Text = "";
@@ -60,6 +60,7 @@ namespace View.logbook
             }
 
             priorityCombo.Enabled = priorityCheck.Checked;
+
 
         }
 

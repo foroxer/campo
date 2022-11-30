@@ -80,9 +80,10 @@ namespace View.coupon
 
             try
             {
+                string code = couponCodeAlta.GetStringMinLength(3);
                 Coupon coupon = new Coupon
                 {
-                    code = couponCodeAlta.Text,
+                    code = code,
                     discount = ( (int)numericUpDown1.Value ),
                     type = (CouponType)comboBox1.SelectedItem,
                     expirationDate = dateTimePicker1.Value

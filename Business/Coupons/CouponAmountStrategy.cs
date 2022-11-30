@@ -11,7 +11,7 @@ namespace Business.Coupons
     {
         public Decimal calcDiscount( Decimal subtotal, Coupon coupon )
         {
-            if ( coupon != null && coupon.discount < 0 )
+            if ( coupon != null && coupon.discount > 0 )
             {
                 Decimal total = subtotal - (Decimal)coupon.discount;
                 return total <= 0 ? 0 : total;

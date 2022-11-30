@@ -228,6 +228,59 @@ namespace DataAccess
                 throw;
             }
         }
+
+        public User getByDni( int dni )
+        {
+            User user = null;
+            try
+            {
+                SqlConnection connection = ConnectionSingleton.getConnection();
+                connection.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = $@"select * from usuarios u inner join usuario_data ud on u.id_usuario = ud.id_usuario  where ud.dni = @dni ;";
+                cmd.Parameters.Add(new SqlParameter("dni", dni));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                int idLanguaje = 0;
+                while ( reader.Read() )
+                {
+                    user = new User
+                    {
+                        Id = int.Parse(reader.GetValue(reader.GetOrdinal("id_usuario")).ToString()),
+                        Nic = reader.GetValue(reader.GetOrdinal("Nic")).ToString(),
+                        Password = reader.GetValue(reader.GetOrdinal("password")).ToString(),
+                        Mail = reader.GetValue(reader.GetOrdinal("mail")).ToString(),
+                        LastName = reader.GetValue(reader.GetOrdinal("apellido")).ToString(),
+                        Name = reader.GetValue(reader.GetOrdinal("nombre")).ToString(),
+                        Adress = reader.GetValue(reader.GetOrdinal("direccion")).ToString(),
+                        Phone = reader.GetValue(reader.GetOrdinal("telefono")).ToString(),
+                        Dni = reader.GetValue(reader.GetOrdinal("dni")).ToString(),
+                        Blocked = reader.GetBoolean(reader.GetOrdinal("bloqueado")),
+                        Tries = int.Parse(reader.GetValue(reader.GetOrdinal("intentos")).ToString()),
+                        dvh = reader.GetValue(reader.GetOrdinal("dvh")).ToString()
+                    };
+                    idLanguaje = int.Parse(reader.GetValue(reader.GetOrdinal("key_idioma")).ToString());
+                }
+
+                reader.Close();
+                connection.Close();
+
+                if ( user != null )
+                {
+                    permisosRepository.FillUserComponents(user);
+                    user.Language = languageRepository.GetLanguage(idLanguaje);
+                }
+
+                return user;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public List<User> getAll()
         {
             //los usuarios no tienen los idiomas 

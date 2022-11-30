@@ -17,10 +17,20 @@ namespace View
             }
             catch
             {
-                string text = "El dato " + textBox.Text + " debe ser numerico ";
+                string text = "";
+                if (textBox.Text == "" )
+                {
+                    text = "Por favor complete el campo ";
+
+                }
+                else
+                {
+                    text = "El dato " + textBox.Text + " debe ser numerico ";
+
+                }
                 configTooltip(textBox, text);
 
-                throw new Exception("Este campo debe ser numerico ");
+                throw new Exception(text);
             }
         }
         
