@@ -225,7 +225,8 @@
             this.Controls.Add(this.disableBtn);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCoupon";
-            this.Text = "Coupon";
+            this.Tag = "cupones";
+            this.Text = "Cupones";
             this.Load += new System.EventHandler(this.Coupon_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

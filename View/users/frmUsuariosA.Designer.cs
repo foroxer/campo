@@ -218,6 +218,7 @@
             this.ClientSize = new System.Drawing.Size(323, 439);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUsuariosA";
+            this.Tag = "usuariosAlta";
             this.Text = "Alta y modificacion usuarios";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAMUsuarios_FormClosed);
             this.Load += new System.EventHandler(this.frmAMUsuarios_Load);

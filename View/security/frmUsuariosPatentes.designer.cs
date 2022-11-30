@@ -238,6 +238,7 @@
             this.Controls.Add(this.grpPatentes);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmUsuariosPatentes";
+            this.Tag = "gestionUsuarios";
             this.Text = "Gestión de usuarios";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmUsuarios_FormClosed);
             this.Load += new System.EventHandler(this.frmUsuarios_Load);

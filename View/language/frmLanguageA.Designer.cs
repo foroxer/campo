@@ -70,7 +70,8 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "frmLanguageA";
-            this.Text = "LanguageA";
+            this.Tag = "crearIdioma";
+            this.Text = "Crear un Idioma";
             this.ResumeLayout(false);
             this.PerformLayout();
 

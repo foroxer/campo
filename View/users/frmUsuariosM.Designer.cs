@@ -282,7 +282,8 @@
             this.ClientSize = new System.Drawing.Size(326, 435);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmUsuariosM";
-            this.Text = "frmMUsuarios";
+            this.Tag = "usuarioModificar";
+            this.Text = "Modificar Usuario";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMUsuarios_FormClosed);
             this.Load += new System.EventHandler(this.frmMUsuarios_Load);
             this.groupBox2.ResumeLayout(false);

@@ -129,7 +129,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmResetPassword";
-            this.Text = "frmResetPassword";
+            this.Tag = "cambiarContrasena";
+            this.Text = "Cambiar Contraseña";
             this.Load += new System.EventHandler(this.frmResetPassword_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

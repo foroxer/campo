@@ -271,6 +271,12 @@
       <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </Compile>
     <Compile Include="Translator.cs" />
+    <Compile Include="venta\frmVentaAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="venta\frmVentaAlta.Designer.cs">
+      <DependentUpon>frmVentaAlta.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="changeControl\frmUserChangeControl.resx">
       <DependentUpon>frmUserChangeControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -347,6 +353,9 @@
     <EmbeddedResource Include="business\frmExercisesVisualization.resx">
       <DependentUpon>frmExercisesVisualization.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="venta\frmVentaAlta.resx">
+      <DependentUpon>frmVentaAlta.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="clasesUI.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BitacoraLib.entities.IRegistry.datasource" />
@@ -420,7 +429,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="help\" />
-    <Folder Include="venta\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

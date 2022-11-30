@@ -56,7 +56,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(70, 46);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(338, 26);
+            this.textBox1.Size = new System.Drawing.Size(338, 22);
             this.textBox1.TabIndex = 5;
             // 
             // label1
@@ -64,7 +64,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 19);
+            this.label1.Size = new System.Drawing.Size(45, 16);
             this.label1.TabIndex = 4;
             this.label1.Tag = "origen";
             this.label1.Text = "Origen";
@@ -104,13 +104,13 @@
             // 
             // frmRestore
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 244);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmRestore";
-            this.Tag = "Restaurarbackup";
+            this.Tag = "restoreBackup";
             this.Text = "Restaurar Backup";
             this.Load += new System.EventHandler(this.Restaurar_Backup_Load);
             this.groupBox1.ResumeLayout(false);
