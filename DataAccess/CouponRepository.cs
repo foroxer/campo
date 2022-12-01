@@ -61,10 +61,10 @@ namespace DataAccess
 
         public Coupon get( int id )
         {
+            SqlConnection connection = ConnectionSingleton.getConnection();
             try
             {
-                using ( SqlConnection connection = ConnectionSingleton.getConnection() )
-                {
+                
                     Coupon coupon = new Coupon();
                     connection.Open();
                     SqlCommand cmd = new SqlCommand();
@@ -94,10 +94,11 @@ namespace DataAccess
                     reader.Close();
                     connection.Close();
                     return coupon;
-                }
+                
             }
             catch
             {
+                connection.Close();
                 throw;
             }
         }

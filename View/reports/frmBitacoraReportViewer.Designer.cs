@@ -1,6 +1,6 @@
 ﻿namespace View.reports
 {
-    partial class frmReportViewer
+    partial class frmBitacoraReportViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -92,7 +92,6 @@
             this.Tag = "reporte";
             this.Text = "Reporte";
             this.Load += new System.EventHandler(this.frmReportViewer_Load);
-            this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.frmReportViewer_HelpRequested);
             ((System.ComponentModel.ISupportInitialize)(this.iRegistryBindingSource)).EndInit();
             this.ResumeLayout(false);
 

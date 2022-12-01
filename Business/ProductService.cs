@@ -41,6 +41,7 @@ namespace Business
         public void reacalcDV()
         {
             productRepository.UpdateAllDV();
+            productRepository.updateDVV();
         }
     }
 }

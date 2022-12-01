@@ -88,6 +88,7 @@ namespace BitacoraLib.services
         public static void reacalcDV()
         {
             registryDAO.UpdateAllDV();
+            registryDAO.updateDVV();
         }
 
     }

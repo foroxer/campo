@@ -50,19 +50,19 @@
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dVRestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bitacoraToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUsuarioPatentes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPatentesFamilias = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.controlDeCambiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuponesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -221,8 +221,7 @@
             // seguridadToolStripMenuItem
             // 
             this.seguridadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.baseDeDatosToolStripMenuItem,
-            this.reportesToolStripMenuItem});
+            this.baseDeDatosToolStripMenuItem});
             this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
             this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
             this.seguridadToolStripMenuItem.Text = "Seguridad";
@@ -258,33 +257,18 @@
             this.dVRestoreToolStripMenuItem.Text = "DV Restore";
             this.dVRestoreToolStripMenuItem.Click += new System.EventHandler(this.dVRestoreToolStripMenuItem_Click);
             // 
-            // reportesToolStripMenuItem
-            // 
-            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bitacoraToolStripMenuItem1,
-            this.ventaToolStripMenuItem});
-            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.reportesToolStripMenuItem.Text = "Reportes";
-            // 
-            // bitacoraToolStripMenuItem1
-            // 
-            this.bitacoraToolStripMenuItem1.Name = "bitacoraToolStripMenuItem1";
-            this.bitacoraToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.bitacoraToolStripMenuItem1.Text = "Bitacora";
-            this.bitacoraToolStripMenuItem1.Click += new System.EventHandler(this.bitacoraToolStripMenuItem1_Click);
-            // 
             // configToolStripMenuItem
             // 
             this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuUsuarioPatentes,
             this.mnuPatentesFamilias,
             this.usuariosToolStripMenuItem1,
-            this.bitacoraToolStripMenuItem});
+            this.bitacoraToolStripMenuItem,
+            this.reportesToolStripMenuItem});
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
-            this.configToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
-            this.configToolStripMenuItem.Tag = "Config";
-            this.configToolStripMenuItem.Text = "Config";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(123, 24);
+            this.configToolStripMenuItem.Tag = "administracion";
+            this.configToolStripMenuItem.Text = "Administración";
             // 
             // mnuUsuarioPatentes
             // 
@@ -327,6 +311,24 @@
             this.bitacoraToolStripMenuItem.Text = "Bitacora";
             this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
             // 
+            // reportesToolStripMenuItem
+            // 
+            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bitacoraToolStripMenuItem1,
+            this.ventasToolStripMenuItem1});
+            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.reportesToolStripMenuItem.Tag = "reportes";
+            this.reportesToolStripMenuItem.Text = "Reportes";
+            // 
+            // bitacoraToolStripMenuItem1
+            // 
+            this.bitacoraToolStripMenuItem1.Name = "bitacoraToolStripMenuItem1";
+            this.bitacoraToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.bitacoraToolStripMenuItem1.Tag = "bitacora";
+            this.bitacoraToolStripMenuItem1.Text = "Bitacora";
+            this.bitacoraToolStripMenuItem1.Click += new System.EventHandler(this.bitacoraToolStripMenuItem1_Click);
+            // 
             // ventasToolStripMenuItem
             // 
             this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
@@ -360,13 +362,13 @@
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
-            // ventaToolStripMenuItem
+            // ventasToolStripMenuItem1
             // 
-            this.ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
-            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.ventaToolStripMenuItem.Tag = "venta";
-            this.ventaToolStripMenuItem.Text = "Venta";
-            this.ventaToolStripMenuItem.Click += new System.EventHandler(this.ventaToolStripMenuItem_Click);
+            this.ventasToolStripMenuItem1.Name = "ventasToolStripMenuItem1";
+            this.ventasToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.ventasToolStripMenuItem1.Tag = "ventas";
+            this.ventasToolStripMenuItem1.Text = "Ventas";
+            this.ventasToolStripMenuItem1.Click += new System.EventHandler(this.ventasToolStripMenuItem1_Click);
             // 
             // frmMain
             // 
@@ -431,7 +433,7 @@
         private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cuponesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ventaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem1;
     }
 }
 

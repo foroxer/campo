@@ -186,6 +186,7 @@ namespace Business
         public void reacalcDV()
         {
             userRepository.UpdateAllDV();
+            userRepository.updateDVV();
         }
     }
 }

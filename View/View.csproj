@@ -64,6 +64,12 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\Business\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\Business\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportingServices.BuildProcess, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
       <HintPath>..\Business\packages\ReportingServices.14.0.1016.247\lib\net46\Microsoft.ReportingServices.BuildProcess.dll</HintPath>
     </Reference>
@@ -151,17 +157,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="reports\frmReportViewer.cs">
+    <Compile Include="reports\frmBitacoraReportViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="reports\frmReportViewer.Designer.cs">
-      <DependentUpon>frmReportViewer.cs</DependentUpon>
+    <Compile Include="reports\frmBitacoraReportViewer.Designer.cs">
+      <DependentUpon>frmBitacoraReportViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="reports\VentaViewer.cs">
+    <Compile Include="reports\frmVentasReportViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="reports\VentaViewer.Designer.cs">
-      <DependentUpon>VentaViewer.cs</DependentUpon>
+    <Compile Include="reports\frmVentasReportViewer.Designer.cs">
+      <DependentUpon>frmVentasReportViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="security\frmDV.cs">
       <SubType>Form</SubType>
@@ -319,13 +325,13 @@
       <DependentUpon>PreCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reports\BitacoraReport.rdlc" />
-    <EmbeddedResource Include="reports\frmReportViewer.resx">
-      <DependentUpon>frmReportViewer.cs</DependentUpon>
+    <EmbeddedResource Include="reports\frmBitacoraReportViewer.resx">
+      <DependentUpon>frmBitacoraReportViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="reports\Venta.rdlc" />
-    <EmbeddedResource Include="reports\VentaViewer.resx">
-      <DependentUpon>VentaViewer.cs</DependentUpon>
+    <EmbeddedResource Include="reports\frmVentasReportViewer.resx">
+      <DependentUpon>frmVentasReportViewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="reports\VentasReport.rdlc" />
     <EmbeddedResource Include="security\frmDV.resx">
       <DependentUpon>frmDV.cs</DependentUpon>
     </EmbeddedResource>

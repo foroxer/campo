@@ -86,6 +86,7 @@ namespace Business
         public void reacalcDV()
         {
             couponRepository.UpdateAllDV();
+            couponRepository.updateDVV();
         }
     }
 }

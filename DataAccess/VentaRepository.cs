@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,16 +68,17 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
                 throw;
             }
 
+            if ( coupon != 0 )
+            {
+                venta.coupon = couponRepository.get(coupon);
+            }
             //fill products
             productos.ForEach(( idProducto ) =>
             {
                 venta.products.Add(productRepository.get(idProducto));
             });
             venta.user = userRepository.get(usuario);
-            if ( coupon != 0 )
-            {
-                venta.coupon = couponRepository.get(coupon);
-            }
+           
 
             return venta;
 
@@ -125,9 +127,9 @@ inner join dbo.venta_producto as vp on v.id = vp.idVenta  where v.id = @id;";
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(obj.user.Id.ToString());
-            sb.Append(obj.date.ToString());
-            sb.Append(obj.subTotal.ToString());
-            sb.Append(obj.total.ToString());
+            sb.Append(obj.date.Ticks.ToString());
+            sb.Append(string.Format("{0:0.00}", obj.subTotal));
+            sb.Append(string.Format("{0:0.00}", obj.total));
 
             sb.Append(obj?.coupon?.code);
 

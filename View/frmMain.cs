@@ -155,10 +155,10 @@ namespace View
 
         private void helpshow( object sender, HelpEventArgs hlpevent )
         {
-            string path = System.AppDomain.CurrentDomain.BaseDirectory + @"help\Help.chm.chm";
-#if DEBUG
-            path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\help\Help.chm";
-#endif
+            string path = System.AppDomain.CurrentDomain.BaseDirectory + @"help\Help.chm";
+//#if DEBUG
+//            path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\help\Help.chm";
+//#endif
             Help.ShowHelp((Control)sender, path);
         }
         public void updateLanguage(Language language)
@@ -251,7 +251,7 @@ namespace View
 
         private void bitacoraToolStripMenuItem1_Click( object sender, EventArgs e )
         {
-            createForm(typeof(frmReportViewer));
+            createForm(typeof(frmBitacoraReportViewer));
         }
 
         private void cuponesToolStripMenuItem_Click( object sender, EventArgs e )
@@ -264,9 +264,9 @@ namespace View
             createForm(typeof(frmVentaAlta));
         }
 
-        private void ventaToolStripMenuItem_Click( object sender, EventArgs e )
+        private void ventasToolStripMenuItem1_Click( object sender, EventArgs e )
         {
-            createForm(typeof(VentaViewer));
+            createForm(typeof(frmVentasReportViewer));
         }
     }
 }

@@ -40,13 +40,21 @@ namespace View
 
             dataGridView1.DataSource = listErrors.Select(er => new { error = er }).ToList();
 
-            if( dataGridView1.CurrentCell != null) dataGridView1.CurrentCell.Selected = false;
+            if ( dataGridView1.CurrentCell != null ) dataGridView1.CurrentCell.Selected = false;
         }
 
         private void button1_Click( object sender, EventArgs e )
         {
-            integrityChecker.recalcDV();
-            frmDV_Load(null,null);
+            try
+            {
+                integrityChecker.recalcDV();
+
+            }
+            catch ( Exception )
+            {
+                MessageBox.Show("ocurrio un error al recalcular los digitos verificadores");
+            }
+            frmDV_Load(null, null);
         }
     }
 }

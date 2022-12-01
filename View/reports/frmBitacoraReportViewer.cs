@@ -14,10 +14,10 @@ using Utiles;
 
 namespace View.reports
 {
-    public partial class frmReportViewer : Form
+    public partial class frmBitacoraReportViewer : Form
     {
         List<IRegistry> registries = new List<IRegistry>();
-        public frmReportViewer()
+        public frmBitacoraReportViewer()
         {
             InitializeComponent();
         }
@@ -43,7 +43,7 @@ namespace View.reports
                 saveFileDialog1.Filter = "pdf files (*.pdf)|*.pdf";
                 saveFileDialog1.FilterIndex = 2;
                 saveFileDialog1.RestoreDirectory = true;
-                saveFileDialog1.DefaultExt = "json";
+                saveFileDialog1.DefaultExt = "pdf";
                 saveFileDialog1.FileName = "report_" + DateTime.Now.ToString("dd-MM-yyyy");
 
                 if ( saveFileDialog1.ShowDialog() == DialogResult.OK )
@@ -60,14 +60,6 @@ namespace View.reports
             }
         }
 
-        private void frmReportViewer_HelpRequested( object sender, HelpEventArgs hlpevent )
-        {
-            string path = System.AppDomain.CurrentDomain.BaseDirectory + @"help\Help.chm.chm";
-#if DEBUG
-            path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\help\Help.chm";
-#endif
-            Help.ShowHelp(this, path);
-        }
 
         private void button2_Click( object sender, EventArgs e )
         {
@@ -89,10 +81,8 @@ namespace View.reports
                     System.Diagnostics.Process.Start(saveFileDialog1.FileName);
                 }
             }
-            catch ( Exception )
+            catch ( Exception ex)
             {
-
-                MessageBox.Show("Ocurrio un problema al Serializar");
             }
         }
     }
