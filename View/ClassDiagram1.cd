@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="View.business.frmExerciseAML" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAEBBAQAACAAAACCAgYAACAEGAAgQAAAAA=</HashCode>
+      <FileName>business\frmExerciseAML.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.business.frmExersiceAssign" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="1.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BCAAAAQAAiABABCAAACCABJCCDggAASgEhAAAQAAgAA=</HashCode>
+      <FileName>business\frmExersiceAssign.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.business.frmMachineTypes" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAEAAAAAACAAAACCAgIAACAEEAAgQAAAAA=</HashCode>
+      <FileName>business\frmMachineTypes.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.business.frmMuscularGroupTypes" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAEAAAAAACAAAACCAgIAACAEEAAgQAAAAA=</HashCode>
+      <FileName>business\frmMuscularGroupTypes.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.frmExercisesVisualization" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAiABAAAABACQAAICCBgAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>business\frmExercisesVisualization.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.frmLogin">
+    <Position X="7.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAEBAAAACIAAACIAAYADAAEGAAAAAAAAI=</HashCode>
+      <FileName>frmLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.frmMain" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AZAAYQCQECgBaEIqQgyIBAI2C4ICABAOAEGQAkgBYCE=</HashCode>
+      <FileName>frmMain.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.PreCheck">
+    <Position X="0.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAICAAAAAAAACAAAACAAoIAAAAAEAAAABAAAA=</HashCode>
+      <FileName>PreCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.Program">
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.frmDV">
+    <Position X="6" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAACgAAACAAoIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>security\frmDV.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.frmPatentesFamilias" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIhgAEAACgAQJAoABCAAAALCAFIYQAQgjJAAwAwCAA=</HashCode>
+      <FileName>security\frmPatentesFamilias.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.frmResetPassword" BaseTypeListCollapsed="true">
+    <Position X="6" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAACIAAAACAAABCAAACAAAACCABYAIAAAGAAAAAAAEA=</HashCode>
+      <FileName>security\frmResetPassword.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.frmUsuariosPatentes" BaseTypeListCollapsed="true">
+    <Position X="6" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AiAggAYAACgAgJCoBACgAAACDABgAAAAQgAAFAEgCSQ=</HashCode>
+      <FileName>security\frmUsuariosPatentes.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.TextBoxExtension">
+    <Position X="7.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAABAAAAAAAAAAAAAQAAAAAAAAGAAAA=</HashCode>
+      <FileName>TextBoxExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.Translator">
+    <Position X="9.5" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAAAAAABCQ=</HashCode>
+      <FileName>Translator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.frmUsuariosA" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BQAgAIBAACCAABCAQACAQCACCAAAhAAAACAAAQAAAAQ=</HashCode>
+      <FileName>users\frmUsuariosA.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.frmUsuariosL" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gCAAAAAgACAAABCAAACCAABCCAgICACAEEAAAQAAgAA=</HashCode>
+      <FileName>users\frmUsuariosL.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.frmUsuariosM" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>8xAAIABAAqIAABCMBQCEAAACKAAAAAACQCAAAhAAAQg=</HashCode>
+      <FileName>users\frmUsuariosM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.changeControl.frmUserChangeControl" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAgACAEABKAAACQAEACCAgAAACAAAQAIAAAQCA=</HashCode>
+      <FileName>changeControl\frmUserChangeControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.coupon.frmCoupon" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AABAAAgABCAkABASBACIAAACCAgCAiDAgCACAAAAAAA=</HashCode>
+      <FileName>coupon\frmCoupon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.dbmanage.frmBackup" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAJAIAACAAAADCgBAgAACACAAAAAAACA=</HashCode>
+      <FileName>dbmanage\frmBackup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.dbmanage.frmRestore">
+    <Position X="7.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACACCACAAA4AAAAEHAAAAAAACA=</HashCode>
+      <FileName>dbmanage\frmRestore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.language.frmLanguageA" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACAAABAAAACAAAACCAAIAAAAEEAAAAAAAAA=</HashCode>
+      <FileName>language\frmLanguageA.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.language.frmLanguageL" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAYAAAACAAABAAAACAAAACCIg4AAAAMHQAAQAgAAA=</HashCode>
+      <FileName>language\frmLanguageL.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.logbook.frmLogbook" BaseTypeListCollapsed="true">
+    <Position X="6" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIgAEACAAAhACABCAAAACSAgAAAAAAEAAIAEAAAA=</HashCode>
+      <FileName>logbook\frmLogbook.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="View.Properties.Resources">
+    <Position X="4.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAABEAAAAQAAAAAAAQAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.Properties.Settings">
+    <Position X="6" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.reports.frmBitacoraReportViewer">
+    <Position X="2.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAGAAAAAICAAAACAAAYAAAAAGAAAAAAAAA=</HashCode>
+      <FileName>reports\frmBitacoraReportViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.reports.frmVentasReportViewer">
+    <Position X="9.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAEAAAAAACAAAACACAYAAACAGAAACAAAAA=</HashCode>
+      <FileName>reports\frmVentasReportViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SqlServerTypes.Utilities">
+    <Position X="0.75" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>SqlServerTypes\Loader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View.venta.frmVentaAlta">
+    <Position X="7.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>wgEBAEgAACAAABDQDECAAAAGEEA4AAABQHAMACIAAAA=</HashCode>
+      <FileName>venta\frmVentaAlta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -372,6 +372,7 @@
       <DependentUpon>frmVentaAlta.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="clasesUI.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BitacoraLib.entities.IRegistry.datasource" />
     <None Include="Properties\DataSources\BitacoraLib.services.BitacoraService.datasource" />
