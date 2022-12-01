@@ -48,7 +48,8 @@ namespace View
             try
             {
                 integrityChecker.recalcDV();
-
+                MessageBox.Show("Digitos verificadores recalculados con exito");
+                Application.Exit();
             }
             catch ( Exception )
             {

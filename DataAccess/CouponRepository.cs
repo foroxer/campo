@@ -187,6 +187,7 @@ namespace DataAccess
 
         public void save( Coupon obj )
         {
+            obj.emmitDate = DateTime.Now;
             SqlConnection connection = ConnectionSingleton.getConnection();
 
             SqlTransaction transaction;
@@ -220,7 +221,7 @@ namespace DataAccess
                     cmd.Parameters.Add(new SqlParameter("discount", obj.discount));
                     cmd.Parameters.Add(new SqlParameter("type", obj.type.ToString()));
                     cmd.Parameters.Add(new SqlParameter("dvh", calculateDVH(obj)));
-                    cmd.Parameters.Add(new SqlParameter("emmitDate", DateTime.Now.Ticks));
+                    cmd.Parameters.Add(new SqlParameter("emmitDate", obj.emmitDate.Ticks));
                     cmd.Parameters.Add(new SqlParameter("expirationDate", obj.expirationDate.Ticks));
                     cmd.Parameters.Add(new SqlParameter("code", obj.code));
 

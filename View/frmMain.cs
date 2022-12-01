@@ -74,6 +74,7 @@ namespace View
                 ventasToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Venta);
                 cuponesToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Coupons);
                 reportesToolStripMenuItem.Enabled = Session.GetInstance.IsInRole(PermissionsEnum.Reports);
+
                 if (Session.GetInstance.IsInRole(PermissionsEnum.VerRutina))
                 {
                     rutinas.Enabled = true;
@@ -267,6 +268,11 @@ namespace View
         private void ventasToolStripMenuItem1_Click( object sender, EventArgs e )
         {
             createForm(typeof(frmVentasReportViewer));
+        }
+
+        private void cuponesToolStripMenuItem1_Click( object sender, EventArgs e )
+        {
+            createForm(typeof(frmCouponsReportViewer));
         }
     }
 }

@@ -132,8 +132,9 @@ namespace View.venta
 
                 MessageBox.Show("Se produjo un error al ejecutar la venta");
             }
-            MessageBox.Show("Venta exitosa");
 
+            MessageBox.Show("Venta exitosa");
+            Close();
         }
 
         private void button5_Click( object sender, EventArgs e )

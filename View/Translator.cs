@@ -32,22 +32,29 @@ namespace View
         {
             foreach ( Control control in parent )
             {
-                control.Text = getTranslation(language, control.Tag, control.Text);
 
+                if ( control is DateTimePicker ) return;
 
-                if ( control.GetType().Equals(typeof(MenuStrip)) && ( (MenuStrip)control ).Items.Count != 0 )
+                //if(control is GroupBox )
+                //{
+                //    control.Text = getTranslation(language, control.Tag, control.Text);
+                //}
+                if ( control is MenuStrip && ( (MenuStrip)control ).Items.Count != 0 )
                 {
                     updateToolStrip(language, ( (MenuStrip)control ).Items);
                 }
 
-                if ( control.GetType().Equals(typeof(DataGridView)) )
+                if ( control is DataGridView )
                 {
                     updateDataGridColumns((DataGridView)control, language);
                 }
+
                 if ( control.Controls.Count != 0 )
                 {
                     updateLanguageRecursiveControls(language, control.Controls);
                 }
+                control.Text = getTranslation(language, control.Tag, control.Text);
+
             }
         }
 
@@ -71,7 +78,7 @@ namespace View
                 column.HeaderText = getTranslation(language, column.Tag, column.HeaderText);
 
 
-                if ( column.GetType().Equals(typeof(DataGridViewButtonColumn)) )
+                if ( column is DataGridViewButtonColumn )
                 {
                     ( column as DataGridViewButtonColumn ).Text = getTranslation(language, column.Tag, ( column as DataGridViewButtonColumn ).Text);
                 }
@@ -84,9 +91,9 @@ namespace View
         {
             if ( language == null ) return defaultText;
             if ( tag == null ) Console.WriteLine(" en algun lado falta un tag con el texto " + defaultText);
-             if( language.Translations.Find(
-                       ( translation ) => translation.Key.Equals(tag)
-                   )?.Translate == null) Console.WriteLine("traduccion faltante:    "+ tag+ "   , texto: " +  defaultText);
+            if ( language.Translations.Find(
+                      ( translation ) => translation.Key.Equals(tag)
+                  )?.Translate == null ) Console.WriteLine("traduccion faltante:    " + tag + "   , texto: " + defaultText);
 
             return language.Translations.Find(
                        ( translation ) => translation.Key.Equals(tag)
