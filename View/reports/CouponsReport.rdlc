@@ -6,13 +6,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.47971cm</Width>
+              <Width>2.5508cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.52721cm</Width>
+              <Width>2.11884cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.16302cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -31,7 +31,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>code</Value>
+                              <Value>Codigo</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -61,7 +61,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>type</Value>
+                              <Value>Tipo</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -91,7 +91,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>expiration Date</Value>
+                              <Value>Fecha expiracion</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -121,7 +121,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>discount</Value>
+                              <Value>Descuento</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -186,7 +186,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!type.Value</Value>
+                              <Value>=IIf(Fields!type.Value = 0, "Porcentaje","Monto")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -285,23 +285,23 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>2.5cm</Size>
+                <Size>1.99136cm</Size>
                 <CellContents>
-                  <Textbox Name="Textbox16">
+                  <Textbox Name="Textbox28">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>emmit Date</Value>
+                            <Value>Fecha emision</Value>
                             <Style />
                           </TextRun>
                         </TextRuns>
                         <Style />
                       </Paragraph>
                     </Paragraphs>
-                    <rd:DefaultName>Textbox16</rd:DefaultName>
+                    <rd:DefaultName>Textbox28</rd:DefaultName>
                     <Style>
                       <Border>
                         <Color>LightGrey</Color>
@@ -313,13 +313,46 @@
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
                   </Textbox>
-                  <rd:Selected>true</rd:Selected>
                 </CellContents>
               </TablixHeader>
               <TablixMembers>
-                <TablixMember />
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>2.96567cm</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox30">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Habilitado</Value>
+                                <Style />
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox30</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
               </TablixMembers>
-              <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
               <Group Name="emmitDate">
@@ -333,7 +366,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>2.5cm</Size>
+                <Size>1.99136cm</Size>
                 <CellContents>
                   <Textbox Name="emmitDate">
                     <CanGrow>true</CanGrow>
@@ -367,7 +400,52 @@
               </TablixHeader>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="Detalles" />
+                  <Group Name="Group1">
+                    <GroupExpressions>
+                      <GroupExpression>=IIf(Fields!expirationDate.Value &gt; Today(),"Habilitado","Deshablilitado" )</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=IIf(Fields!expirationDate.Value &gt; Today(),"Habilitado","Deshablilitado" )</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>2.96567cm</Size>
+                    <CellContents>
+                      <Textbox Name="Group1">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=IIf(Fields!expirationDate.Value &gt; Today(),"Habilitado","Deshablilitado" )</Value>
+                                <Style />
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Group1</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="Detalles" />
+                    </TablixMember>
+                  </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixMember>
@@ -375,10 +453,10 @@
         </TablixRowHierarchy>
         <RepeatRowHeaders>true</RepeatRowHeaders>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.81703cm</Top>
-        <Left>1.8542cm</Left>
+        <Top>0.43603cm</Top>
+        <Left>0.28618cm</Left>
         <Height>1.09417cm</Height>
-        <Width>13.50692cm</Width>
+        <Width>15.28967cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -389,7 +467,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>6.47415in</Width>
+  <Width>6.32145in</Width>
   <Page>
     <PageHeader>
       <Height>2.54cm</Height>
@@ -414,7 +492,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox11</rd:DefaultName>
           <Top>0.62075cm</Top>
-          <Left>5.41544cm</Left>
+          <Left>5.69834cm</Left>
           <Height>1.2985cm</Height>
           <Width>3.55833cm</Width>
           <Style>
@@ -442,8 +520,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
-          <Top>1.00767cm</Top>
-          <Left>9.52052cm</Left>
+          <Top>0.62075cm</Top>
+          <Left>10.19785cm</Left>
           <Height>0.91158cm</Height>
           <Width>4.42381cm</Width>
           <ZIndex>1</ZIndex>

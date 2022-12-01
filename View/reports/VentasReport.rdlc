@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.80897cm</Width>
+              <Width>3.34505cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.86907cm</Width>
@@ -28,7 +28,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>id</Value>
+                              <Value>Identificador venta</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -320,7 +320,7 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>2.80897cm</Size>
+                <Size>2.95714cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox73">
                     <CanGrow>true</CanGrow>
@@ -329,7 +329,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>date</Value>
+                            <Value>Fecha de emision</Value>
                             <Style />
                           </TextRun>
                         </TextRuns>
@@ -368,7 +368,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>2.80897cm</Size>
+                <Size>2.95714cm</Size>
                 <CellContents>
                   <Textbox Name="date">
                     <CanGrow>true</CanGrow>
@@ -408,7 +408,7 @@
             </TablixMember>
             <TablixMember>
               <TablixHeader>
-                <Size>2.80897cm</Size>
+                <Size>2.95714cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox75">
                     <CanGrow>true</CanGrow>
@@ -449,7 +449,7 @@
         <Top>0.6477cm</Top>
         <Left>1.42982cm</Left>
         <Height>1.82117cm</Height>
-        <Width>12.4177cm</Width>
+        <Width>13.10194cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

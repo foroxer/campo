@@ -30,12 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.ventaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ventaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ventaBindingSource
+            // 
+            this.ventaBindingSource.DataSource = typeof(Models.venta.Venta);
             // 
             // button2
             // 
@@ -76,10 +80,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(771, 392);
             this.reportViewer1.TabIndex = 5;
             // 
-            // ventaBindingSource
-            // 
-            this.ventaBindingSource.DataSource = typeof(Models.venta.Venta);
-            // 
             // frmVentasReportViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -89,7 +89,8 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "frmVentasReportViewer";
-            this.Text = "VentasReportViewer";
+            this.Tag = "reporte";
+            this.Text = "Reporte";
             this.Load += new System.EventHandler(this.frmVentasReportViewer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource)).EndInit();
             this.ResumeLayout(false);
