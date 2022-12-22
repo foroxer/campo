@@ -60,10 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bussines\Exercise.cs" />
-    <Compile Include="bussines\Machine.cs" />
     <Compile Include="bussines\MachineType.cs" />
     <Compile Include="bussines\MuscularGroup.cs" />
-    <Compile Include="ErrorString.cs" />
     <Compile Include="interfaces\ILanguageObserber.cs" />
     <Compile Include="interfaces\ILanguajeObserbable.cs" />
     <Compile Include="language\Language.cs" />

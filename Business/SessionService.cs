@@ -21,8 +21,6 @@ namespace Business
         }
         public void Login(String name, String password)
         {
-            try
-            {
                 if (name.IsNullOrEmpty() || password.IsNullOrEmpty())
                 {
                     throw new LoginException();
@@ -45,11 +43,6 @@ namespace Business
                 }
                 userService.ResetTries(user);
                 Session.GetInstance.Login(user);
-            }
-            catch
-            {
-                throw;
-            }
         }
         public void Logout()
         {

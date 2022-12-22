@@ -13,6 +13,9 @@ using static System.Windows.Forms.AxHost;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using Business;
+using System.Reflection;
+using Models.venta;
+using Business.Coupons;
 
 namespace View
 {

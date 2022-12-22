@@ -1,9 +1,11 @@
-﻿using Models.bussines;
+﻿using BitacoraLib.services;
+using Models.bussines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Utiles;

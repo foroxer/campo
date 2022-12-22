@@ -78,7 +78,7 @@ namespace View.reports
                 if ( saveFileDialog1.ShowDialog() == DialogResult.OK )
                 {
                     Serializer.serializeAndSave(saveFileDialog1.FileName, registries);
-                    System.Diagnostics.Process.Start(saveFileDialog1.FileName);
+                    System.Diagnostics.Process.Start("notepad.exe",saveFileDialog1.FileName);
                 }
             }
             catch ( Exception ex)
